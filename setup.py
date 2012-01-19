@@ -9,10 +9,17 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     package_data = {
-        "plan_proposal": [
+        "plan_proposals": [
             "templates/*.html",
+            "templates/*.js",
             "static/css/*.css",
+            "static/javascript/*.js",
+            "static/images/*.jpg",
+            "static/images/*.gif",
             "static/images/*.png",
+            "static/images/buttons/*.png",
+            "static/images/placemarks/*.png",
+            "static/cursors/*.cur",
         ],
     },
     zip_safe=False,
