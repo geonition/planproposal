@@ -15,10 +15,9 @@ Järvenpää - pehmoGIS
 {% endblock %}
 
 {% block stylesheet %}
-	<link rel="stylesheet" type="text/css" href="{{STATIC_URL }}css/planning_feedback.css" />
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL }}css/planning_feedback.css" />
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL }}css/jquery.ui.stars.min.css" />
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" type="text/css" href="https://serverapi.arcgisonline.com/jsapi/arcgis/2.6/js/dojo/dijit/themes/tundra/tundra.css" />
 {% endblock stylesheet %}
 
 {% block body_class %}
@@ -43,7 +42,9 @@ Järvenpää
         {% lorem 50 w %}
         <br />
         <br />
-        <a id="opener" class="reset" href="http://www.jarvenpaa.fi">{% trans "More informationa about the project" %} </a>    
+        <a id="opener" class="reset" href="http://www.jarvenpaa.fi">
+	    {% trans "More informationa about the project" %}
+	</a>    
         <br />
         <br />
     </div>    
@@ -54,7 +55,9 @@ Järvenpää
             {% lorem 25 w %}
 			<br/>
 			<br/>
-			<a class="reset" href="{% url plan_proposal 'Pajalanpiha' %}">{% trans "Visualize and evaluate proposal" %}</a>
+			<a class="reset" href="{% url plan_proposal 'Pajalanpiha' %}">
+			    {% trans "Look at and evaluate the proposal" %}
+			</a>
   
         </div>
         <h3><a href="#">{% trans "Reservikomppania" %}</a></h3>
@@ -62,14 +65,18 @@ Järvenpää
             {% lorem 25 w %}
 			<br/>
 			<br/>
-			<a class="reset" href="{% url plan_proposal 'Reservikomppania' %}">{% trans "Visualize and evaluate proposal" %}</a>
+			<a class="reset" href="{% url plan_proposal 'Reservikomppania' %}">
+			    {% trans "Look at and evaluate the proposal" %}
+			</a>
         </div>
         <h3><a href="#">{% trans "Proposal 3" %}</a></h3>
         <div>
             {% lorem 25 w %}
 			<br/>
 			<br/>
-			<a class="reset" href="{% url plan_proposal 'Proposal3' %}">{% trans "Visualize and evaluate proposal" %}</a>
+			<a class="reset" href="{% url plan_proposal 'Proposal3' %}">
+			    {% trans "Look at and evaluate the proposal" %}
+			</a>
         </div>
     </div>
 
@@ -88,49 +95,41 @@ Järvenpään kaupunki
 {% endblock %}
 
 {% block javascript %}
-    <script src="http://cdn.jquerytools.org/1.2.6/jquery.tools.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js">
     </script>
-
-
-    <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=2.6">
-    </script>	    
-    <script type="text/javascript">
-		var djConfig = {debug: {{ debug_mode }} };
-    </script>
-
-    <!--<script type="text/javascript" src="{{ STATIC_URL }}javascript/cont-planning.js"></script>-->
     <script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.ui.stars.min.js"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}javascript/cont-planning-common.js"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}javascript/cont-planning_map.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}javascript/cont-planning_map.js"></script>
 	
       
     
     
     <script type="text/javascript">
-//		var djConfig = {debug: {{ debug_mode }} };
         <!--
         dojo.addOnLoad(init);
         document.body.style.cursor = "default";
-		jQuery(document).ready(function(){
-			$("#accordion").accordion({
+	jQuery(document).ready(function(){
+	    $("#accordion").accordion({
 			            'collapsible': true,
-			            'autoHeight': false
+			            'autoHeight': false,
+				    'active': false
 			            });
 			
 		
-			$( "#dialog" ).dialog({
-				autoOpen: false,
-				show: "blind",
-				width: 600
+	    $( "#dialog" ).dialog({
+				'autoOpen': false,
+				'show': "blind",
+				'width': 600
 			});
 		
-			$( "#opener" ).click(function() {
-				$( "#dialog" ).dialog( "open" );
-				return false;
-			});				
-		});
-	    var SHOW_PLAN = false;
+	    $( "#opener" ).click(function() {
+		    $( "#dialog" ).dialog( "open" );
+			return false;
+    		});				
+	    });
+
+	var SHOW_PLAN = false;
         var INITIAL_EXTENT = {
                             "xmax":402203,
                             "xmin":389080,

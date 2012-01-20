@@ -2633,7 +2633,7 @@ function createInfo(event) {
         iHeight = getMaxContentHeight() -44;
     }
     
-    map.infoWindow.resize(270, 300);
+    map.infoWindow.resize(250, 250);
 
     // If title is more than one line bottom of the infowindow is not showing
     // Not very elegant way to do it

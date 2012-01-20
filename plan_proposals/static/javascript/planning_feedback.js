@@ -28,7 +28,7 @@ jQuery(document).ready(function(){
      $caption.appendTo(".ratings");
      
      $(".submit-evaluation").click(function() {
-            $(".red").html("Thank you for your evaluation!");
+            $(".red").html("Thank you for your feedback!");
             $(".submit-evaluation").attr("disabled", "disabled");
             $("#free-comment").attr("disabled", "disabled");
             
