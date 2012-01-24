@@ -1,3 +1,17 @@
+/*
+ map settings
+*/
+var map;
+var layer;
+
+var SHOW_PLAN = false;
+var INITIAL_CENTER = {
+                    "x":395524,
+                    "y":6706710};
+
+/*
+ page specific events and other methods
+*/
 // increase the default animation speed to exaggerate the effect
 $.fx.speeds._default = 500;
 
@@ -14,8 +28,6 @@ jQuery(document).ready(function(){
     });
     // Create target element for onHover titles
     $caption = $("<span/>");
-    //create html for stars
-  
     
      $("input.star").rating({
             callback: function(value, link){
@@ -37,13 +49,45 @@ jQuery(document).ready(function(){
             
             $('input.star').rating('readOnly',true) 
             
-     });
-
+    });
+     
+    
+    /* Openlayers */
+    var mapOptions = {
+        maxExtent: new OpenLayers.Bounds(89949.504,
+                                         6502687.508,
+                                         502203.000,
+                                         7137049.802),
+        projection: "EPSG:3067",
+        maxResolution: 50
+    };
+    map = new OpenLayers.Map('map', mapOptions);
+    
+    layer = new OpenLayers.Layer.ArcGIS93Rest(
+        "ArcGIS Server Layer",
+        "https://pehmogis.tkk.fi/ArcGIS/rest/services/suomi/MapServer/export",
+        {layers: "show:0,7,43,79,115,150,151,187,222,258,294,330"},
+        {isBaseLayer: true}
+    );
+    
+    map.addLayer(layer);
+    map.addControl( new OpenLayers.Control.MousePosition() );
+    
+    var pointLayer = new OpenLayers.Layer.Vector("Point Layer");
+    var pointcontrol = new OpenLayers.Control.DrawFeature(pointLayer,
+                                OpenLayers.Handler.Point);
+    map.addControl( pointcontrol );
+    draw_controls = {
+        'point': pointcontrol
+        };
+    map.setCenter(new OpenLayers.LonLat(INITIAL_CENTER.x,
+                                        INITIAL_CENTER.y), 0);
+    
+    map.zoomToScale(3937278600);
+    
+    //draw buttons to activate drawing functionality
+    global_button = $( ".drawbutton").drawButton({
+        control: "point"
+        });
+    
 });
-
-
-function widgets_initialization()
-{
-        //call create widgets function to create the imagebutton widgets for all proposals
-        create_widgets("placebased-feedback");
-}

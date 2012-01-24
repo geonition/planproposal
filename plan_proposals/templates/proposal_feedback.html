@@ -33,10 +33,15 @@
         {% trans "Please give any comment you want in the form of places, routes or areas. Start by selecting any of the drawing tools on the right." %}
     </span>
     <div id="placebased-feedback">
-        <button type="button" class="imagebutton point" id="point_feedback" name="point_feedback">
+        <button type="button" class="drawbutton point" id="point_feedback" name="point_feedback">
+	    {% trans "point" %}
         </button><br />
-        <button type="button" class="imagebutton route" id="route_feedback" name="route_feedback">
-        </button><br />
+        <button type="button" class="drawbutton route" id="route_feedback" name="route_feedback">
+	    {% trans "route" %}
+	</button><br />
+        <button type="button" class="drawbutton area" id="area_feedback" name="area_feedback">
+	    {% trans "area" %}
+	</button><br />
     </div>
     <br />
     <!--
@@ -92,128 +97,17 @@
 {% endblock %}
 
 {% block javascript %}
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
-    </script>
-    <script src="http://cdn.jquerytools.org/1.2.6/jquery.tools.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.ui.stars.min.js"></script>
-
-
-    <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=2.6"></script>	    
-    <script type="text/javascript">
-		var djConfig = {debug: {{ debug_mode }} };
-    </script>
-
-    <!--<script type="text/javascript" src="{{ STATIC_URL }}javascript/cont-planning.js"></script>-->
-    <script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.rating.pack.js"></script>
-	
-	<script type="text/javascript" src="{% url overview_js %}"></script>
-	<script type="text/javascript" src="{% url quest_default_js %}"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}javascript/quest.js"></script>
-	<script type="text/javascript" src="{% url quest_spec_js %}"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}javascript/cont-planning-common.js"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}javascript/cont-planning_map.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}javascript/planning_feedback.js"></script>
-        
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+</script>
+<script src="http://cdn.jquerytools.org/1.2.6/jquery.tools.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.ui.stars.min.js"></script>
+<script src="http://openlayers.org/api/OpenLayers.js"></script>
+<!--<script type="text/javascript" src="{{ STATIC_URL }}OpenLayers.js"></script>-->
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.rating.pack.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.ui.drawbutton.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/planning_feedback.js"></script>
     
     
-    <script type="text/javascript">
-        <!--
-        dojo.addOnLoad(init);
-        document.body.style.cursor = "default";
-        var SHOW_PLAN = true;
-        var INITIAL_EXTENT = {
-                            "xmax":402203,
-                            "xmin":389080,
-                            "ymax":6710417,
-                            "ymin":6702687};
-                            
-        {% if proposal_name = 'Pajalanpiha' %}
-        INITIAL_EXTENT = {
-                            "xmax":395910,
-                            "xmin":394284,
-                            "ymax":6707740,
-                            "ymin":6706447};
-        {% endif %}
-        {% if proposal_name = 'Reservikomppania' %}
-        INITIAL_EXTENT = {
-                            "xmax":395533,
-                            "xmin":394712,
-                            "ymax":6709884,
-                            "ymin":6709401};
-        {% endif %}
-        
-        questionnaire.imageButton['point_feedback'] = {
-        "buttontext": "",
-        "classtype": "point",
-        "placeMark": "{{ STATIC_URL }}images/placemarks/atmosphere.png",
-        "cursorImg":"{{ STATIC_URL }}cursors/point.cur",
-        "graphicAttr": {
-                    "id": "point_feedback",
-                    "valuename": "point_feedback",
-                    "infotype": "other",
-                    "max": 1000
-        },
-        "graphicStrings": {
-                    "header": "<h2>{% trans 'Comment on place' %}</h2>"
-        }
-};
- questionnaire.imageButton['route_feedback'] =  {
-        "draw": "POLYLINE",
-        "buttontext": "",
-        "classtype": "route",
-        "cursorImg":"{{ STATIC_URL }}cursors/route.cur",
-        "graphicAttr": {
-                    "id": "route_feedback",
-                    "valuename": "route_feedback",
-                    "infotype": "other",
-                    "max": 1000
-        },
-        "graphicStrings": {
-                    "header": "<h2>{% trans 'Comment on route' %}</h2>"
-        }};
-
-questionnaire.infoTemplates['other'] = {
-    "confirm":  "<form id='info'>" +
-                "<p>${tellmore}</p>" +
-                "<textarea id='itext' name='tellmore' cols='25' rows='4'></textarea>" +
-                "<div class='button saveLong' onclick='confirm(\"${id}\",true);submitInfoForm(\"info\",\"${valuename}\");map.infoWindow.hide()'>"+
-                "<span class='saveText'>${positive}</span>" +
-                "</div>" +
-                "</form>",
-    "confirmHeight": 270,
-    "confirmWidth": 250,
-    "info":     "<form id='info'>" +
-                "<p>${tellmore}</p>" +
-                "<textarea id='itext' name='tellmore' cols='25' rows='4'></textarea>" +
-                "<div class='button saveLong' onclick='confirm(\"${id}\",true);submitInfoForm(\"info\",\"${valuename}\");map.infoWindow.hide()'>"+
-                "<span class='saveText'>${positive}</span>" +
-                "</div>" +
-                "</form>" +
-                "<p style='margin:0'>" +
-                "<span style='color:#36A8D5;text-decoration:underline;' onclick='removeGraph(\"${id}\");map.infoWindow.hide()'>" +
-                "${remove}</span></p>",
-    "infoWidth": 270,
-    "infoHeight": 250,
-    "formObjects": [
-        {
-        "type": "Form",
-        "json": {},
-        "node": "info"
-        },
-        {
-        "type": "Textarea",
-        "json": {
-            "rows": "4",
-            "cols": "25",
-            "style": "width:auto;",
-            "name": "tellmore"},
-        "node": "itext"
-        }
-        ]
-};
-        -->
-    
-    </script>
-        
+            
 {% endblock javascript %}

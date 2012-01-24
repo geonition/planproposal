@@ -15,35 +15,30 @@ Järvenpää - pehmoGIS
 {% endblock %}
 
 {% block stylesheet %}
-    <link rel="stylesheet" type="text/css" href="{{STATIC_URL }}css/planning_feedback.css" />
-    <link rel="stylesheet" type="text/css" href="{{STATIC_URL }}css/jquery.ui.stars.min.css" />
-    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL }}css/planning_project.css" />
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" />
 {% endblock stylesheet %}
 
-{% block body_class %}
-tundra
-{% endblock %}
-
 {% block city_name %}
-Järvenpää
+{% trans 'Järvenpää' %}
 {% endblock %}
 
 {% block content %}
 
-<div class="breadcrump">
+<div class="breadcrumbs">
     <a class="reset" href="{% url dashboard %}">Dashboard</a>
-    >>
+    &gt;&gt;
     <span>{{ProjectName}}</span>
 </div>
 
     
-    <h1 class="project-title">{{ProjectName}}</h1>
-    <div class="short-description">
+    <h1 class="project_title">{{ProjectName}}</h1>
+    <div class="short_description">
         {% lorem 50 w %}
         <br />
         <br />
         <a id="opener" class="reset" href="http://www.jarvenpaa.fi">
-	    {% trans "More informationa about the project" %}
+	    {% trans "More information about the project" %}
 	</a>    
         <br />
         <br />
@@ -53,34 +48,30 @@ Järvenpää
         <h3><a href="#">{% trans "Pajalanpiha" %}</a></h3>
         <div>
             {% lorem 25 w %}
-			<br/>
-			<br/>
-			<a class="reset" href="{% url plan_proposal 'Pajalanpiha' %}">
-			    {% trans "Look at and evaluate the proposal" %}
-			</a>
-  
+	    <br />
+	    <a class="reset" href="{% url plan_proposal 'Pajalanpiha' %}">
+		{% trans "Look at and evaluate the proposal" %}
+	    </a>  
         </div>
         <h3><a href="#">{% trans "Reservikomppania" %}</a></h3>
         <div>
             {% lorem 25 w %}
-			<br/>
-			<br/>
-			<a class="reset" href="{% url plan_proposal 'Reservikomppania' %}">
-			    {% trans "Look at and evaluate the proposal" %}
-			</a>
+	    <br />
+	    <a class="reset" href="{% url plan_proposal 'Reservikomppania' %}">
+		{% trans "Look at and evaluate the proposal" %}
+	    </a>
         </div>
         <h3><a href="#">{% trans "Proposal 3" %}</a></h3>
         <div>
             {% lorem 25 w %}
-			<br/>
-			<br/>
-			<a class="reset" href="{% url plan_proposal 'Proposal3' %}">
-			    {% trans "Look at and evaluate the proposal" %}
-			</a>
+	    <br />
+	    <a class="reset" href="{% url plan_proposal 'Proposal3' %}">
+		{% trans "Look at and evaluate the proposal" %}
+	    </a>
         </div>
     </div>
 
-    <div id="dialog" title="More informationa about the project">
+    <div id="more_info" title="More information about the project">
         <p>{% lorem 200 w %}</p>
     </div>
 
@@ -95,48 +86,12 @@ Järvenpään kaupunki
 {% endblock %}
 
 {% block javascript %}
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js">
-    </script>
-    <script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.ui.stars.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}javascript/cont-planning_map.js"></script>
-	
-      
-    
-    
-    <script type="text/javascript">
-        <!--
-        dojo.addOnLoad(init);
-        document.body.style.cursor = "default";
-	jQuery(document).ready(function(){
-	    $("#accordion").accordion({
-			            'collapsible': true,
-			            'autoHeight': false,
-				    'active': false
-			            });
-			
-		
-	    $( "#dialog" ).dialog({
-				'autoOpen': false,
-				'show': "blind",
-				'width': 600
-			});
-		
-	    $( "#opener" ).click(function() {
-		    $( "#dialog" ).dialog( "open" );
-			return false;
-    		});				
-	    });
-
-	var SHOW_PLAN = false;
-        var INITIAL_EXTENT = {
-                            "xmax":402203,
-                            "xmin":389080,
-                            "ymax":6710417,
-                            "ymin":6702687};
-        -->
-        
-    </script>
-        
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+</script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js">
+</script>
+<script src="http://openlayers.org/api/OpenLayers.js"></script>
+<!--<script type="text/javascript" src="{{ STATIC_URL }}OpenLayers.js"></script>-->
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/planning_project.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}javascript/base_map.js"></script>
 {% endblock javascript %}
