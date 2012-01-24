@@ -1,70 +1,61 @@
-var draw_controls;
-
 /*
 Draw Button is a drawing
 tool that works together with
 Openlayers.
 
-Required global variables is a js objets
-draw_controls that contains
-the name of the control and the OpenLayers
-DrawFeature control object.
+Required global variables is a
+OpenLayers map object with the
+button required draw controls.
+
+control : The id of the map control to use
+classes : The classes to add to the widget on initialization
+text_class: the class to be added to the span that includes the button text
+active_class: the class to use when a button is activated
 */
 (function( $ ) {
     $.widget("ui.drawButton",
         {
             options: {
-                control: "" //the draw control used, required
+                control: "default", //the draw control used, required
+                classes: "ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only",
+                text_class: "ui-button-text",
+                active_class: "ui-state-active"
             },
             _create: function() {
-                this.element.addClass("ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only")
+                this.element.addClass( this.options.classes )
                 this.element.bind('click',
                           this.toggle_active);
                 var label = this.element.html();
                 $( "<span></span>")
-                        .addClass( "ui-button-text" )
+                        .addClass( this.options.text_class )
                         .appendTo( this.element.empty() )
                         .html( label )
                         .text();
-                return this.options;
+                return this;
             },
             
             toggle_active: function(evt) {
-                console.log("toggle active");   
-                console.log($(this).drawButton('option', 'control'));
-                console.log($(this));
-                console.log(this.element);
-                console.log(this.options);
-                console.log(draw_controls);
-
-                //unselect if selected
-                if($(this).hasClass("ui-state-active")) {
-
-                    $(this).removeClass("ui-state-active");
-                    draw_controls[$(this)
-                                .drawButton('option', 'control')]
-                                .deactivate();
-
-                } else { //select if not selected
-                    
-                    //unselect the others
-                    $(".drawbutton.ui-state-active")
-                        .removeClass('ui-state-active');
-                    
-                    $(this).addClass("ui-state-active");
-                    
-                    for(var cont in draw_controls) {
-                        if($(this).drawButton('option', 'control') === cont) {
-                            draw_controls[$(this)
-                                .drawButton('option', 'control')]
-                                .activate();
-                        } else {
-                            draw_controls[$(this)
-                                .drawButton('option', 'control')]
-                                .deactivate();
-                        }
-                    }
+                var active_cls = $(this).drawButton('option', 'active_class');
+                if($(this).hasClass( active_cls )) {
+                    $(this).drawButton('deactivate');
+                } else {
+                    $(this).drawButton('activate');
                 }
+            },
+            deactivate: function() {
+                this.element.removeClass( this.options['active_class'] );
+                var control_id = this.options['control'];
+                var control = map.getControl(control_id);
+                control.deactivate();
+            },
+            activate: function() {
+                //unselect the others
+                $(".drawbutton." + this.options['active_class'])
+                    .drawButton( 'deactivate' );
+                this.element.addClass( this.options['active_class'] );
+                var control_id = this.options['control'];
+                var control = map.getControl(control_id);
+                control.activate();
             }
         });
 })( jQuery );

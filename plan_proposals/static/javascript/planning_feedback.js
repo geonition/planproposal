@@ -2,7 +2,6 @@
  map settings
 */
 var map;
-var layer;
 
 var SHOW_PLAN = false;
 var INITIAL_CENTER = {
@@ -63,22 +62,33 @@ jQuery(document).ready(function(){
     };
     map = new OpenLayers.Map('map', mapOptions);
     
-    layer = new OpenLayers.Layer.ArcGIS93Rest(
+    var arcgisLayer = new OpenLayers.Layer.ArcGIS93Rest(
         "ArcGIS Server Layer",
         "https://pehmogis.tkk.fi/ArcGIS/rest/services/suomi/MapServer/export",
         {layers: "show:0,7,43,79,115,150,151,187,222,258,294,330"},
         {isBaseLayer: true}
     );
     
-    map.addLayer(layer);
-    map.addControl( new OpenLayers.Control.MousePosition() );
-    
     var pointLayer = new OpenLayers.Layer.Vector("Point Layer");
+    var routeLayer = new OpenLayers.Layer.Vector("Route Layer");
+    var areaLayer = new OpenLayers.Layer.Vector("Area Layer");
+    map.addLayers([arcgisLayer, pointLayer, routeLayer, areaLayer]);
+    
     var pointcontrol = new OpenLayers.Control.DrawFeature(pointLayer,
-                                OpenLayers.Handler.Point);
-    map.addControl( pointcontrol );
+                                OpenLayers.Handler.Point,
+                                {'id': 'pointcontrol'});
+    var routecontrol = new OpenLayers.Control.DrawFeature(routeLayer,
+                                OpenLayers.Handler.Path,
+                                {'id': 'routecontrol'})
+    var areacontrol = new OpenLayers.Control.DrawFeature(areaLayer,
+                                OpenLayers.Handler.Polygon,
+                                {'id': 'areacontrol'})
+    
+    map.addControls([pointcontrol, routecontrol, areacontrol ]);
     draw_controls = {
-        'point': pointcontrol
+        'point': pointcontrol,
+        'route': routecontrol,
+        'area': areacontrol
         };
     map.setCenter(new OpenLayers.LonLat(INITIAL_CENTER.x,
                                         INITIAL_CENTER.y), 0);
@@ -86,8 +96,14 @@ jQuery(document).ready(function(){
     map.zoomToScale(3937278600);
     
     //draw buttons to activate drawing functionality
-    global_button = $( ".drawbutton").drawButton({
-        control: "point"
+    $( "#point_feedback").drawButton({
+        control: "pointcontrol"
+        });
+    $( "#route_feedback").drawButton({
+        control: "routecontrol"
+        });
+    $( "#area_feedback").drawButton({
+        control: "areacontrol"
         });
     
 });
