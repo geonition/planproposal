@@ -19,7 +19,11 @@ active_class: the class to use when a button is activated
                 control: "default", //the draw control used, required
                 classes: "ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only",
                 text_class: "ui-button-text",
-                active_class: "ui-state-active"
+                active_class: "ui-state-active",
+                icons: {
+                    primary: undefined,
+                    secondary: undefined
+                }
             },
             _create: function() {
                 this.element.addClass( this.options.classes )
@@ -31,6 +35,15 @@ active_class: the class to use when a button is activated
                         .appendTo( this.element.empty() )
                         .html( label )
                         .text();
+                        
+
+                if ( this.options.icons.primary ) {
+                        buttonElement.prepend( "<span class='ui-button-icon-primary ui-icon " + icons.primary + "'></span>" );
+                }
+
+                if ( this.options.icons.secondary ) {
+                        buttonElement.append( "<span class='ui-button-icon-secondary ui-icon " + icons.secondary + "'></span>" );
+                }
                 return this;
             },
             

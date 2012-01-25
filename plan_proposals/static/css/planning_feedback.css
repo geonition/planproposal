@@ -1,0 +1,17 @@
+.draw_tools {
+    padding-right: 20px;
+    height: 200px;
+}
+.draw_tools .left {
+    float: left;
+    width: 240px;
+}
+.draw_tools .right {
+    float: right;
+    width: 90px;
+}
+
+button.drawbutton {
+    width: 90px !important;
+    margin: 1px;
+}

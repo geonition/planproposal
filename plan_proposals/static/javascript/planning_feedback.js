@@ -37,6 +37,10 @@ function save_handler(evt) {
     console.log(geojson);
     map.removePopup(popup);
     popup = undefined;
+    
+    //unselect the button
+    $(".drawbutton.ui-state-active")
+        .drawButton( 'deactivate' );
 }
 
 /*
@@ -49,6 +53,10 @@ function remove_handler(evt) {
     evt.data[0].layer.removeFeatures([evt.data[0]]);
     map.removePopup(popup);
     popup = undefined;
+    
+    //unselect the button
+    $(".drawbutton.ui-state-active")
+        .drawButton( 'deactivate' );
 }
 
 /*
