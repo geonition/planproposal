@@ -33,13 +33,13 @@
         {% trans "Please give any comment you want in the form of places, routes or areas. Start by selecting any of the drawing tools on the right." %}
     </span>
     <div id="placebased-feedback">
-        <button type="button" class="drawbutton point" id="point_feedback" name="point_feedback">
-	    {% trans "point" %}
+        <button type="button" class="drawbutton point" id="point_feedback" name="place">
+	    {% trans "place" %}
         </button><br />
-        <button type="button" class="drawbutton route" id="route_feedback" name="route_feedback">
+        <button type="button" class="drawbutton route" id="route_feedback" name="route">
 	    {% trans "route" %}
 	</button><br />
-        <button type="button" class="drawbutton area" id="area_feedback" name="area_feedback">
+        <button type="button" class="drawbutton area" id="area_feedback" name="area">
 	    {% trans "area" %}
 	</button><br />
     </div>
@@ -90,10 +90,48 @@
     </a>
 </div>
 
-    <div id="dialog" title="More information about the project">
-        <p>{% lorem 200 w %}</p>
-    </div>
-    
+<div id="dialog" title="More information about the project">
+    <p>{% lorem 200 w %}</p>
+</div>
+
+<!-- infowindows with id's put here so that translations work -->
+<div id="place" class="popup">
+    <p>{% trans "Please, tell us more about the place" %}:</p>
+    <form name="popupform" action="#">
+        <textarea name="comment" cols="24" rows="5" ></textarea><br />
+        <button type="button" class="save_feature">
+	    {% trans "save place" %}
+        </button>
+        <button type="button" class="remove_feature">
+	    {% trans "remove place" %}
+        </button>
+    </form>
+</div>
+<div id="route" class="popup">
+    <p>{% trans "Please, tell us more about the route" %}:</p>
+    <form name="popupform" action="#">
+        <textarea name="comment" cols="24" rows="5" ></textarea><br />
+        <button type="button" class="save_feature">
+	    {% trans "save route" %}
+        </button>
+        <button type="button" class="remove_feature">
+	    {% trans "remove route" %}
+        </button>
+    </form>
+</div>
+<div id="area" class="popup">
+    <p>{% trans "Please, tell us more about the area" %}:</p>
+    <form name="popupform" action="#" method="post">
+        <textarea name="comment" cols="24" rows="5" ></textarea><br />
+        <button type="button" class="save_feature">
+	    {% trans "save area" %}
+        </button>
+        <button type="button" class="remove_feature">
+	    {% trans "remove area" %}
+        </button>
+    </form>
+</div>
+
 {% endblock %}
 
 {% block javascript %}
@@ -102,8 +140,12 @@
 <script src="http://cdn.jquerytools.org/1.2.6/jquery.tools.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.ui.stars.min.js"></script>
+<script src="https://softgis.org.aalto.fi/OpenLayers/OpenLayers.js"></script>
+<!--
 <script src="http://openlayers.org/api/OpenLayers.js"></script>
-<!--<script type="text/javascript" src="{{ STATIC_URL }}OpenLayers.js"></script>-->
+<script type="text/javascript" src="{{ STATIC_URL }}OpenLayers.js"></script>
+-->
+<script type="text/javascript" src="{% url api_javascript %}"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.rating.pack.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.ui.drawbutton.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/planning_feedback.js"></script>

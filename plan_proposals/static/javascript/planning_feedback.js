@@ -8,6 +8,105 @@ var INITIAL_CENTER = {
                     "x":395524,
                     "y":6706710};
 
+var popup; //only one popup at the time
+
+/*
+ popup save feature event handler
+*/
+function save_handler(evt) {
+    console.log("save handler");
+    console.log(evt);
+    console.log(evt.data[0]);
+    //get the form data
+    console.log($('form[name=popupform].active').serializeArray());
+    var popup_values = $('form[name=popupform].active').serializeArray();
+    $('form[name=popupform]').removeClass('active');
+    var new_attributes = {};
+    console.log(popup_values);
+    for(var val in popup_values) {
+        console.log(val);
+        new_attributes[popup_values[val]['name']] =
+            popup_values[val]['value'];
+    }
+    console.log(new_attributes);
+    evt.data[0].attributes = new_attributes;
+    //save the geojson
+    var gf = new OpenLayers.Format.GeoJSON();
+    console.log(gf);
+    var geojson = gf.write(evt.data[0]);
+    console.log(geojson);
+    map.removePopup(popup);
+    popup = undefined;
+}
+
+/*
+ popup remove feature event handler
+*/
+function remove_handler(evt) {
+    console.log("remove handler");
+    console.log(evt);
+    console.log(evt.data[0]);
+    evt.data[0].layer.removeFeatures([evt.data[0]]);
+    map.removePopup(popup);
+    popup = undefined;
+}
+
+/*
+ confirm and save the feature
+*/
+function feature_added(evt) {
+    console.log(evt);
+    
+    //get the right lonlat for the popup position
+    var lonlat;
+    if( evt.geometry.id.contains( "Point" ) ) {
+        lonlat = new OpenLayers.LonLat(
+                        evt.geometry.x,
+                        evt.geometry.y);
+    } else if ( evt.geometry.id.contains( "LineString" ) ) {
+        lonlat = evt.geometry
+            .components[evt.geometry.components.length - 1]
+            .bounds.getCenterLonLat();
+    } else if ( evt.geometry.id.contains( "Polygon" ) ) {
+        lonlat = evt.geometry.bounds.getCenterLonLat();
+    }
+    
+    
+    //get the active button name = infowindow name
+    var infowindow_name = $('button.ui-state-active').attr('name');
+    var infocontent = " default info content ";
+    
+    //get the right content for the popup
+    if( infowindow_name !== undefined ) {
+        infocontent = $('#' + infowindow_name).html();
+    }
+    
+    
+    //remove old popup if existing
+    if(popup !== undefined) {
+        map.removePopup(popup);
+        popup = undefined;
+    }
+    //create popup and put it on the map
+    popup = new OpenLayers.Popup.FramedCloud(
+                    evt.id,
+                    lonlat,
+                    null,
+                    infocontent,
+                    null,
+                    false);
+
+    map.addPopup(popup);
+    //add a class to the form to recognize it as active
+    $('div[id="' + evt.id + '"] form[name="popupform"]').addClass('active');
+    
+    //connect the event to the infowindow buttons
+    $('div[id="' + evt.id + '"] .save_feature').click([evt],
+                                                      save_handler);
+    $('div[id="' + evt.id + '"] .remove_feature').click([evt],
+                                                        remove_handler);
+}
+
 /*
  page specific events and other methods
 */
@@ -15,6 +114,7 @@ var INITIAL_CENTER = {
 $.fx.speeds._default = 500;
 
 jQuery(document).ready(function(){
+    
     $( "#dialog" ).dialog({
         autoOpen: false,
         show: "blind",
@@ -65,7 +165,8 @@ jQuery(document).ready(function(){
     var arcgisLayer = new OpenLayers.Layer.ArcGIS93Rest(
         "ArcGIS Server Layer",
         "https://pehmogis.tkk.fi/ArcGIS/rest/services/suomi/MapServer/export",
-        {layers: "show:0,7,43,79,115,150,151,187,222,258,294,330"},
+        {layers: "show:0,7,43,79,115,150,151,187,222,258,294,330",
+        format: "png24"},
         {isBaseLayer: true}
     );
     
@@ -76,20 +177,19 @@ jQuery(document).ready(function(){
     
     var pointcontrol = new OpenLayers.Control.DrawFeature(pointLayer,
                                 OpenLayers.Handler.Point,
-                                {'id': 'pointcontrol'});
+                                {'id': 'pointcontrol',
+                                'featureAdded': feature_added});
     var routecontrol = new OpenLayers.Control.DrawFeature(routeLayer,
                                 OpenLayers.Handler.Path,
-                                {'id': 'routecontrol'})
+                                {'id': 'routecontrol',
+                                'featureAdded': feature_added})
     var areacontrol = new OpenLayers.Control.DrawFeature(areaLayer,
                                 OpenLayers.Handler.Polygon,
-                                {'id': 'areacontrol'})
+                                {'id': 'areacontrol',
+                                'featureAdded': feature_added})
     
     map.addControls([pointcontrol, routecontrol, areacontrol ]);
-    draw_controls = {
-        'point': pointcontrol,
-        'route': routecontrol,
-        'area': areacontrol
-        };
+    
     map.setCenter(new OpenLayers.LonLat(INITIAL_CENTER.x,
                                         INITIAL_CENTER.y), 0);
     
@@ -106,4 +206,9 @@ jQuery(document).ready(function(){
         control: "areacontrol"
         });
     
+    //hide all popups as default
+    $('.popup').hide();
+    
+    //create session for use
+    //gnt.auth.create_session();
 });
