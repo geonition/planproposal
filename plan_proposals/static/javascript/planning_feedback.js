@@ -181,7 +181,7 @@ jQuery(document).ready(function(){
     //this is for testing modify later
     var imageLayer = new OpenLayers.Layer.Image(
         "Image layer test",
-        "http://localhost:8000/static/images/test/test.png",
+        "https://softgis.org.aalto.fi/jarvenpaa/static/images/test/test.png",
         new OpenLayers.Bounds(394738.512,
                             6709404.6945,
                             395377.5745,
