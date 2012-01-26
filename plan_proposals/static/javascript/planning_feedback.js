@@ -178,10 +178,22 @@ jQuery(document).ready(function(){
         {isBaseLayer: true}
     );
     
+    //this is for testing modify later
+    var imageLayer = new OpenLayers.Layer.Image(
+        "Image layer test",
+        "http://localhost:8000/static/images/test/test.png",
+        new OpenLayers.Bounds(391411.5,
+                            6703897.5,
+                            399636.5,
+                            6709522.5),
+        new OpenLayers.Size(208, 334),
+        {isBaseLayer: false}
+    );
+    
     var pointLayer = new OpenLayers.Layer.Vector("Point Layer");
     var routeLayer = new OpenLayers.Layer.Vector("Route Layer");
     var areaLayer = new OpenLayers.Layer.Vector("Area Layer");
-    map.addLayers([arcgisLayer, pointLayer, routeLayer, areaLayer]);
+    map.addLayers([arcgisLayer, imageLayer, pointLayer, routeLayer, areaLayer]);
     
     var pointcontrol = new OpenLayers.Control.DrawFeature(pointLayer,
                                 OpenLayers.Handler.Point,
@@ -197,7 +209,8 @@ jQuery(document).ready(function(){
                                 'featureAdded': feature_added})
     
     map.addControls([pointcontrol, routecontrol, areacontrol ]);
-    
+    map.addControl(new OpenLayers.Control.LayerSwitcher());
+
     map.setCenter(new OpenLayers.LonLat(INITIAL_CENTER.x,
                                         INITIAL_CENTER.y), 0);
     

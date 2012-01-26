@@ -19,6 +19,7 @@ setup(
             "static/images/*.png",
             "static/images/buttons/*.png",
             "static/images/placemarks/*.png",
+            "static/images/test/*.png",
             "static/cursors/*.cur",
         ],
     },
