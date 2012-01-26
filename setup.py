@@ -21,6 +21,8 @@ setup(
             "static/images/placemarks/*.png",
             "static/images/test/*.png",
             "static/cursors/*.cur",
+            "locale/fi/LC_MESSAGES/*.po",
+            "locale/fi/LC_MESSAGES/*.mo",
         ],
     },
     zip_safe=False,
