@@ -1,0 +1,127 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-01-26 06:08-0600\n"
+"PO-Revision-Date: 2012-01-26 14:12+0200\n"
+"Last-Translator: Kristoffer Snabb <kristoffer.snabb@geonition.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: templates/planning_project.html:23
+msgid "Järvenpää"
+msgstr ""
+
+#: templates/planning_project.html:41
+msgid "More information about the project"
+msgstr "Lisää tieto projektista"
+
+#: templates/planning_project.html:48
+#: templates/planning_project.html.py:56
+#: templates/planning_project.html:64
+msgid "Pajalanpiha"
+msgstr ""
+
+#: templates/planning_project.html:48
+#: templates/planning_project.html.py:56
+#: templates/planning_project.html:64
+msgid "proposal"
+msgstr "ehdotus"
+
+#: templates/planning_project.html:53
+#: templates/planning_project.html.py:61
+#: templates/planning_project.html:69
+msgid "Look at and evaluate the proposal"
+msgstr "Katso ja arvioi ehdotusta"
+
+#: templates/proposal_feedback.html:27
+#: templates/proposal_feedback.html:28
+#: templates/proposal_feedback.html:29
+msgid "show proposal picture"
+msgstr "näytä kuva ehdotuksesta"
+
+#: templates/proposal_feedback.html:30
+msgid "More information about the proposal"
+msgstr "Lisää tietoa ehdotuksesta"
+
+#: templates/proposal_feedback.html:32
+msgid "Evaluate"
+msgstr "Arvioi"
+
+#: templates/proposal_feedback.html:35
+msgid "Comment on the plan proposal by selecting any of the drawing tools on the right."
+msgstr "Kommentoi ehdotusta valitsemalla piirtotyökaluista oikealla"
+
+#: templates/proposal_feedback.html:39
+msgid "place"
+msgstr "paikka"
+
+#: templates/proposal_feedback.html:42
+msgid "route"
+msgstr "reitti"
+
+#: templates/proposal_feedback.html:45
+msgid "area"
+msgstr "alue"
+
+#: templates/proposal_feedback.html:55
+msgid "give a general rating"
+msgstr "anna yleisarvosana"
+
+#: templates/proposal_feedback.html:68
+msgid "Free comment"
+msgstr "Vapaa kommentti"
+
+#: templates/proposal_feedback.html:80
+msgid "Send comment"
+msgstr "Lähetä kommentti"
+
+#: templates/proposal_feedback.html:92
+msgid "Back to previous page"
+msgstr "Takaisin edelliselle sivulle"
+
+#: templates/proposal_feedback.html:102
+msgid "Please, tell us more about the place"
+msgstr "Kerro meille lisää paikasta"
+
+#: templates/proposal_feedback.html:106
+msgid "save place"
+msgstr "tallenna paikka"
+
+#: templates/proposal_feedback.html:109
+msgid "remove place"
+msgstr "poista paikka"
+
+#: templates/proposal_feedback.html:114
+msgid "Please, tell us more about the route"
+msgstr "Kerro meille lisää reitistä"
+
+#: templates/proposal_feedback.html:118
+msgid "save route"
+msgstr "tallenna reitti"
+
+#: templates/proposal_feedback.html:121
+msgid "remove route"
+msgstr "poista reitti"
+
+#: templates/proposal_feedback.html:126
+msgid "Please, tell us more about the area"
+msgstr "Kerro meille lisää alueesta"
+
+#: templates/proposal_feedback.html:130
+msgid "save area"
+msgstr "tallenna alua"
+
+#: templates/proposal_feedback.html:133
+msgid "remove area"
+msgstr "poista alue"
+
