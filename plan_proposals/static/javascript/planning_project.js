@@ -24,7 +24,8 @@ function init() {
     layer = new OpenLayers.Layer.ArcGIS93Rest(
         "ArcGIS Server Layer",
         "https://pehmogis.tkk.fi/ArcGIS/rest/services/suomi/MapServer/export",
-        {layers: "show:0,7,43,79,115,150,151,187,222,258,294,330"},
+        {layers: "show:0,7,43,79,115,150,151,187,222,258,294,330",
+        format: 'png24'},
         {isBaseLayer: true}
     );
     
