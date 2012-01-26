@@ -5,9 +5,9 @@ var map;
 
 var SHOW_PLAN = false;
 var INITIAL_CENTER = {
-                    "x":395524,
-                    "y":6706710};
-
+                    "x":395058.04325,
+                    "y":6709642.97575};
+                    
 var popup; //only one popup at the time
 
 /*
@@ -182,18 +182,28 @@ jQuery(document).ready(function(){
     var imageLayer = new OpenLayers.Layer.Image(
         "Image layer test",
         "http://localhost:8000/static/images/test/test.png",
-        new OpenLayers.Bounds(391411.5,
-                            6703897.5,
-                            399636.5,
-                            6709522.5),
+        new OpenLayers.Bounds(394738.512,
+                            6709404.6945,
+                            395377.5745,
+                            6709881.257),
         new OpenLayers.Size(208, 334),
+        {isBaseLayer: false,
+        visibility: false}
+    );
+    
+    var proposalLayer = new OpenLayers.Layer.ArcGIS93Rest(
+        "Proposal layer",
+        "https://pehmogis.tkk.fi/ArcGIS/rest/services/Suunnittelu/MapServer/export",
+        {layers: "show:0,1",
+        format: "png24",
+        transparent: true},
         {isBaseLayer: false}
     );
     
     var pointLayer = new OpenLayers.Layer.Vector("Point Layer");
     var routeLayer = new OpenLayers.Layer.Vector("Route Layer");
     var areaLayer = new OpenLayers.Layer.Vector("Area Layer");
-    map.addLayers([arcgisLayer, imageLayer, pointLayer, routeLayer, areaLayer]);
+    map.addLayers([arcgisLayer, proposalLayer, imageLayer, pointLayer, routeLayer, areaLayer]);
     
     var pointcontrol = new OpenLayers.Control.DrawFeature(pointLayer,
                                 OpenLayers.Handler.Point,
@@ -214,7 +224,7 @@ jQuery(document).ready(function(){
     map.setCenter(new OpenLayers.LonLat(INITIAL_CENTER.x,
                                         INITIAL_CENTER.y), 0);
     
-    map.zoomToScale(3937278600);
+    map.zoomToScale(246079912.5);
     
     //draw buttons to activate drawing functionality
     $( "#point_feedback").drawButton({
