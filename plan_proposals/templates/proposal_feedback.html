@@ -11,10 +11,10 @@
 
 {% block content %}
 <div class="breadcrump">
-    <a class="reset" href="{% url dashboard %}">Dashboard</a>
-    >>
+    <a class="reset" href="{% url dashboard %}">{% trans 'Dashboard' %}</a>
+    &gt;&gt;
     <a class="reset" href="{% url planning_project 'Project1' %}">City Project1</a>
-    >>
+    &gt;&gt;
     <span>{{ proposal_name }}</span>
 </div>    
 

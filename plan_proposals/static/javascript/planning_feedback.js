@@ -11,30 +11,58 @@ var INITIAL_CENTER = {
 var popup; //only one popup at the time
 
 /*
+This is a helper function that returns
+a OpenLayers LonLat object according
+to the geometry that is given to it.
+
+This function should bring some consistency
+on where to show a popup for each feature.
+*/
+function get_popup_lonlat(geometry) {
+    var lonlat;
+    if( geometry.id.contains( "Point" ) ) {
+        lonlat = new OpenLayers.LonLat(
+                        geometry.x,
+                        geometry.y);
+    } else if ( geometry.id.contains( "LineString" ) ) {
+        lonlat = geometry
+            .components[geometry.components.length - 1]
+            .bounds.getCenterLonLat();
+    } else if ( geometry.id.contains( "Polygon" ) ) {
+        lonlat = geometry.bounds.getCenterLonLat();
+    }
+    return lonlat;
+}
+
+
+/*
  popup save feature event handler
+ connected to the save button in the popup form
 */
 function save_handler(evt) {
     console.log("save handler");
-    console.log(evt);
-    console.log(evt.data[0]);
+    
     //get the form data
-    console.log($('form[name=popupform].active').serializeArray());
     var popup_values = $('form[name=popupform].active').serializeArray();
+    
+    //set the popup form as not active
     $('form[name=popupform]').removeClass('active');
+    
+    //build new attributes for the features
     var new_attributes = {};
-    console.log(popup_values);
     for(var val in popup_values) {
-        console.log(val);
         new_attributes[popup_values[val]['name']] =
             popup_values[val]['value'];
     }
-    console.log(new_attributes);
+    
     evt.data[0].attributes = new_attributes;
+    
     //save the geojson
     var gf = new OpenLayers.Format.GeoJSON();
-    console.log(gf);
     var geojson = gf.write(evt.data[0]);
     console.log(geojson);
+    
+    //remove popup from map
     map.removePopup(popup);
     popup = undefined;
     
@@ -44,7 +72,8 @@ function save_handler(evt) {
 }
 
 /*
- popup remove feature event handler
+ popup remove feature event handler,
+ connected to the remove button in the popup form.
 */
 function remove_handler(evt) {
     console.log("remove handler");
@@ -60,60 +89,119 @@ function remove_handler(evt) {
 }
 
 /*
- confirm and save the feature
+This function makes the popup and shows it for the feature given.
+
+Expects there to be a feature.popup created
+that can be called.
 */
-function feature_added(evt) {
+function show_popup_for_feature(feature) {
+    
+    if ( feature.popup !== undefined ) {
+    
+        //remove old popup if existing
+        if(popup !== undefined) {
+            map.removePopup(popup);
+            popup = undefined;
+        }
+    
+        //create popup and put it on the map
+        popup = feature.popup;
+        map.addPopup(popup);
+        
+        //add a class to the form to recognize it as active
+        $('div[id="' + feature.id + '"] form[name="popupform"]').addClass('active');
+        
+        // add values to the form the values are connected but the form element name
+        // and the name value in the feature attributes
+        console.log($('div[id="' + feature.id + '"] form[name="popupform"]'));
+        
+        
+        //connect the event to the infowindow buttons
+        $('div[id="' + feature.id + '"] .save_feature').click([feature],
+                                                      save_handler);
+        $('div[id="' + feature.id + '"] .remove_feature').click([feature],
+                                                        remove_handler);
+        return true;
+        
+    } else {
+    
+        return false;
+    }
+}
+
+/*
+This function handles the on feature select
+where it shows the popup with the correct
+values from the feature attributes.
+*/
+function on_feature_select_handler(evt) {
+    console.log("on_feature_select_handler");
     console.log(evt);
     
-    //get the right lonlat for the popup position
-    var lonlat;
-    if( evt.geometry.id.contains( "Point" ) ) {
-        lonlat = new OpenLayers.LonLat(
-                        evt.geometry.x,
-                        evt.geometry.y);
-    } else if ( evt.geometry.id.contains( "LineString" ) ) {
-        lonlat = evt.geometry
-            .components[evt.geometry.components.length - 1]
-            .bounds.getCenterLonLat();
-    } else if ( evt.geometry.id.contains( "Polygon" ) ) {
-        lonlat = evt.geometry.bounds.getCenterLonLat();
-    }
+    show_popup_for_feature(evt);
+}
+
+/*
+This function handles the on feature unselect
+where it closes the popup.
+*/
+function on_feature_unselect_handler(evt) {
+    console.log("on_feature_unselect_handler");
+    console.log(evt);
     
+    //remove popup from map
+    map.removePopup(popup);
+    popup = undefined;
+}
+
+/*
+ confirm and save the feature
+ 
+ The feature popup content and is connected
+ with the name of the button that was used
+ to draw it on the map. The button name is
+ the same as the popup id that is supposed
+ to be shown as the content in popup.
+*/
+function feature_added(evt) {
+    console.log("feature added");
+    console.log(evt);
+    
+    
+    //create a popup for the feature to be used
+    
+    //get the right lonlat for the popup position
+    evt.lonlat = get_popup_lonlat(evt.geometry);
     
     //get the active button name = infowindow name
-    var infowindow_name = $('button.ui-state-active').attr('name');
-    var infocontent = " default info content ";
+    var draw_button_name = $('button.ui-state-active').attr('name');
+    var popupcontent = " default info content ";
     
     //get the right content for the popup
-    if( infowindow_name !== undefined ) {
-        infocontent = $('#' + infowindow_name).html();
+    if( draw_button_name !== undefined ) {
+        popupcontent = $('#' + draw_button_name).html();
     }
+    evt.popupClass = OpenLayers.Popup.FramedCloud;
+    evt.data = {
+        popupSize: null,
+        popupContentHTML: popupcontent 
+    };
     
-    
-    //remove old popup if existing
-    if(popup !== undefined) {
-        map.removePopup(popup);
-        popup = undefined;
-    }
-    //create popup and put it on the map
-    popup = new OpenLayers.Popup.FramedCloud(
-                    evt.id,
-                    lonlat,
-                    null,
-                    infocontent,
-                    null,
-                    false);
-
-    map.addPopup(popup);
-    //add a class to the form to recognize it as active
-    $('div[id="' + evt.id + '"] form[name="popupform"]').addClass('active');
-    
-    //connect the event to the infowindow buttons
-    $('div[id="' + evt.id + '"] .save_feature').click([evt],
-                                                      save_handler);
-    $('div[id="' + evt.id + '"] .remove_feature').click([evt],
-                                                        remove_handler);
+    //the createPopup function did not seem to work so here
+    evt.popup = new OpenLayers.Popup.FramedCloud(
+                        evt.id,
+                        evt.lonlat,
+                        evt.data.popupSize,
+                        evt.data.popupContentHTML,
+                        null,
+                        false);
+    console.log("created popup");
+    console.log(evt.lonlat);
+    console.log(evt.popup);
+    show_popup_for_feature(evt);
 }
+
+
 
 /*
  page specific events and other methods
@@ -220,6 +308,22 @@ jQuery(document).ready(function(){
     
     map.addControls([pointcontrol, routecontrol, areacontrol ]);
     map.addControl(new OpenLayers.Control.LayerSwitcher());
+    
+    //select feature control
+    var select_feature_control = new OpenLayers.Control.SelectFeature(
+            [pointLayer, routeLayer, areaLayer],
+            {
+            onSelect: on_feature_select_handler,
+            onUnselect: on_feature_unselect_handler,
+            toggle: false,
+            clickout: true,
+            multiple: false,
+            hover: false
+            });
+    console.log("add control to layer");
+    console.log(select_feature_control);
+    map.addControl(select_feature_control);
+    select_feature_control.activate();
 
     map.setCenter(new OpenLayers.LonLat(INITIAL_CENTER.x,
                                         INITIAL_CENTER.y), 0);
