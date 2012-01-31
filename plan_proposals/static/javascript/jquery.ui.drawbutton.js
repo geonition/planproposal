@@ -20,6 +20,7 @@ active_class: the class to use when a button is activated
                 classes: "ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only",
                 text_class: "ui-button-text",
                 active_class: "ui-state-active",
+                disable_class: "ui-button-disabled ui-state-disabled",
                 icons: {
                     primary: undefined,
                     secondary: undefined
@@ -69,6 +70,14 @@ active_class: the class to use when a button is activated
                 var control_id = this.options['control'];
                 var control = map.getControl(control_id);
                 control.activate();
+            },
+            disable: function() {
+                this.element.removeClass( this.options['active_class'] );
+                this.element.addClass( this.options['disable_class'] );
+                this.element.attr( 'disabled', 'disabled');
+                var control_id = this.options['control'];
+                var control = map.getControl(control_id);
+                control.deactivate();
             }
         });
 })( jQuery );
