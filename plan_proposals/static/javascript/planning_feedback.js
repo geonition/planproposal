@@ -113,8 +113,10 @@ function show_popup_for_feature(feature) {
         
         // add values to the form the values are connected but the form element name
         // and the name value in the feature attributes
-        console.log($('div[id="' + feature.id + '"] form[name="popupform"]'));
-        
+        var input_elements = $('div[id="' + feature.id + '"] form[name="popupform"] :input');
+        input_elements.each(function() {
+            $(this).val( feature.attributes[ $(this).attr( 'name' ) ] );
+        });
         
         //connect the event to the infowindow buttons
         $('div[id="' + feature.id + '"] .save_feature').click([feature],
@@ -126,6 +128,7 @@ function show_popup_for_feature(feature) {
     } else {
     
         return false;
+    
     }
 }
 
