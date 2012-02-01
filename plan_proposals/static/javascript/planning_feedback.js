@@ -62,13 +62,14 @@ function save_handler(evt) {
     var geojson = gf.write(evt.data[0]);
     console.log(geojson);
     
-    //remove popup from map
-    map.removePopup(popup);
-    popup = undefined;
+    //unselect feature
+    map.getControlsByClass( 'OpenLayers.Control.SelectFeature' )[0].unselectAll(evt);
     
-    //unselect the button
-    $(".drawbutton.ui-state-active")
-        .drawButton( 'deactivate' );
+    //remove popup from map
+    if(popup !== undefined) {
+        map.removePopup(popup);
+        popup = undefined;
+    }
 }
 
 /*
@@ -80,12 +81,13 @@ function remove_handler(evt) {
     console.log(evt);
     console.log(evt.data[0]);
     evt.data[0].layer.removeFeatures([evt.data[0]]);
-    map.removePopup(popup);
-    popup = undefined;
+    //unselect feature
+    map.getControlsByClass( 'OpenLayers.Control.SelectFeature' )[0].unselectAll();
     
-    //unselect the button
-    $(".drawbutton.ui-state-active")
-        .drawButton( 'deactivate' );
+    if(popup !== undefined) {
+        map.removePopup(popup);
+        popup = undefined;
+    }
 }
 
 /*
@@ -123,6 +125,7 @@ function show_popup_for_feature(feature) {
                                                       save_handler);
         $('div[id="' + feature.id + '"] .remove_feature').click([feature],
                                                         remove_handler);
+        
         return true;
         
     } else {
@@ -170,9 +173,6 @@ function feature_added(evt) {
     console.log("feature added");
     console.log(evt);
     
-    
-    //create a popup for the feature to be used
-    
     //get the right lonlat for the popup position
     evt.lonlat = get_popup_lonlat(evt.geometry);
     
@@ -202,6 +202,11 @@ function feature_added(evt) {
     console.log(evt.lonlat);
     console.log(evt.popup);
     show_popup_for_feature(evt);
+    
+    //deactivate the map and the drawing
+    //unselect the button
+    $(".drawbutton.ui-state-active")
+        .drawButton( 'deactivate' );
 }
 
 
