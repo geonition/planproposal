@@ -3,7 +3,7 @@
 }
 .draw_tools {
     padding-right: 20px;
-    height: 200px;
+    margin-bottom: 10px;
 }
 .draw_tools .left {
     float: left;
