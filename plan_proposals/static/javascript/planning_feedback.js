@@ -198,9 +198,7 @@ function feature_added(evt) {
                         evt.data.popupContentHTML,
                         null,
                         false);
-    console.log("created popup");
-    console.log(evt.lonlat);
-    console.log(evt.popup);
+    
     show_popup_for_feature(evt);
     
     //deactivate the map and the drawing
@@ -299,7 +297,7 @@ jQuery(document).ready(function(){
     var pointLayer = new OpenLayers.Layer.Vector("Point Layer");
     var routeLayer = new OpenLayers.Layer.Vector("Route Layer");
     var areaLayer = new OpenLayers.Layer.Vector("Area Layer");
-    map.addLayers([arcgisLayer, proposalLayer, imageLayer, pointLayer, routeLayer, areaLayer]);
+    map.addLayers([arcgisLayer, proposalLayer, imageLayer, areaLayer, routeLayer, pointLayer ]);
     
     var pointcontrol = new OpenLayers.Control.DrawFeature(pointLayer,
                                 OpenLayers.Handler.Point,
@@ -321,6 +319,7 @@ jQuery(document).ready(function(){
     var select_feature_control = new OpenLayers.Control.SelectFeature(
             [pointLayer, routeLayer, areaLayer],
             {
+            id: 'selectcontrol',
             onSelect: on_feature_select_handler,
             onUnselect: on_feature_unselect_handler,
             toggle: false,
@@ -332,6 +331,7 @@ jQuery(document).ready(function(){
     console.log(select_feature_control);
     map.addControl(select_feature_control);
     select_feature_control.activate();
+    
 
     map.setCenter(new OpenLayers.LonLat(INITIAL_CENTER.x,
                                         INITIAL_CENTER.y), 0);
@@ -340,13 +340,13 @@ jQuery(document).ready(function(){
     
     //draw buttons to activate drawing functionality
     $( "#point_feedback").drawButton({
-        control: "pointcontrol"
+        drawcontrol: "pointcontrol"
         });
     $( "#route_feedback").drawButton({
-        control: "routecontrol"
+        drawcontrol: "routecontrol"
         });
     $( "#area_feedback").drawButton({
-        control: "areacontrol"
+        drawcontrol: "areacontrol"
         });
     
     //hide all popups as default
