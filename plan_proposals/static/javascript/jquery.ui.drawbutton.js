@@ -16,7 +16,8 @@ active_class: the class to use when a button is activated
     $.widget("ui.drawButton",
         {
             options: {
-                control: "default", //the draw control used, required
+                drawcontrol: "drawcontrol", //the draw control used, required
+                selectcontrol: "selectcontrol",
                 classes: "ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only",
                 text_class: "ui-button-text",
                 active_class: "ui-state-active",
@@ -39,11 +40,11 @@ active_class: the class to use when a button is activated
                         
 
                 if ( this.options.icons.primary ) {
-                        buttonElement.prepend( "<span class='ui-button-icon-primary ui-icon " + icons.primary + "'></span>" );
+                        buttonElement.prepend( "<span class='ui-button-icon-primary ui-icon " + this.options.icons.primary + "'></span>" );
                 }
 
                 if ( this.options.icons.secondary ) {
-                        buttonElement.append( "<span class='ui-button-icon-secondary ui-icon " + icons.secondary + "'></span>" );
+                        buttonElement.append( "<span class='ui-button-icon-secondary ui-icon " + this.options.icons.secondary + "'></span>" );
                 }
                 return this;
             },
@@ -58,9 +59,12 @@ active_class: the class to use when a button is activated
             },
             deactivate: function() {
                 this.element.removeClass( this.options['active_class'] );
-                var control_id = this.options['control'];
-                var control = map.getControl(control_id);
-                control.deactivate();
+                var drawcontrol_id = this.options['drawcontrol'];
+                var drawcontrol = map.getControl(drawcontrol_id);
+                drawcontrol.deactivate();
+                var selectcontrol_id = this.options['selectcontrol'];
+                var selectcontrol = map.getControl(selectcontrol_id);
+                selectcontrol.activate();
             },
             activate: function() {
                 console.log(this.element.attr( 'disabled' ));
@@ -69,18 +73,24 @@ active_class: the class to use when a button is activated
                     $(".drawbutton." + this.options['active_class'])
                         .drawButton( 'deactivate' );
                     this.element.addClass( this.options['active_class'] );
-                    var control_id = this.options['control'];
-                    var control = map.getControl(control_id);
-                    control.activate();
+                    var drawcontrol_id = this.options['drawcontrol'];
+                    var drawcontrol = map.getControl(drawcontrol_id);
+                    drawcontrol.activate();
+                    var selectcontrol_id = this.options['selectcontrol'];
+                    var selectcontrol = map.getControl(selectcontrol_id);
+                    selectcontrol.deactivate();
                 } 
             },
             disable: function() {
                 this.element.removeClass( this.options['active_class'] );
                 this.element.addClass( this.options['disable_class'] );
                 this.element.attr( 'disabled', 'disabled');
-                var control_id = this.options['control'];
-                var control = map.getControl(control_id);
-                control.deactivate();
+                var drawcontrol_id = this.options['drawcontrol'];
+                var drawcontrol = map.getControl(drawcontrol_id);
+                drawcontrol.deactivate();
+                var selectcontrol_id = this.options['selectcontrol'];
+                var selectcontrol = map.getControl(selectcontrol_id);
+                selectcontrol.activate();
             },
             enable: function() {
                 this.element.removeClass( this.options['disable_class'] );
