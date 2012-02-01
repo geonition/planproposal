@@ -63,13 +63,16 @@ active_class: the class to use when a button is activated
                 control.deactivate();
             },
             activate: function() {
-                //unselect the others
-                $(".drawbutton." + this.options['active_class'])
-                    .drawButton( 'deactivate' );
-                this.element.addClass( this.options['active_class'] );
-                var control_id = this.options['control'];
-                var control = map.getControl(control_id);
-                control.activate();
+                console.log(this.element.attr( 'disabled' ));
+                if(this.element.attr( 'disabled') !== 'disabled') {
+                    //unselect the others
+                    $(".drawbutton." + this.options['active_class'])
+                        .drawButton( 'deactivate' );
+                    this.element.addClass( this.options['active_class'] );
+                    var control_id = this.options['control'];
+                    var control = map.getControl(control_id);
+                    control.activate();
+                } 
             },
             disable: function() {
                 this.element.removeClass( this.options['active_class'] );
@@ -78,6 +81,10 @@ active_class: the class to use when a button is activated
                 var control_id = this.options['control'];
                 var control = map.getControl(control_id);
                 control.deactivate();
+            },
+            enable: function() {
+                this.element.removeClass( this.options['disable_class'] );
+                this.element.removeAttr( 'disabled' );
             }
         });
 })( jQuery );
