@@ -6,8 +6,9 @@ var layer;
 
 var SHOW_PLAN = false;
 var INITIAL_CENTER = {
-                    "x":395524,
-                    "y":6706710};
+                    "x":395033,
+                    "y":6707118};
+                    
 
 function init() {
     /* Openlayers */
@@ -34,7 +35,7 @@ function init() {
     map.setCenter(new OpenLayers.LonLat(INITIAL_CENTER.x,
                                         INITIAL_CENTER.y), 0);
     
-    map.zoomToScale(3937278600);
+    map.zoomToScale(492159825);
 }
 
 /*

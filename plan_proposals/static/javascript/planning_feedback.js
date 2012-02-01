@@ -5,8 +5,8 @@ var map;
 
 var SHOW_PLAN = false;
 var INITIAL_CENTER = {
-                    "x":395058.04325,
-                    "y":6709642.97575};
+                    "x":395033,
+                    "y":6707118};
                     
 var popup; //only one popup at the time
 
@@ -273,6 +273,7 @@ jQuery(document).ready(function(){
     );
     
     //this is for testing modify later
+    /*
     var imageLayer = new OpenLayers.Layer.Image(
         "Image layer test",
         "https://softgis.org.aalto.fi/jarvenpaa/static/images/test/test.png",
@@ -283,7 +284,7 @@ jQuery(document).ready(function(){
         new OpenLayers.Size(208, 334),
         {isBaseLayer: false,
         visibility: false}
-    );
+    );*/
     
     var proposalLayer = new OpenLayers.Layer.ArcGIS93Rest(
         "Proposal layer",
@@ -297,7 +298,7 @@ jQuery(document).ready(function(){
     var pointLayer = new OpenLayers.Layer.Vector("Point Layer");
     var routeLayer = new OpenLayers.Layer.Vector("Route Layer");
     var areaLayer = new OpenLayers.Layer.Vector("Area Layer");
-    map.addLayers([arcgisLayer, proposalLayer, imageLayer, areaLayer, routeLayer, pointLayer ]);
+    map.addLayers([arcgisLayer, proposalLayer, areaLayer, routeLayer, pointLayer ]);
     
     var pointcontrol = new OpenLayers.Control.DrawFeature(pointLayer,
                                 OpenLayers.Handler.Point,
@@ -336,7 +337,7 @@ jQuery(document).ready(function(){
     map.setCenter(new OpenLayers.LonLat(INITIAL_CENTER.x,
                                         INITIAL_CENTER.y), 0);
     
-    map.zoomToScale(246079912.5);
+    map.zoomToScale(492159825);
     
     //draw buttons to activate drawing functionality
     $( "#point_feedback").drawButton({

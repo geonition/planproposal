@@ -10,12 +10,13 @@ def planning_project(request, project_name):
                               {'project_name' : project_name},
                               context_instance=RequestContext(request))
 
-def plan_proposal(request, proposal_name):
+def plan_proposal(request, project_name, proposal_name):
     """
     This is the page of one planning proposal. The proposal
     can also be avaulated and some feedback can be given
     by the user.
     """
     return render_to_response('proposal_feedback.html',
-                              {'proposal_name' : proposal_name},
+                              {'project_name' : project_name,
+                               'proposal_name' : proposal_name},
                               context_instance=RequestContext(request))

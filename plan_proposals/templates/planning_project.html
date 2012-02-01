@@ -3,7 +3,7 @@
 {% load webdesign %}
 
 {% block title %}
-Järvenpää - pehmoGIS
+{% trans 'Järvenpää' %} - {% trans 'pehmoGIS' %}
 {% endblock %}
 
 {% block bgcolor %}
@@ -15,7 +15,7 @@ Järvenpää - pehmoGIS
 {% endblock %}
 
 {% block stylesheet %}
-    <link rel="stylesheet" type="text/css" href="{{STATIC_URL }}css/planning_project.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/planning_project.css" />
     <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" />
 {% endblock stylesheet %}
 
@@ -28,11 +28,11 @@ Järvenpää - pehmoGIS
 <div class="breadcrumbs">
     <a class="reset" href="{% url dashboard %}">{% trans 'Dashboard' %}</a>
     &gt;&gt;
-    <span>{{ProjectName}}</span>
+    <span>{{ project_name }}</span>
 </div>
 
     
-    <h1 class="project_title">{{ProjectName}}</h1>
+    <h1 class="project_title">{{ project_name }}</h1>
     <div class="short_description">
         {% lorem 50 w %}
         <br />
@@ -45,33 +45,40 @@ Järvenpää - pehmoGIS
     </div>    
 
     <div id="accordion">
-        <h3><a href="#">{% trans "Pajalanpiha" %} {% trans 'proposal' %} 1</a></h3>
+        <h3>
+	    <a href="#">{% trans "Pajalanpiha" %} {% trans 'proposal' %} 1</a>
+	</h3>
         <div>
             {% lorem 25 w %}
 	    <br />
-	    <a class="reset" href="{% url plan_proposal 'Pajalanpiha' %}">
+	    {{ proposal_url }}
+	    <a class="reset" href="{% url plan_proposal project_name 'ehdotus-1' %}">
 		{% trans "Look at and evaluate the proposal" %}
 	    </a>  
         </div>
-        <h3><a href="#">{% trans "Pajalanpiha" %} {% trans 'proposal' %} 2</a></h3>
+        <h3>
+	    <a href="#">{% trans "Pajalanpiha" %} {% trans 'proposal' %} 2</a>
+	</h3>
         <div>
             {% lorem 25 w %}
 	    <br />
-	    <a class="reset" href="{% url plan_proposal 'Pajalanpiha' %}">
+	    <a class="reset" href="{% url plan_proposal project_name 'ehdotus-2' %}">
 		{% trans "Look at and evaluate the proposal" %}
 	    </a>
         </div>
-        <h3><a href="#">{% trans "Pajalanpiha" %} {% trans 'proposal' %} 3</a></h3>
+        <h3>
+	    <a href="#">{% trans "Pajalanpiha" %} {% trans 'proposal' %} 3</a>
+	</h3>
         <div>
             {% lorem 25 w %}
 	    <br />
-	    <a class="reset" href="{% url plan_proposal 'Pajalanpiha' %}">
+	    <a class="reset" href="{% url plan_proposal project_name 'ehdotus-3' %}">
 		{% trans "Look at and evaluate the proposal" %}
 	    </a>
         </div>
     </div>
 
-    <div id="more_info" title="More information about the project">
+    <div id="more_info" title="{% trans 'More information about the project' %}">
         <p>{% lorem 200 w %}</p>
     </div>
 
@@ -82,7 +89,7 @@ http://www.jarvenpaa.fi/
 {% endblock %}
 
 {% block provider_name %}
-Järvenpään kaupunki
+{% trans 'Järvenpään kaupunki' %}
 {% endblock %}
 
 {% block javascript %}
