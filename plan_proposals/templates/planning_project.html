@@ -16,7 +16,7 @@
 
 {% block stylesheet %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/planning_project.css" />
-    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" />
 {% endblock stylesheet %}
 
 {% block city_name %}
@@ -31,50 +31,50 @@
     <span>{{ project_name }}</span>
 </div>
 
-    
+
     <h1 class="project_title">{{ project_name }}</h1>
     <div class="short_description">
         {% lorem 50 w %}
         <br />
         <br />
         <a id="opener" class="reset" href="http://www.jarvenpaa.fi">
-	    {% trans "More information about the project" %}
-	</a>    
+        {% trans "More information about the project" %}
+    </a>
         <br />
         <br />
-    </div>    
+    </div>
 
     <div id="accordion">
         <h3>
-	    <a href="#">{% trans "Pajalanpiha" %} {% trans 'proposal' %} 1</a>
-	</h3>
+        <a href="#">{% trans "Pajalanpiha" %} {% trans 'proposal' %} 1</a>
+    </h3>
         <div>
             {% lorem 25 w %}
-	    <br />
-	    {{ proposal_url }}
-	    <a class="reset" href="{% url plan_proposal project_name 'ehdotus-1' %}">
-		{% trans "Look at and evaluate the proposal" %}
-	    </a>  
+        <br />
+        {{ proposal_url }}
+        <a class="reset" href="{% url plan_proposal project_name 'ehdotus-1' %}">
+        {% trans "Look at and evaluate the proposal" %}
+        </a>
         </div>
         <h3>
-	    <a href="#">{% trans "Pajalanpiha" %} {% trans 'proposal' %} 2</a>
-	</h3>
+        <a href="#">{% trans "Pajalanpiha" %} {% trans 'proposal' %} 2</a>
+    </h3>
         <div>
             {% lorem 25 w %}
-	    <br />
-	    <a class="reset" href="{% url plan_proposal project_name 'ehdotus-2' %}">
-		{% trans "Look at and evaluate the proposal" %}
-	    </a>
+        <br />
+        <a class="reset" href="{% url plan_proposal project_name 'ehdotus-2' %}">
+        {% trans "Look at and evaluate the proposal" %}
+        </a>
         </div>
         <h3>
-	    <a href="#">{% trans "Pajalanpiha" %} {% trans 'proposal' %} 3</a>
-	</h3>
+        <a href="#">{% trans "Pajalanpiha" %} {% trans 'proposal' %} 3</a>
+    </h3>
         <div>
             {% lorem 25 w %}
-	    <br />
-	    <a class="reset" href="{% url plan_proposal project_name 'ehdotus-3' %}">
-		{% trans "Look at and evaluate the proposal" %}
-	    </a>
+        <br />
+        <a class="reset" href="{% url plan_proposal project_name 'ehdotus-3' %}">
+        {% trans "Look at and evaluate the proposal" %}
+        </a>
         </div>
     </div>
 
@@ -93,7 +93,7 @@ http://www.jarvenpaa.fi/
 {% endblock %}
 
 {% block javascript %}
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
 </script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js">
 </script>
