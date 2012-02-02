@@ -5,7 +5,7 @@
 {% block stylesheet %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/planning_feedback.css" />
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/jquery.rating.css" />
-    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="https://serverapi.arcgisonline.com/jsapi/arcgis/2.6/js/dojo/dijit/themes/tundra/tundra.css" />
 {% endblock stylesheet %}
 
@@ -14,11 +14,11 @@
     <a class="reset" href="{% url dashboard %}">{% trans 'Dashboard' %}</a>
     &gt;&gt;
     <a class="reset" href="{% url planning_project project_name %}">
-	{{ project_name }}
+    {{ project_name }}
     </a>
     &gt;&gt;
     <span>{{ proposal_name }}</span>
-</div>    
+</div>
 
 <div class="proposal-info">
     <h1 class="proposal-title">{{ proposal_name }}</h1>
@@ -26,8 +26,8 @@
         {% lorem 50 w %}
         <br />
         <br />
-        
-	<form name="picture_chooser" action="#">
+
+    <form name="picture_chooser" action="#">
             <input id="picture-1" type="radio" name="picture" value="1" checked="checked" />
             <label for="picture-1">
                 {% trans "show picture" %} 1 {% trans "of this proposal" %}
@@ -41,27 +41,27 @@
                 {% trans "show picture" %} 3 {% trans "of this proposal" %}
             </label><br />
         </form>
-        
+
         <a id="opener" class="reset" href="#">
-	    {% trans "More information about the proposal" %}
-	</a><br />
+        {% trans "More information about the proposal" %}
+    </a><br />
     </div>
     <h2>{% trans "Evaluate the proposal" %}</h2>
     <div class="draw_tools">
-	<div class="left">
-	    {% trans "Comment on the plan proposal by selecting any of the drawing tools on the right." %}
-	</div>
-	<div class="right">
-	    <button type="button" class="drawbutton point" id="point_feedback" name="place">
-		{% trans "place" %}
-	    </button><br />
-	    <button type="button" class="drawbutton route" id="route_feedback" name="route">
-		{% trans "route" %}
-	    </button><br />
-	    <button type="button" class="drawbutton area" id="area_feedback" name="area">
-		{% trans "area" %}
-	    </button>
-	</div>
+    <div class="left">
+        {% trans "Comment on the plan proposal by selecting any of the drawing tools on the right." %}
+    </div>
+    <div class="right">
+        <button type="button" class="drawbutton point" id="point_feedback" name="place">
+        {% trans "place" %}
+        </button><br />
+        <button type="button" class="drawbutton route" id="route_feedback" name="route">
+        {% trans "route" %}
+        </button><br />
+        <button type="button" class="drawbutton area" id="area_feedback" name="area">
+        {% trans "area" %}
+        </button>
+    </div>
     </div>
     <!--
     <form id="proposal1-form" action="POST">
@@ -105,7 +105,7 @@
     <!--</form>-->
     <br /><br />
     <a class="reset" href="{% url planning_project project_name %}">
-	{% trans "Back to previous page" %}
+    {% trans "Back to previous page" %}
     </a>
 </div>
 
@@ -119,10 +119,10 @@
     <form name="popupform" action="#">
         <textarea name="comment" cols="24" rows="5" ></textarea><br />
         <button type="button" class="save_feature">
-	    {% trans "save place" %}
+        {% trans "save place" %}
         </button>
         <button type="button" class="remove_feature">
-	    {% trans "remove place" %}
+        {% trans "remove place" %}
         </button>
     </form>
 </div>
@@ -131,10 +131,10 @@
     <form name="popupform" action="#">
         <textarea name="comment" cols="24" rows="5" ></textarea><br />
         <button type="button" class="save_feature">
-	    {% trans "save route" %}
+        {% trans "save route" %}
         </button>
         <button type="button" class="remove_feature">
-	    {% trans "remove route" %}
+        {% trans "remove route" %}
         </button>
     </form>
 </div>
@@ -143,10 +143,10 @@
     <form name="popupform" action="#" method="post">
         <textarea name="comment" cols="24" rows="5" ></textarea><br />
         <button type="button" class="save_feature">
-	    {% trans "save area" %}
+        {% trans "save area" %}
         </button>
         <button type="button" class="remove_feature">
-	    {% trans "remove area" %}
+        {% trans "remove area" %}
         </button>
     </form>
 </div>
@@ -168,7 +168,7 @@
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.rating.pack.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.ui.drawbutton.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/planning_feedback.js"></script>
-    
-    
-            
+
+
+
 {% endblock javascript %}
