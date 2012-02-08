@@ -7,7 +7,7 @@ var SHOW_PLAN = false;
 var INITIAL_CENTER = {
                     "x":395033,
                     "y":6707118};
-                    
+
 var popup; //only one popup at the time
 
 /*
@@ -41,30 +41,30 @@ function get_popup_lonlat(geometry) {
 */
 function save_handler(evt) {
     console.log("save handler");
-    
+
     //get the form data
     var popup_values = $('form[name=popupform].active').serializeArray();
-    
+
     //set the popup form as not active
     $('form[name=popupform]').removeClass('active');
-    
+
     //build new attributes for the features
     var new_attributes = {};
     for(var val in popup_values) {
         new_attributes[popup_values[val]['name']] =
             popup_values[val]['value'];
     }
-    
+
     evt.data[0].attributes = new_attributes;
-    
+
     //save the geojson
     var gf = new OpenLayers.Format.GeoJSON();
     var geojson = gf.write(evt.data[0]);
     console.log(geojson);
-    
+
     //unselect feature
     map.getControlsByClass( 'OpenLayers.Control.SelectFeature' )[0].unselectAll(evt);
-    
+
     //remove popup from map
     if(popup !== undefined) {
         map.removePopup(popup);
@@ -83,7 +83,7 @@ function remove_handler(evt) {
     evt.data[0].layer.removeFeatures([evt.data[0]]);
     //unselect feature
     map.getControlsByClass( 'OpenLayers.Control.SelectFeature' )[0].unselectAll();
-    
+
     if(popup !== undefined) {
         map.removePopup(popup);
         popup = undefined;
@@ -97,41 +97,41 @@ Expects there to be a feature.popup created
 that can be called.
 */
 function show_popup_for_feature(feature) {
-    
+
     if ( feature.popup !== undefined ) {
-    
+
         //remove old popup if existing
         if(popup !== undefined) {
             map.removePopup(popup);
             popup = undefined;
         }
-    
+
         //create popup and put it on the map
         popup = feature.popup;
         map.addPopup(popup);
-        
+
         //add a class to the form to recognize it as active
         $('div[id="' + feature.id + '"] form[name="popupform"]').addClass('active');
-        
+
         // add values to the form the values are connected but the form element name
         // and the name value in the feature attributes
         var input_elements = $('div[id="' + feature.id + '"] form[name="popupform"] :input');
         input_elements.each(function() {
             $(this).val( feature.attributes[ $(this).attr( 'name' ) ] );
         });
-        
+
         //connect the event to the infowindow buttons
         $('div[id="' + feature.id + '"] .save_feature').click([feature],
                                                       save_handler);
         $('div[id="' + feature.id + '"] .remove_feature').click([feature],
                                                         remove_handler);
-        
+
         return true;
-        
+
     } else {
-    
+
         return false;
-    
+
     }
 }
 
@@ -143,7 +143,7 @@ values from the feature attributes.
 function on_feature_select_handler(evt) {
     console.log("on_feature_select_handler");
     console.log(evt);
-    
+
     show_popup_for_feature(evt);
 }
 
@@ -154,7 +154,7 @@ where it closes the popup.
 function on_feature_unselect_handler(evt) {
     console.log("on_feature_unselect_handler");
     console.log(evt);
-    
+
     //remove popup from map
     map.removePopup(popup);
     popup = undefined;
@@ -162,7 +162,7 @@ function on_feature_unselect_handler(evt) {
 
 /*
  confirm and save the feature
- 
+
  The feature popup content and is connected
  with the name of the button that was used
  to draw it on the map. The button name is
@@ -172,14 +172,14 @@ function on_feature_unselect_handler(evt) {
 function feature_added(evt) {
     console.log("feature added");
     console.log(evt);
-    
+
     //get the right lonlat for the popup position
     evt.lonlat = get_popup_lonlat(evt.geometry);
-    
+
     //get the active button name = infowindow name
     var draw_button_name = $('button.ui-state-active').attr('name');
     var popupcontent = " default info content ";
-    
+
     //get the right content for the popup
     if( draw_button_name !== undefined ) {
         popupcontent = $('#' + draw_button_name).html();
@@ -187,9 +187,9 @@ function feature_added(evt) {
     evt.popupClass = OpenLayers.Popup.FramedCloud;
     evt.data = {
         popupSize: null,
-        popupContentHTML: popupcontent 
+        popupContentHTML: popupcontent
     };
-    
+
     //the createPopup function did not seem to work so here
     evt.popup = new OpenLayers.Popup.FramedCloud(
                         evt.id,
@@ -198,9 +198,9 @@ function feature_added(evt) {
                         evt.data.popupContentHTML,
                         null,
                         false);
-    
+
     show_popup_for_feature(evt);
-    
+
     //deactivate the map and the drawing
     //unselect the button
     $(".drawbutton.ui-state-active")
@@ -216,7 +216,7 @@ function feature_added(evt) {
 $.fx.speeds._default = 500;
 
 jQuery(document).ready(function(){
-    
+
     $( "#dialog" ).dialog({
         autoOpen: false,
         show: "blind",
@@ -229,7 +229,7 @@ jQuery(document).ready(function(){
     });
     // Create target element for onHover titles
     $caption = $("<span/>");
-    
+
      $("input.star").rating({
             callback: function(value, link){
                 alert(value);
@@ -239,20 +239,20 @@ jQuery(document).ready(function(){
 
      // Make it available in DOM tree
      $caption.appendTo(".ratings");
-     
+
      $(".submit-evaluation").click(function() {
             $(".red").html("Thank you for your feedback!");
             $(".submit-evaluation").attr("disabled", "disabled");
             $("#free-comment").attr("disabled", "disabled");
-            
+
             $(".ui-stars-star").addClass("ui-stars-star-disabled");
             $(".ui-stars-cancel").css("opacity", 0);
-            
-            $('input.star').rating('readOnly',true) 
-            
+
+            $('input.star').rating('readOnly',true)
+
     });
-     
-    
+
+
     /* Openlayers */
     var mapOptions = {
         maxExtent: new OpenLayers.Bounds(89949.504,
@@ -263,15 +263,15 @@ jQuery(document).ready(function(){
         maxResolution: 50
     };
     map = new OpenLayers.Map('map', mapOptions);
-    
+
     var arcgisLayer = new OpenLayers.Layer.ArcGIS93Rest(
-        "ArcGIS Server Layer",
+        "base map",
         "https://pehmogis.tkk.fi/ArcGIS/rest/services/suomi/MapServer/export",
         {layers: "show:0,7,43,79,115,150,151,187,222,258,294,330",
         format: "png24"},
         {isBaseLayer: true}
     );
-    
+
     //this is for testing modify later
     /*
     var imageLayer = new OpenLayers.Layer.Image(
@@ -286,7 +286,6 @@ jQuery(document).ready(function(){
         visibility: false}
     );*/
     
-    
     var proposalLayer = new OpenLayers.Layer.ArcGIS93Rest(
         "Proposal layer",
         "https://pehmogis.tkk.fi/ArcGIS/rest/services/Suunnittelu/MapServer/export",
@@ -295,12 +294,12 @@ jQuery(document).ready(function(){
         transparent: true},
         {isBaseLayer: false}
     );
-    
+
     var pointLayer = new OpenLayers.Layer.Vector("Point Layer");
     var routeLayer = new OpenLayers.Layer.Vector("Route Layer");
     var areaLayer = new OpenLayers.Layer.Vector("Area Layer");
     map.addLayers([arcgisLayer, proposalLayer, areaLayer, routeLayer, pointLayer ]);
-    
+
     var pointcontrol = new OpenLayers.Control.DrawFeature(pointLayer,
                                 OpenLayers.Handler.Point,
                                 {'id': 'pointcontrol',
@@ -313,10 +312,10 @@ jQuery(document).ready(function(){
                                 OpenLayers.Handler.Polygon,
                                 {'id': 'areacontrol',
                                 'featureAdded': feature_added})
-    
+
     map.addControls([pointcontrol, routecontrol, areacontrol ]);
     map.addControl(new OpenLayers.Control.LayerSwitcher());
-    
+
     //select feature control
     var select_feature_control = new OpenLayers.Control.SelectFeature(
             [pointLayer, routeLayer, areaLayer],
@@ -333,13 +332,13 @@ jQuery(document).ready(function(){
     console.log(select_feature_control);
     map.addControl(select_feature_control);
     select_feature_control.activate();
-    
+
 
     map.setCenter(new OpenLayers.LonLat(INITIAL_CENTER.x,
                                         INITIAL_CENTER.y), 0);
-    
+
     map.zoomToScale(492159825);
-    
+
     //draw buttons to activate drawing functionality
     $( "#point_feedback").drawButton({
         drawcontrol: "pointcontrol"
@@ -350,10 +349,10 @@ jQuery(document).ready(function(){
     $( "#area_feedback").drawButton({
         drawcontrol: "areacontrol"
         });
-    
+
     //hide all popups as default
     $('.popup').hide();
-    
+
     //create session for use
     //gnt.auth.create_session();
 });
