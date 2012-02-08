@@ -286,6 +286,7 @@ jQuery(document).ready(function(){
         visibility: false}
     );*/
     
+    
     var proposalLayer = new OpenLayers.Layer.ArcGIS93Rest(
         "Proposal layer",
         "https://pehmogis.tkk.fi/ArcGIS/rest/services/Suunnittelu/MapServer/export",
