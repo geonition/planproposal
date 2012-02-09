@@ -10,6 +10,7 @@
 {% endblock stylesheet %}
 
 {% block content %}
+<!--
 <div class="breadcrump">
     <a class="reset" href="{% url dashboard %}">{% trans 'Dashboard' %}</a>
     &gt;&gt;
@@ -19,37 +20,29 @@
     &gt;&gt;
     <span>{{ proposal_name }}</span>
 </div>
+-->
 
 <div class="proposal-info">
-    <h1 class="proposal-title">{{ proposal_name }}</h1>
+    <!--<h1 class="proposal-title">{{ proposal_name }}</h1>-->
+    <h1 class="proposal-title">Lepola III</h1>
     <div class="short_description">
-        {% lorem 50 w %}
-        <br />
-        <br />
+        <p>Tällä sivulla voit katsella ja kommentoida Lepola III
+        suunnitelmaa. Palvelu on kehitetty Aalto yliopistossa <a href="http://ytk.aalto.fi/fi/tutkimus/hankkeet/urbaani_arki/">Urbaani arki</a> projektissa.</p>
+        <p>Alueen asemakaava ja asemakaavan muutos perustuvat Järvenpään yleiskaavan 2020 
+ja Lepolan osayleiskaavan (2009) maankäytön ratkaisuihin. Alue kuuluu valtakunnallisesti sekä maakunnallisesti merkittävään rakennettuun  kulttuuriympäristöön. Pääasiallinen käyttötarkoitus nykyiseen asemakaavaan nähden muuttuu asumispainotteiseksi, mutta monitoimialueen luonne säilyy.</p>
 
-    <form name="picture_chooser" action="#">
-            <input id="picture-1" type="radio" name="picture" value="1" checked="checked" />
-            <label for="picture-1">
-                {% trans "show picture" %} 1 {% trans "of this proposal" %}
-            </label><br />
-            <input id="picture-2" type="radio" name="picture" value="2" />
-            <label for="picture-2">
-                {% trans "show picture" %} 2 {% trans "of this proposal" %}
-            </label><br />
-            <input id="picture-3" type="radio" name="picture" value="3" />
-            <label for="picture-3">
-                {% trans "show picture" %} 3 {% trans "of this proposal" %}
-            </label><br />
-        </form>
-
-        <a id="opener" class="reset" href="#">
-        {% trans "More information about the proposal" %}
-    </a><br />
+    <a id="more_info_link" class="reset" href="#">
+        {% trans "More information about the draft" %}
+    </a><br /><br />
+    <a id="pic1_link" href="#">{% trans "show image from north of this draft" %}</a><br />
+    <a id="pic2_link" href="#">{% trans "show image from south of this draft" %}</a><br />
+    <a id="pic3_link" href="#">{% trans "show image of the whole draft" %}</a><br />
+    <a id="streetview_link" href="#">{% trans "show streetview picture" %}</a><br />
     </div>
-    <h2>{% trans "Evaluate the proposal" %}</h2>
+    <h2>{% trans "Evaluate the draft" %}</h2>
     <div class="draw_tools">
     <div class="left">
-        {% trans "Comment on the plan proposal by selecting any of the drawing tools on the right." %}
+        {% trans "Comment on the plan draft by selecting any of the drawing tools on the right." %}
     </div>
     <div class="right">
         <button type="button" class="drawbutton point" id="point_feedback" name="place">
@@ -109,8 +102,44 @@
     </a>
 </div>
 
-<div id="dialog" title="More information about the project">
-    <p>{% lorem 200 w %}</p>
+<div id="more_info" title="{% trans 'More information about the plan' %}">
+<p>
+<b>Lepola III</b>-alue kuuluu osana valtakunnallisesti sekä maakunnallisesti merkittävään rakennettuun <b>Tuusulan Rantatien</b> kulttuuriympäristöön. Alueen erityisarvojen huomioimiseksi asemakaavoitus tehdään yhteistyössä museoviranomaisten kanssa. Asemakaavoituksen yhteydessä tarkistetaan alueen rakennusten ja piha-alueiden suojelutilanne. Alueen tärkeät virkistysarvot huomioidaan suunnittelussa.
+Yleiskaavojen perusteella alueeseen kohdistuu kulttuuriympäristöön liittyviä suunnittelurajoituksia.
+</p>
+<b>Suunnittelualue</b>
+<p>
+Suunnittelualue sijaitsee <b>Lepolan</b> kaupunginosassa keskustan eteläpuolella. Kaava-alue rajautuu pohjoisessa Sipoontiehen, itäpuolella rakenteilla olevan Lepolan I:n uusiin asuin- ja virkistysalueisiin ja Kyrölän peltoalueisiin, 
+ja lännessä Sibeliuksenväylään. Etelässä kaava-alueeseen sisältyy osa Poikkitien maantiealueesta. 
+</p>
+<b>Suunnittelun tavoite</b>
+<p>
+Alueen asemakaava ja asemakaavan muutos perustuvat Järvenpään yleiskaavan 2020 ja Lepolan osayleiskaavan (2009) maankäytön ratkaisuihin.  Alueen pääasiallinen käyttötarkoitus nykyiseen asemakaavaan nähden muuttuu asumispainotteiseksi, mutta monitoimialueen luonne säilyy. Asuinkortteleiden sijoittaminen alueelle on kestävän kehityksen mukaista raideliikenteeseen sekä keskustan palveluihin tukeutuen. Mahdolliselle Sibelius- vierailukeskukselle varataan korttelialue.
+</p>
+
+<b>Aikataulu</b>
+<p>
+Asemakaava ja asemakaavan muutos on käynnistetty helmikuussa 2011. 
+Asemakaavaluonnos on nähtävänä (MRL 62 §) arviolta helmikuussa 2012.
+Yleisötilaisuus järjestetään kaavaluonnoksen nähtävilläolon yhteydessä.
+Asemakaavaehdotus asetetaan julkisesti nähtäväksi (MRL 65 §, MRA 27§) 
+30 päivän ajaksi arviolta v.2012 lopulla.
+Tavoitteena asemakaavan ja tonttijaon muutoksen hyväksyminen vuodenvaihteessa 2012-2013.
+</p>
+<a href="http://www.jarvenpaa.fi/sivustot/lepola/">Lisää tietoa löydät Lepolan suunnittelusivuilta</a>
+
+</div>
+<div id="pic1" title="{% trans 'Model image' %} 1">
+    <img alt="{% trans 'ilmakuva' %} 1" src="{{ STATIC_URL }}images/ILMAKUVA_1_VALMIS.jpg" />
+</div>
+<div id="pic2" title="{% trans 'Model image' %} 2">
+    <img alt="{% trans 'ilmakuva' %} 2" src="{{ STATIC_URL }}images/ILMAKUVA_2_VALMIS.jpg" />
+</div>
+<div id="pic3" title="{% trans 'Model image' %} 3">
+    <img alt="{% trans 'ilmakuva' %} 3" src="{{ STATIC_URL }}images/ILMAKUVA_3_VALMIS.jpg" />
+</div>
+<div id="streetview" title="{% trans 'Streetview' %}">
+    <img alt="{% trans 'katukuva' %}" src="{{ STATIC_URL }}images/KATUPERSPEKTIIVI_1_VALMIS.jpg" />
 </div>
 
 <!-- infowindows with id's put here so that translations work -->

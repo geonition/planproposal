@@ -5,8 +5,8 @@ var map;
 
 var SHOW_PLAN = false;
 var INITIAL_CENTER = {
-                    "x":395033,
-                    "y":6707118};
+                    "x":395035.9395,
+                    "y":6704086.647};
 
 var popup; //only one popup at the time
 
@@ -217,16 +217,54 @@ $.fx.speeds._default = 500;
 
 jQuery(document).ready(function(){
 
-    $( "#dialog" ).dialog({
+    $( "#more_info" ).dialog({
+        autoOpen: false,
+        show: "blind",
+        width: 600,
+        height: 600
+    });
+    $( "#pic1" ).dialog({
+        autoOpen: false,
+        show: "blind",
+        width: 600
+    });
+    $( "#pic2" ).dialog({
+        autoOpen: false,
+        show: "blind",
+        width: 600
+    });
+    $( "#pic3" ).dialog({
+        autoOpen: false,
+        show: "blind",
+        width: 600
+    });
+    $( "#streetview" ).dialog({
         autoOpen: false,
         show: "blind",
         width: 600
     });
 
-    $( "#opener" ).click(function() {
-        $( "#dialog" ).dialog( "open" );
+    $( "#more_info_link" ).click(function() {
+        $( "#more_info" ).dialog( "open" );
         return false;
     });
+    $( "#pic1_link" ).click(function() {
+        $( "#pic1" ).dialog( "open" );
+        return false;
+    });
+    $( "#pic2_link" ).click(function() {
+        $( "#pic2" ).dialog( "open" );
+        return false;
+    });
+    $( "#pic3_link" ).click(function() {
+        $( "#pic3" ).dialog( "open" );
+        return false;
+    });
+    $( "#streetview_link" ).click(function() {
+        $( "#streetview" ).dialog( "open" );
+        return false;
+    });
+    
     // Create target element for onHover titles
     $caption = $("<span/>");
 
@@ -289,8 +327,8 @@ jQuery(document).ready(function(){
     var proposalLayer = new OpenLayers.Layer.ArcGIS93Rest(
         "Proposal layer",
         "https://pehmogis.tkk.fi/ArcGIS/rest/services/Suunnittelu/MapServer/export",
-        {layers: "show:0,1",
-        format: "png24",
+        {layers: "show:0",
+        format: "jpg",
         transparent: true},
         {isBaseLayer: false}
     );
