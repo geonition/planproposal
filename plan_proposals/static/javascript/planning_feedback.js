@@ -264,7 +264,7 @@ jQuery(document).ready(function(){
         $( "#streetview" ).dialog( "open" );
         return false;
     });
-    
+
     // Create target element for onHover titles
     $caption = $("<span/>");
 
@@ -323,7 +323,7 @@ jQuery(document).ready(function(){
         {isBaseLayer: false,
         visibility: false}
     );*/
-    
+
     var proposalLayer = new OpenLayers.Layer.ArcGIS93Rest(
         "Proposal layer",
         "https://pehmogis.tkk.fi/ArcGIS/rest/services/Suunnittelu/MapServer/export",
@@ -366,8 +366,6 @@ jQuery(document).ready(function(){
             multiple: false,
             hover: false
             });
-    console.log("add control to layer");
-    console.log(select_feature_control);
     map.addControl(select_feature_control);
     select_feature_control.activate();
 
