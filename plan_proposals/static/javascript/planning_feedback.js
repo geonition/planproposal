@@ -29,7 +29,6 @@ function get_popup_lonlat(geometry) {
                         geometry.components[geometry.components.length - 1].x,
                         geometry.components[geometry.components.length - 1].y);
     } else if ( geometry.id.contains( "Polygon" ) ) {
-        console.log(geometry);
         lonlat = new OpenLayers.LonLat(
                         geometry.components[0].components[0].x,
                         geometry.components[0].components[0].y);
@@ -43,7 +42,6 @@ function get_popup_lonlat(geometry) {
  connected to the save button in the popup form
 */
 function save_handler(evt) {
-    console.log("save handler");
 
     //get the form data
     var popup_values = $('form[name=popupform].active').serializeArray();
@@ -59,7 +57,7 @@ function save_handler(evt) {
     }
 
     evt.data[0].attributes = new_attributes;
-    console.log(evt);
+
     //save the geojson
     var gf = new OpenLayers.Format.GeoJSON();
     var geojson = gf.write(evt.data[0]);
@@ -99,7 +97,6 @@ function save_handler(evt) {
  connected to the remove button in the popup form.
 */
 function remove_handler(evt) {
-    console.log("remove handler");
 
     evt.data[0].layer.removeFeatures([evt.data[0]]);
     //unselect feature
@@ -162,9 +159,6 @@ where it shows the popup with the correct
 values from the feature attributes.
 */
 function on_feature_select_handler(evt) {
-    console.log("on_feature_select_handler");
-    console.log(evt);
-
     show_popup_for_feature(evt);
 }
 
@@ -173,8 +167,6 @@ This function handles the on feature unselect
 where it closes the popup.
 */
 function on_feature_unselect_handler(evt) {
-    console.log("on_feature_unselect_handler");
-    console.log(evt);
 
     //remove popup from map
     map.removePopup(popup);
@@ -191,8 +183,6 @@ function on_feature_unselect_handler(evt) {
  to be shown as the content in popup.
 */
 function feature_added(evt) {
-    console.log("feature added");
-    console.log(evt);
 
     //get the right lonlat for the popup position
     evt.lonlat = get_popup_lonlat(evt.geometry);
@@ -429,7 +419,6 @@ jQuery(document).ready(function(){
 
     //get the users feature if any
     gnt.geo.get_features('', function(event) {
-        console.log(event);
         var pl = map.getLayersByName('Point Layer')[0];
         var rl = map.getLayersByName('Route Layer')[0];
         var al = map.getLayersByName('Area Layer')[0];
@@ -445,7 +434,6 @@ jQuery(document).ready(function(){
                 pl.addFeatures(feature);
                 popupcontent = $('#place').html();
             } else if(feature.geometry.id.contains( "LineString" )) {
-                console.log(feature);
                 rl.addFeatures(feature);
                 popupcontent = $('#route').html();
             } else if(feature.geometry.id.contains( "Polygon" )) {
