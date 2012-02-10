@@ -25,11 +25,14 @@ function get_popup_lonlat(geometry) {
                         geometry.x,
                         geometry.y);
     } else if ( geometry.id.contains( "LineString" ) ) {
-        lonlat = geometry
-            .components[geometry.components.length - 1]
-            .bounds.getCenterLonLat();
+        lonlat = new OpenLayers.LonLat(
+                        geometry.components[geometry.components.length - 1].x,
+                        geometry.components[geometry.components.length - 1].y);
     } else if ( geometry.id.contains( "Polygon" ) ) {
-        lonlat = geometry.bounds.getCenterLonLat();
+        console.log(geometry);
+        lonlat = new OpenLayers.LonLat(
+                        geometry.components[0].components[0].x,
+                        geometry.components[0].components[0].y);
     }
     return lonlat;
 }
@@ -435,15 +438,19 @@ jQuery(document).ready(function(){
 
         for(var i = 0; i < event.features.length; i++) {
             var feature = gf.parseFeature(event.features[i]);
-            if(event.features[i].geometry.type === 'Point') {
+            feature.lonlat = get_popup_lonlat(feature.geometry);
+
+
+            if(feature.geometry.id.contains( "Point" )) {
                 pl.addFeatures(feature);
-                popupcontent = $('#point_feedback').html();
-            } else if(event.features[i].geometry.type === 'Polygon') {
+                popupcontent = $('#place').html();
+            } else if(feature.geometry.id.contains( "LineString" )) {
+                console.log(feature);
                 rl.addFeatures(feature);
-                popupcontent = $('#route_feedback').html();
-            } else if(event.features[i].geometry.type === 'LineString') {
+                popupcontent = $('#route').html();
+            } else if(feature.geometry.id.contains( "Polygon" )) {
                 al.addFeatures(feature);
-                popupcontent = $('#area_feedback').html();
+                popupcontent = $('#area').html();
             }
 
             feature.popupClass = OpenLayers.Popup.FramedCloud;
