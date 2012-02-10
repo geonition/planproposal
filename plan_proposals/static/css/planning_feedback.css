@@ -4,6 +4,7 @@
 .draw_tools {
     padding-right: 20px;
     margin-bottom: 10px;
+    height: 130px;
 }
 .draw_tools .left {
     float: left;
