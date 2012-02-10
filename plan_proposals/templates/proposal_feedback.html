@@ -4,9 +4,8 @@
 
 {% block stylesheet %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/planning_feedback.css" />
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/jquery.rating.css" />
+    <!--<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/jquery.rating.css" />-->
     <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" type="text/css" href="https://serverapi.arcgisonline.com/jsapi/arcgis/2.6/js/dojo/dijit/themes/tundra/tundra.css" />
 {% endblock stylesheet %}
 
 {% block content %}
@@ -30,7 +29,7 @@
         suunnitelmaa.</p>
         <p>Alueen asemakaava ja asemakaavan muutos perustuvat Järvenpään yleiskaavan 2020
 ja Lepolan osayleiskaavan (2009) maankäytön ratkaisuihin. Alue kuuluu valtakunnallisesti sekä maakunnallisesti merkittävään rakennettuun  kulttuuriympäristöön. Pääasiallinen käyttötarkoitus nykyiseen asemakaavaan nähden muuttuu asumispainotteiseksi, mutta monitoimialueen luonne säilyy.</p>
-<p>Palvelu on kehitetty yhteistyössä Aalto yliopiston kanssa. Lisätietoa ja yhteystiedot löytyy <a href="http://ytk.aalto.fi/fi/tutkimus/hankkeet/urbaani_arki/">Urbaani arki</a> projektin sivulta.</p>
+<p>Palvelu on kehitetty yhteistyössä Aalto yliopiston kanssa. Lisätietoa ja yhteystiedot löytyvät <a href="http://ytk.aalto.fi/fi/tutkimus/hankkeet/urbaani_arki/">Urbaani arki</a> projektin sivulta.</p>
     <a id="more_info_link" class="reset" href="#">
         {% trans "More information about the draft" %}
     </a><br /><br />
@@ -56,50 +55,53 @@ ja Lepolan osayleiskaavan (2009) maankäytön ratkaisuihin. Alue kuuluu valtakun
         </button>
     </div>
     </div>
-    <!--
     <form id="proposal1-form" action="POST">
-    -->
-    <table>
-        <tr>
-            <td>{% trans "Give a general rating" %}:</td>
-            <td>
-                <div class="ratings">
-                    <input name="star1" type="radio" class="star"/>
-                    <input name="star1" type="radio" class="star"/>
-                    <input name="star1" type="radio" class="star"/>
-                    <input name="star1" type="radio" class="star"/>
-                    <input name="star1" type="radio" class="star"/>
-                </div>
-            </td>
-        </tr>
-        <tr><td></td><td></td></tr>
-        <tr>
-            <td colspan="2">{% trans "Free comment" %}</td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <textarea id="free-comment" maxlength="600" cols="30" rows="5">
-                </textarea>
-            </td>
-        </tr>
-        <tr>
-            <td>
-            </td>
-            <td>
-                <input type="submit" class="submit-evaluation" value="{% trans 'Send comment' %}" />
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <div class="red"></div>
-            </td>
-        </tr>
-    </table>
-    <!--</form>-->
+
+        <table>
+            <!--
+            <tr>
+                <td>{% trans "Give a general rating" %}:</td>
+                <td>
+                    <div class="ratings">
+                        <input name="star1" type="radio" class="star"/>
+                        <input name="star1" type="radio" class="star"/>
+                        <input name="star1" type="radio" class="star"/>
+                        <input name="star1" type="radio" class="star"/>
+                        <input name="star1" type="radio" class="star"/>
+                    </div>
+                </td>
+            </tr>
+            <tr><td></td><td></td></tr>
+            -->
+
+            <tr>
+                <td colspan="2">{% trans "Free comment" %}</td>
+            </tr>
+            <tr class="free_comment_thanks">
+                <td colspan="2">
+                    <div class="red">{% trans "Thank you for your comment!" %}</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="free_comment" name="free_comment" cols="33" rows="5"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <input type="submit" class="submit-evaluation" value="{% trans 'Send comment' %}" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <!--
     <br /><br />
     <a class="reset" href="{% url planning_project project_name %}">
     {% trans "Back to previous page" %}
     </a>
+    -->
 </div>
 
 <div id="more_info" title="{% trans 'More information about the plan' %}">
@@ -126,7 +128,7 @@ Asemakaavaehdotus asetetaan julkisesti nähtäväksi (MRL 65 §, MRA 27§)
 30 päivän ajaksi arviolta v.2012 lopulla.
 Tavoitteena asemakaavan ja tonttijaon muutoksen hyväksyminen vuodenvaihteessa 2012-2013.
 </p>
-<a href="http://www.jarvenpaa.fi/sivustot/lepola/">Lisää tietoa löydät Lepolan suunnittelusivuilta</a>
+<a href="http://www.jarvenpaa.fi/sivustot/lepola/">Lisätietoa löydät Lepolan suunnittelusivuilta</a>
 
 </div>
 <div id="pic1" title="{% trans 'Model image' %} 1">
@@ -185,16 +187,16 @@ Tavoitteena asemakaavan ja tonttijaon muutoksen hyväksyminen vuodenvaihteessa 2
 {% block javascript %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
 </script>
-<script src="https://cdn.jquerytools.org/1.2.6/jquery.tools.min.js"></script>
+<!--<script src="https://cdn.jquerytools.org/1.2.6/jquery.tools.min.js"></script>-->
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.ui.stars.min.js"></script>
+<!--<script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.ui.stars.min.js"></script>-->
 <script src="https://softgis.org.aalto.fi/OpenLayers/OpenLayers.js"></script>
 <!--
 <script src="http://openlayers.org/api/OpenLayers.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}OpenLayers.js"></script>
 -->
 <script type="text/javascript" src="{% url api_javascript %}"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.rating.pack.js"></script>
+<!--<script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.rating.pack.js"></script>-->
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.ui.drawbutton.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/planning_feedback.js"></script>
 

@@ -7,7 +7,7 @@
 }
 .draw_tools .left {
     float: left;
-    width: 240px;
+    width: 230px;
 }
 .draw_tools .right {
     float: right;
@@ -17,4 +17,8 @@
 button.drawbutton {
     width: 90px !important;
     margin: 1px;
+}
+
+.red {
+    color: red;
 }

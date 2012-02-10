@@ -56,11 +56,30 @@ function save_handler(evt) {
     }
 
     evt.data[0].attributes = new_attributes;
-
+    console.log(evt);
     //save the geojson
     var gf = new OpenLayers.Format.GeoJSON();
     var geojson = gf.write(evt.data[0]);
-    console.log(geojson);
+
+    if (evt.data[0].fid === undefined || evt.data[0].fid === null) {
+
+        gnt.geo.create_feature(geojson, function(event) {
+            var new_feature = null;
+            // retrieve feature without fid and give it the id from the right layer
+            if( event.geometry.type === 'Point') {
+                new_feature = map.getLayersByName('Point Layer')[0].getFeatureByFid(undefined);
+            } else if ( event.geometry.type === 'LineString' ) {
+                new_feature = map.getLayersByName('Route Layer')[0].getFeatureByFid(undefined);
+            } else if ( event.geometry.type === 'Polygon' ) {
+                new_feature = map.getLayersByName('Area Layer')[0].getFeatureByFid(undefined);
+            }
+            new_feature.fid = event.id;
+        });
+
+    } else {
+        //update the feature
+        gnt.geo.update_feature(geojson);
+    }
 
     //unselect feature
     map.getControlsByClass( 'OpenLayers.Control.SelectFeature' )[0].unselectAll(evt);
@@ -268,14 +287,17 @@ jQuery(document).ready(function(){
     // Create target element for onHover titles
     $caption = $("<span/>");
 
-     $("input.star").rating({
+    /*
+    $("input.star").rating({
             callback: function(value, link){
                 alert(value);
 
             }
-     });
+     });*/
 
      // Make it available in DOM tree
+
+     /*
      $caption.appendTo(".ratings");
 
      $(".submit-evaluation").click(function() {
@@ -288,8 +310,22 @@ jQuery(document).ready(function(){
 
             $('input.star').rating('readOnly',true)
 
-    });
+    });*/
 
+    /* geonition data */
+    gnt.auth.create_session();
+
+    $(".free_comment_thanks").hide();
+
+    $("#proposal1-form").submit(function(event) {
+        event.preventDefault();
+        var value = $( this ).serializeArray()[0];
+        $("#free_comment").attr("disabled", "disabled");
+        $(".submit-evaluation").attr("disabled", "disabled");
+        $(".free_comment_thanks").show();
+        gnt.opensocial_people.update_person('@me',
+                            {'free_comment': value['value']});
+        });
 
     /* Openlayers */
     var mapOptions = {
