@@ -40,23 +40,23 @@ ja Lepolan osayleiskaavan (2009) maankäytön ratkaisuihin. Alue kuuluu valtakun
     </div>
     <h2>{% trans "Evaluate the draft" %}</h2>
     <div class="draw_tools">
-    <div class="left">
-        {% trans "Comment on the plan draft by selecting any of the drawing tools on the right." %}
-    </div>
-    <div class="right">
-        <button type="button" class="drawbutton point" id="point_feedback" name="place">
-        {% trans "place" %}
-        </button><br />
-        <button type="button" class="drawbutton route" id="route_feedback" name="route">
-        {% trans "route" %}
-        </button><br />
-        <button type="button" class="drawbutton area" id="area_feedback" name="area">
-        {% trans "area" %}
-        </button>
-    </div>
+        <div class="left">
+            {% trans "Comment on the plan draft by selecting any of the drawing tools on the right." %}
+        </div>
+        <div class="right">
+            <button type="button" class="drawbutton point" id="point_feedback" name="place">
+            {% trans "place" %}
+            </button><br />
+            <button type="button" class="drawbutton route" id="route_feedback" name="route">
+            {% trans "route" %}
+            </button><br />
+            <button type="button" class="drawbutton area" id="area_feedback" name="area">
+            {% trans "area" %}
+            </button>
+        </div>
     </div>
     <form id="proposal1-form" action="POST">
-
+        {% csrf_token %}
         <table>
             <!--
             <tr>

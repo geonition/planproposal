@@ -97,8 +97,7 @@ function save_handler(evt) {
 */
 function remove_handler(evt) {
     console.log("remove handler");
-    console.log(evt);
-    console.log(evt.data[0]);
+
     evt.data[0].layer.removeFeatures([evt.data[0]]);
     //unselect feature
     map.getControlsByClass( 'OpenLayers.Control.SelectFeature' )[0].unselectAll();
@@ -425,6 +424,43 @@ jQuery(document).ready(function(){
     //hide all popups as default
     $('.popup').hide();
 
-    //create session for use
-    //gnt.auth.create_session();
+    //get the users feature if any
+    gnt.geo.get_features('', function(event) {
+        console.log(event);
+        var pl = map.getLayersByName('Point Layer')[0];
+        var rl = map.getLayersByName('Route Layer')[0];
+        var al = map.getLayersByName('Area Layer')[0];
+        var gf = new OpenLayers.Format.GeoJSON();
+        var popupcontent = " default content ";
+
+        for(var i = 0; i < event.features.length; i++) {
+            var feature = gf.parseFeature(event.features[i]);
+            if(event.features[i].geometry.type === 'Point') {
+                pl.addFeatures(feature);
+                popupcontent = $('#point_feedback').html();
+            } else if(event.features[i].geometry.type === 'Polygon') {
+                rl.addFeatures(feature);
+                popupcontent = $('#route_feedback').html();
+            } else if(event.features[i].geometry.type === 'LineString') {
+                al.addFeatures(feature);
+                popupcontent = $('#area_feedback').html();
+            }
+
+            feature.popupClass = OpenLayers.Popup.FramedCloud;
+            feature.data = {
+                popupSize: null,
+                popupContentHTML: popupcontent
+            };
+
+            //the createPopup function did not seem to work so here
+            feature.popup = new OpenLayers.Popup.FramedCloud(
+                                feature.id,
+                                feature.lonlat,
+                                feature.data.popupSize,
+                                feature.data.popupContentHTML,
+                                null,
+                                false);
+
+        }
+    });
 });
