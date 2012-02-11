@@ -40,11 +40,11 @@ active_class: the class to use when a button is activated
                         
 
                 if ( this.options.icons.primary ) {
-                        buttonElement.prepend( "<span class='ui-button-icon-primary ui-icon " + this.options.icons.primary + "'></span>" );
+                    this.element.prepend( '<span class="ui-button-icon-primary ui-icon ' + this.options.icons.primary + '"></span>' );
                 }
 
                 if ( this.options.icons.secondary ) {
-                        buttonElement.append( "<span class='ui-button-icon-secondary ui-icon " + this.options.icons.secondary + "'></span>" );
+                    this.element.append( '<span class="ui-button-icon-secondary ui-icon ' + this.options.icons.secondary + '"></span>' );
                 }
                 return this;
             },

@@ -320,6 +320,9 @@ jQuery(document).ready(function(){
         });
 
     /* Openlayers */
+    
+    // set language
+    OpenLayers.Lang.setCode('fi');
     var mapOptions = {
         maxExtent: new OpenLayers.Bounds(89949.504,
                                          6502687.508,
@@ -331,7 +334,7 @@ jQuery(document).ready(function(){
     map = new OpenLayers.Map('map', mapOptions);
 
     var arcgisLayer = new OpenLayers.Layer.ArcGIS93Rest(
-        "base map",
+        "kartta",
         "https://pehmogis.tkk.fi/ArcGIS/rest/services/suomi/MapServer/export",
         {layers: "show:0,7,43,79,115,150,151,187,222,258,294,330",
         format: "png24"},
@@ -353,17 +356,74 @@ jQuery(document).ready(function(){
     );*/
 
     var proposalLayer = new OpenLayers.Layer.ArcGIS93Rest(
-        "Proposal layer",
+        "Ehdotus",
         "https://pehmogis.tkk.fi/ArcGIS/rest/services/Suunnittelu/MapServer/export",
         {layers: "show:0",
         format: "jpg",
         transparent: true},
         {isBaseLayer: false}
     );
-
-    var pointLayer = new OpenLayers.Layer.Vector("Point Layer");
-    var routeLayer = new OpenLayers.Layer.Vector("Route Layer");
-    var areaLayer = new OpenLayers.Layer.Vector("Area Layer");
+    /*
+     new OpenLayers.Style(null, {
+                        rules: [
+                            new OpenLayers.Rule({
+                                symbolizer: {
+                                    graphic: false,
+                                    label: "Label for invisible point",
+                                    labelSelect: true,
+                                    fontStyle: "italic"
+                                },
+                                filter: new OpenLayers.Filter.Comparison({
+                                    type: "==",
+                                    property: "topic",
+                                    value: "point_invisible"
+                                })
+                            }),
+    */
+    
+    var pointLayer = new OpenLayers.Layer.Vector(
+                "Point Layer",
+                {
+                    styleMap: new OpenLayers.StyleMap({
+                        'default': {
+                            externalGraphic: "/images/needle?color=ee9900",
+                            graphicHeight: 36,
+                            graphicWidth: 23,
+                            graphicYOffset: -30,
+                            cursor: 'pointer'
+                        },
+                        'temporary': {
+                            externalGraphic: "/images/needle?color=ee9900",
+                            graphicHeight: 36,
+                            graphicWidth: 23,
+                            graphicYOffset: -30
+                        }
+                    })
+                });
+    var routeLayer = new OpenLayers.Layer.Vector(
+                "Route Layer",
+                {
+                    styleMap: new OpenLayers.StyleMap({
+                        'default': {
+                            strokeWidth: 2,
+                            strokeColor: '#ee9900',
+                            cursor: 'pointer'
+                        }
+                    })
+                });
+    var areaLayer = new OpenLayers.Layer.Vector(
+                "Area Layer",
+                {
+                    styleMap: new OpenLayers.StyleMap({
+                        'default': {
+                            strokeWidth: 2,
+                            strokeColor: '#ee9900',
+                            cursor: 'pointer',
+                            fillColor: '#ee9900',
+                            fillOpacity: 0.3
+                        }
+                    })
+                });
     map.addLayers([arcgisLayer, proposalLayer, areaLayer, routeLayer, pointLayer ]);
 
     var pointcontrol = new OpenLayers.Control.DrawFeature(pointLayer,
@@ -380,7 +440,7 @@ jQuery(document).ready(function(){
                                 'featureAdded': feature_added})
 
     map.addControls([pointcontrol, routecontrol, areacontrol ]);
-    map.addControl(new OpenLayers.Control.LayerSwitcher());
+    //map.addControl(new OpenLayers.Control.LayerSwitcher());
 
     //select feature control
     var select_feature_control = new OpenLayers.Control.SelectFeature(
@@ -406,13 +466,13 @@ jQuery(document).ready(function(){
     //draw buttons to activate drawing functionality
     $( "#point_feedback").drawButton({
         drawcontrol: "pointcontrol"
-        });
+    });
     $( "#route_feedback").drawButton({
         drawcontrol: "routecontrol"
-        });
+    });
     $( "#area_feedback").drawButton({
         drawcontrol: "areacontrol"
-        });
+    });
 
     //hide all popups as default
     $('.popup').hide();
