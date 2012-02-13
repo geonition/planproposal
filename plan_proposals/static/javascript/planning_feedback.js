@@ -102,6 +102,16 @@ function remove_handler(evt) {
     //unselect feature
     map.getControlsByClass( 'OpenLayers.Control.SelectFeature' )[0].unselectAll();
 
+    //if fid found then delete otherwise do nothing
+    var gf = new OpenLayers.Format.GeoJSON();
+    var geojson = gf.write(evt.data[0]);
+
+    if (evt.data[0].fid !== undefined && evt.data[0].fid !== null) {
+
+        gnt.geo.delete_feature(geojson);
+
+    }
+
     if(popup !== undefined) {
         map.removePopup(popup);
         popup = undefined;
@@ -320,7 +330,7 @@ jQuery(document).ready(function(){
         });
 
     /* Openlayers */
-    
+
     // set language
     OpenLayers.Lang.setCode('fi');
     var mapOptions = {
@@ -380,7 +390,7 @@ jQuery(document).ready(function(){
                                 })
                             }),
     */
-    
+
     var pointLayer = new OpenLayers.Layer.Vector(
                 "Point Layer",
                 {
@@ -478,7 +488,7 @@ jQuery(document).ready(function(){
     $('.popup').hide();
 
     //get the users feature if any
-    gnt.geo.get_features('', function(event) {
+    gnt.geo.get_features('?time__now=true', function(event) {
         var pl = map.getLayersByName('Point Layer')[0];
         var rl = map.getLayersByName('Route Layer')[0];
         var al = map.getLayersByName('Area Layer')[0];
