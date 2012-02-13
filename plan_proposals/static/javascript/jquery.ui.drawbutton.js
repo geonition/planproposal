@@ -37,7 +37,7 @@ active_class: the class to use when a button is activated
                         .appendTo( this.element.empty() )
                         .html( label )
                         .text();
-                        
+
 
                 if ( this.options.icons.primary ) {
                     this.element.prepend( '<span class="ui-button-icon-primary ui-icon ' + this.options.icons.primary + '"></span>' );
@@ -48,7 +48,7 @@ active_class: the class to use when a button is activated
                 }
                 return this;
             },
-            
+
             toggle_active: function(evt) {
                 var active_cls = $(this).drawButton('option', 'active_class');
                 if($(this).hasClass( active_cls )) {
@@ -67,7 +67,6 @@ active_class: the class to use when a button is activated
                 selectcontrol.activate();
             },
             activate: function() {
-                console.log(this.element.attr( 'disabled' ));
                 if(this.element.attr( 'disabled') !== 'disabled') {
                     //unselect the others
                     $(".drawbutton." + this.options['active_class'])
@@ -79,7 +78,7 @@ active_class: the class to use when a button is activated
                     var selectcontrol_id = this.options['selectcontrol'];
                     var selectcontrol = map.getControl(selectcontrol_id);
                     selectcontrol.deactivate();
-                } 
+                }
             },
             disable: function() {
                 this.element.removeClass( this.options['active_class'] );

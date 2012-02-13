@@ -5,8 +5,9 @@ var map;
 
 var SHOW_PLAN = false;
 var INITIAL_CENTER = {
-                    "x":395035.9395,
-                    "y":6704086.647};
+    "x": 395035.9395,
+    "y": 6704086.647
+};
 
 var popup; //only one popup at the time
 
@@ -20,15 +21,15 @@ on where to show a popup for each feature.
 */
 function get_popup_lonlat(geometry) {
     var lonlat;
-    if( geometry.id.contains( "Point" ) ) {
+    if ( geometry.id.contains("Point") ) {
         lonlat = new OpenLayers.LonLat(
                         geometry.x,
                         geometry.y);
-    } else if ( geometry.id.contains( "LineString" ) ) {
+    } else if ( geometry.id.contains("LineString") ) {
         lonlat = new OpenLayers.LonLat(
                         geometry.components[geometry.components.length - 1].x,
                         geometry.components[geometry.components.length - 1].y);
-    } else if ( geometry.id.contains( "Polygon" ) ) {
+    } else if ( geometry.id.contains("Polygon") ) {
         lonlat = new OpenLayers.LonLat(
                         geometry.components[0].components[0].x,
                         geometry.components[0].components[0].y);
