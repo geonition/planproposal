@@ -340,7 +340,8 @@ jQuery(document).ready(function(){
                                          502203.000,
                                          7137049.802),
         projection: "EPSG:3067",
-        maxResolution: 50
+        maxResolution: 50,
+        numZoomLevels: 10
     };
     map = new OpenLayers.Map('map', mapOptions);
 
@@ -349,7 +350,13 @@ jQuery(document).ready(function(){
         "https://pehmogis.tkk.fi/ArcGIS/rest/services/suomi/MapServer/export",
         {layers: "show:0,7,43,79,115,150,151,187,222,258,294,330",
         format: "png24"},
-        {isBaseLayer: true}
+        {isBaseLayer: true,
+        maxExtent: new OpenLayers.Bounds(
+            390523.0685,
+            6700070.816,
+            399368.006,
+            6709752.84725),
+        buffer: 0}
     );
 
     //this is for testing modify later
@@ -370,9 +377,15 @@ jQuery(document).ready(function(){
         "Ehdotus",
         "https://pehmogis.tkk.fi/ArcGIS/rest/services/Suunnittelu/MapServer/export",
         {layers: "show:0",
-        format: "jpg",
+        format: "png24",
         transparent: true},
-        {isBaseLayer: false}
+        {isBaseLayer: false,
+        maxExtent: new OpenLayers.Bounds(
+            394523.0685,
+            6703070.816,
+            395368.006,
+            6704752.84725),
+        buffer: 0}
     );
     /*
      new OpenLayers.Style(null, {
