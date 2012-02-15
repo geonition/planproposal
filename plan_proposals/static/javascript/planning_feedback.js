@@ -108,9 +108,7 @@ function remove_handler(evt) {
     var geojson = gf.write(evt.data[0]);
 
     if (evt.data[0].fid !== undefined && evt.data[0].fid !== null) {
-
         gnt.geo.delete_feature(geojson);
-
     }
 
     if(popup !== undefined) {
@@ -543,3 +541,9 @@ jQuery(document).ready(function(){
         }
     });
 });
+
+//delete the session on unload
+$(window).unload(function(event) {
+    console.log(event);
+    gnt.auth.delete_session();
+    });
