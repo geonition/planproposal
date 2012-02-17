@@ -247,28 +247,28 @@ jQuery(document).ready(function(){
         autoOpen: false,
         show: "blind",
         width: 800,
-        height: 521,
+        maxHeight: 600,
         resizable: false
     });
     $( "#pic2" ).dialog({
         autoOpen: false,
         show: "blind",
         width: 800,
-        height: 521,
+        maxHeight: 600,
         resizable: false
     });
     $( "#pic3" ).dialog({
         autoOpen: false,
         show: "blind",
         width: 800,
-        height: 527,
+        maxHeight: 600,
         resizable: false
     });
     $( "#streetview" ).dialog({
         autoOpen: false,
         show: "blind",
         width: 800,
-        height: 420,
+        maxHeight: 600,
         resizable: false
     });
 
