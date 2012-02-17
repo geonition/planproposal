@@ -240,28 +240,36 @@ jQuery(document).ready(function(){
     $( "#more_info" ).dialog({
         autoOpen: false,
         show: "blind",
-        width: 600,
+        width: 800,
         height: 600
     });
     $( "#pic1" ).dialog({
         autoOpen: false,
         show: "blind",
-        width: 600
+        width: 800,
+        height: 521,
+        resizable: false
     });
     $( "#pic2" ).dialog({
         autoOpen: false,
         show: "blind",
-        width: 600
+        width: 800,
+        height: 521,
+        resizable: false
     });
     $( "#pic3" ).dialog({
         autoOpen: false,
         show: "blind",
-        width: 600
+        width: 800,
+        height: 527,
+        resizable: false
     });
     $( "#streetview" ).dialog({
         autoOpen: false,
         show: "blind",
-        width: 600
+        width: 800,
+        height: 420,
+        resizable: false
     });
 
     $( "#more_info_link" ).click(function() {
@@ -285,38 +293,8 @@ jQuery(document).ready(function(){
         return false;
     });
 
-    // Create target element for onHover titles
-    $caption = $("<span/>");
-
-    /*
-    $("input.star").rating({
-            callback: function(value, link){
-                alert(value);
-
-            }
-     });*/
-
-     // Make it available in DOM tree
-
-     /*
-     $caption.appendTo(".ratings");
-
-     $(".submit-evaluation").click(function() {
-            $(".red").html("Thank you for your feedback!");
-            $(".submit-evaluation").attr("disabled", "disabled");
-            $("#free-comment").attr("disabled", "disabled");
-
-            $(".ui-stars-star").addClass("ui-stars-star-disabled");
-            $(".ui-stars-cancel").css("opacity", 0);
-
-            $('input.star').rating('readOnly',true)
-
-    });*/
-
     /* geonition data */
     gnt.auth.create_session();
-
-    $(".free_comment_thanks").hide();
 
     $("#proposal1-form").submit(function(event) {
         event.preventDefault();
@@ -339,7 +317,8 @@ jQuery(document).ready(function(){
                                          7137049.802),
         projection: "EPSG:3067",
         maxResolution: 50,
-        numZoomLevels: 10
+        numZoomLevels: 10,
+        tileSize: new OpenLayers.Size(512, 512)
     };
     map = new OpenLayers.Map('map', mapOptions);
 

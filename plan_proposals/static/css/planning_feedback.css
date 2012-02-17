@@ -23,3 +23,7 @@ button.drawbutton {
 .red {
     color: red;
 }
+
+.hidden {
+    display: none;
+}

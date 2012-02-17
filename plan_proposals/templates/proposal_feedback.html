@@ -3,7 +3,6 @@
 
 {% block stylesheet %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/planning_feedback.css" />
-    <!--<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/jquery.rating.css" />-->
     <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 {% endblock stylesheet %}
 
@@ -76,7 +75,7 @@ ja Lepolan osayleiskaavan (2009) maankäytön ratkaisuihin. Alue kuuluu valtakun
             <tr>
                 <td colspan="2">{% trans "Free comment" %}</td>
             </tr>
-            <tr class="free_comment_thanks">
+            <tr class="free_comment_thanks hidden">
                 <td colspan="2">
                     <div class="red">{% trans "Thank you for your comment!" %}</div>
                 </td>
@@ -103,7 +102,7 @@ ja Lepolan osayleiskaavan (2009) maankäytön ratkaisuihin. Alue kuuluu valtakun
     -->
 </div>
 
-<div id="more_info" title="{% trans 'More information about the plan' %}">
+<div id="more_info" class="hidden" title="{% trans 'More information about the plan' %}">
 <p>
 <b>Lepola III</b>-alue kuuluu osana valtakunnallisesti sekä maakunnallisesti merkittävään rakennettuun <b>Tuusulan Rantatien</b> kulttuuriympäristöön. Alueen erityisarvojen huomioimiseksi asemakaavoitus tehdään yhteistyössä museoviranomaisten kanssa. Asemakaavoituksen yhteydessä tarkistetaan alueen rakennusten ja piha-alueiden suojelutilanne. Alueen tärkeät virkistysarvot huomioidaan suunnittelussa.
 Yleiskaavojen perusteella alueeseen kohdistuu kulttuuriympäristöön liittyviä suunnittelurajoituksia.
@@ -130,21 +129,9 @@ Tavoitteena asemakaavan ja tonttijaon muutoksen hyväksyminen vuodenvaihteessa 2
 <a href="http://www.jarvenpaa.fi/sivustot/lepola/">Lisätietoa löydät Lepolan suunnittelusivuilta</a>
 
 </div>
-<div id="pic1" title="{% trans 'Model image' %} 1">
-    <img alt="{% trans 'ilmakuva' %} 1" src="{{ STATIC_URL }}images/ILMAKUVA_1_VALMIS.jpg" />
-</div>
-<div id="pic2" title="{% trans 'Model image' %} 2">
-    <img alt="{% trans 'ilmakuva' %} 2" src="{{ STATIC_URL }}images/ILMAKUVA_2_VALMIS.jpg" />
-</div>
-<div id="pic3" title="{% trans 'Model image' %} 3">
-    <img alt="{% trans 'ilmakuva' %} 3" src="{{ STATIC_URL }}images/ILMAKUVA_3_VALMIS.jpg" />
-</div>
-<div id="streetview" title="{% trans 'Streetview' %}">
-    <img alt="{% trans 'katukuva' %}" src="{{ STATIC_URL }}images/KATUPERSPEKTIIVI_1_VALMIS.jpg" />
-</div>
 
 <!-- infowindows with id's put here so that translations work -->
-<div id="place" class="popup">
+<div id="place" class="popup hidden">
     <p>{% trans "Please, tell us more about the place" %}:</p>
     <form name="popupform" action="#">
         <textarea name="comment" cols="24" rows="5" ></textarea><br />
@@ -156,7 +143,7 @@ Tavoitteena asemakaavan ja tonttijaon muutoksen hyväksyminen vuodenvaihteessa 2
         </button>
     </form>
 </div>
-<div id="route" class="popup">
+<div id="route" class="popup hidden">
     <p>{% trans "Please, tell us more about the route" %}:</p>
     <form name="popupform" action="#">
         <textarea name="comment" cols="24" rows="5" ></textarea><br />
@@ -168,7 +155,7 @@ Tavoitteena asemakaavan ja tonttijaon muutoksen hyväksyminen vuodenvaihteessa 2
         </button>
     </form>
 </div>
-<div id="area" class="popup">
+<div id="area" class="popup hidden">
     <p>{% trans "Please, tell us more about the area" %}:</p>
     <form name="popupform" action="#" method="post">
         <textarea name="comment" cols="24" rows="5" ></textarea><br />
@@ -180,25 +167,28 @@ Tavoitteena asemakaavan ja tonttijaon muutoksen hyväksyminen vuodenvaihteessa 2
         </button>
     </form>
 </div>
+    
+<div id="pic1" class="hidden" title="{% trans "show image from north of this draft" %}">
+    <img alt="{% trans 'ilmakuva' %} 1" src="{{ STATIC_URL }}images/ILMAKUVA_1_web.jpg" width="800" height="521" />
+</div>
+<div id="pic2" class="hidden" title="{% trans "show image from south of this draft" %}">
+    <img alt="{% trans 'ilmakuva' %} 2" src="{{ STATIC_URL }}images/ILMAKUVA_2_web.jpg" width="800" height="521" />
+</div>
+<div id="pic3" class="hidden" title="{% trans "show image of the whole draft" %}">
+    <img alt="{% trans 'ilmakuva' %} 3" src="{{ STATIC_URL }}images/ILMAKUVA_3_web.jpg" width="800" height="527" />
+</div>
+<div id="streetview" class="hidden" title="{% trans "show streetview picture" %}">
+    <img alt="{% trans 'katukuva' %}" src="{{ STATIC_URL }}images/KATUPERSPEKTIIVI_1_web.jpg" width="800" height="420" />
+</div>
 
 {% endblock %}
 
+
 {% block javascript %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
-</script>
-<!--<script src="https://cdn.jquerytools.org/1.2.6/jquery.tools.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-<!--<script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.ui.stars.min.js"></script>-->
 <script src="https://softgis.org.aalto.fi/OpenLayers/OpenLayers.js"></script>
-<!--
-<script src="http://openlayers.org/api/OpenLayers.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}OpenLayers.js"></script>
--->
 <script type="text/javascript" src="{% url api_javascript %}"></script>
-<!--<script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.rating.pack.js"></script>-->
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.ui.drawbutton.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}javascript/planning_feedback.js"></script>
-
-
-
 {% endblock javascript %}
