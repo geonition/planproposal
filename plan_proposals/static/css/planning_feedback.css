@@ -18,6 +18,7 @@
 button.drawbutton {
     width: 90px !important;
     margin: 1px;
+    text-transform: capitalize;
 }
 
 .red {
