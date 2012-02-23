@@ -535,6 +535,5 @@ jQuery(document).ready(function(){
 
 //delete the session on unload
 $(window).unload(function(event) {
-    console.log(event);
-    gnt.auth.delete_session();
+    //gnt.auth.delete_session();
     });
