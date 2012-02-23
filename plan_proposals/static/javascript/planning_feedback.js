@@ -480,43 +480,46 @@ jQuery(document).ready(function(){
 
     //get the users feature if any
     gnt.geo.get_features('?time__now=true', function(event) {
-        var pl = map.getLayersByName('Point Layer')[0];
-        var rl = map.getLayersByName('Route Layer')[0];
-        var al = map.getLayersByName('Area Layer')[0];
-        var gf = new OpenLayers.Format.GeoJSON();
-        var popupcontent = " default content ";
 
-        for(var i = 0; i < event.features.length; i++) {
-            var feature = gf.parseFeature(event.features[i]);
-            feature.lonlat = get_popup_lonlat(feature.geometry);
+        if (event.features) {
+            var pl = map.getLayersByName('Point Layer')[0];
+            var rl = map.getLayersByName('Route Layer')[0];
+            var al = map.getLayersByName('Area Layer')[0];
+            var gf = new OpenLayers.Format.GeoJSON();
+            var popupcontent = " default content ";
+
+            for(var i = 0; i < event.features.length; i++) {
+                var feature = gf.parseFeature(event.features[i]);
+                feature.lonlat = get_popup_lonlat(feature.geometry);
 
 
-            if(feature.geometry.id.contains( "Point" )) {
-                pl.addFeatures(feature);
-                popupcontent = $('#place').html();
-            } else if(feature.geometry.id.contains( "LineString" )) {
-                rl.addFeatures(feature);
-                popupcontent = $('#route').html();
-            } else if(feature.geometry.id.contains( "Polygon" )) {
-                al.addFeatures(feature);
-                popupcontent = $('#area').html();
+                if(feature.geometry.id.contains( "Point" )) {
+                    pl.addFeatures(feature);
+                    popupcontent = $('#place').html();
+                } else if(feature.geometry.id.contains( "LineString" )) {
+                    rl.addFeatures(feature);
+                    popupcontent = $('#route').html();
+                } else if(feature.geometry.id.contains( "Polygon" )) {
+                    al.addFeatures(feature);
+                    popupcontent = $('#area').html();
+                }
+
+                feature.popupClass = OpenLayers.Popup.FramedCloud;
+                feature.data = {
+                    popupSize: null,
+                    popupContentHTML: popupcontent
+                };
+
+                //the createPopup function did not seem to work so here
+                feature.popup = new OpenLayers.Popup.FramedCloud(
+                                    feature.id,
+                                    feature.lonlat,
+                                    feature.data.popupSize,
+                                    feature.data.popupContentHTML,
+                                    null,
+                                    false);
+
             }
-
-            feature.popupClass = OpenLayers.Popup.FramedCloud;
-            feature.data = {
-                popupSize: null,
-                popupContentHTML: popupcontent
-            };
-
-            //the createPopup function did not seem to work so here
-            feature.popup = new OpenLayers.Popup.FramedCloud(
-                                feature.id,
-                                feature.lonlat,
-                                feature.data.popupSize,
-                                feature.data.popupContentHTML,
-                                null,
-                                false);
-
         }
     });
 });
