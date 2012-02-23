@@ -37,41 +37,23 @@ ja Lepolan osayleiskaavan (2009) maankäytön ratkaisuihin. Alue kuuluu valtakun
     <a id="streetview_link" href="#">{% trans "show streetview picture" %}</a><br />
     </div>
     <h2>{% trans "Evaluate the draft" %}</h2>
+    <p>
+        {% trans "Comment on the plan draft by selecting any of the drawing tools below." %}
+    </p>
     <div class="draw_tools">
-        <div class="left">
-            {% trans "Comment on the plan draft by selecting any of the drawing tools on the right." %}
-        </div>
-        <div class="right">
-            <button type="button" class="drawbutton point" id="point_feedback" name="place">
-            {% trans "place" %}
-            </button><br />
-            <button type="button" class="drawbutton route" id="route_feedback" name="route">
-            {% trans "route" %}
-            </button><br />
-            <button type="button" class="drawbutton area" id="area_feedback" name="area">
-            {% trans "area" %}
-            </button>
-        </div>
+        <button type="button" class="drawbutton point" id="point_feedback" name="place">
+        {% trans "place" %}
+        </button><br />
+        <button type="button" class="drawbutton route" id="route_feedback" name="route">
+        {% trans "route" %}
+        </button><br />
+        <button type="button" class="drawbutton area" id="area_feedback" name="area">
+        {% trans "area" %}
+        </button>
     </div>
     <form id="proposal1-form" action="POST">
         {% csrf_token %}
         <table>
-            <!--
-            <tr>
-                <td>{% trans "Give a general rating" %}:</td>
-                <td>
-                    <div class="ratings">
-                        <input name="star1" type="radio" class="star"/>
-                        <input name="star1" type="radio" class="star"/>
-                        <input name="star1" type="radio" class="star"/>
-                        <input name="star1" type="radio" class="star"/>
-                        <input name="star1" type="radio" class="star"/>
-                    </div>
-                </td>
-            </tr>
-            <tr><td></td><td></td></tr>
-            -->
-
             <tr>
                 <td colspan="2">{% trans "Free comment" %}</td>
             </tr>
@@ -189,6 +171,6 @@ Tavoitteena asemakaavan ja tonttijaon muutoksen hyväksyminen vuodenvaihteessa 2
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 <script src="https://softgis.org.aalto.fi/OpenLayers/OpenLayers.js"></script>
 <script type="text/javascript" src="{% url api_javascript %}"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.ui.drawbutton.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/planning_feedback.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.ui.drawbutton.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/planning_feedback.js"></script>
 {% endblock javascript %}

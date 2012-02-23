@@ -2,9 +2,9 @@
     padding: 4px;
 }
 .draw_tools {
-    padding-right: 20px;
+    width: 100%;
+    text-align: center;
     margin-bottom: 10px;
-    height: 130px;
 }
 .draw_tools .left {
     float: left;
@@ -16,8 +16,8 @@
 }
 
 button.drawbutton {
-    width: 90px !important;
-    margin: 1px;
+    width: 250px !important;
+    margin: 2px;
     text-transform: capitalize;
 }
 
@@ -27,4 +27,12 @@ button.drawbutton {
 
 .hidden {
     display: none;
+}
+
+.ui-widget {
+    font-size: 1.0em !important;
+}
+.ui-icon-point {
+    width: 30px;
+    float: right;
 }
