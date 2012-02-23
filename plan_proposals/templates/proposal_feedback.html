@@ -4,7 +4,7 @@
 {% block stylesheet %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/planning_feedback.css" />
     <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-{% endblock stylesheet %}
+{% endblock %}
 
 {% block content %}
 <!--
@@ -149,17 +149,17 @@ Tavoitteena asemakaavan ja tonttijaon muutoksen hyväksyminen vuodenvaihteessa 2
         </button>
     </form>
 </div>
-    
-<div id="pic1" class="hidden" title="{% trans "show image from north of this draft" %}">
+
+<div id="pic1" title="{% trans "show image from north of this draft" %}">
     <img alt="{% trans 'ilmakuva' %} 1" src="{{ STATIC_URL }}images/ILMAKUVA_1_web.jpg" width="800" height="521" />
 </div>
-<div id="pic2" class="hidden" title="{% trans "show image from south of this draft" %}">
+<div id="pic2" title="{% trans "show image from south of this draft" %}">
     <img alt="{% trans 'ilmakuva' %} 2" src="{{ STATIC_URL }}images/ILMAKUVA_2_web.jpg" width="800" height="521" />
 </div>
-<div id="pic3" class="hidden" title="{% trans "show image of the whole draft" %}">
+<div id="pic3" title="{% trans "show image of the whole draft" %}">
     <img alt="{% trans 'ilmakuva' %} 3" src="{{ STATIC_URL }}images/ILMAKUVA_3_web.jpg" width="800" height="527" />
 </div>
-<div id="streetview" class="hidden" title="{% trans "show streetview picture" %}">
+<div id="streetview" title="{% trans "show streetview picture" %}">
     <img alt="{% trans 'katukuva' %}" src="{{ STATIC_URL }}images/KATUPERSPEKTIIVI_1_web.jpg" width="800" height="420" />
 </div>
 
