@@ -18,7 +18,7 @@ active_class: the class to use when a button is activated
             options: {
                 drawcontrol: "drawcontrol", //the draw control used, required
                 selectcontrol: "selectcontrol",
-                classes: "ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-secondary",
+                classes: "ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only",
                 text_class: "ui-button-text",
                 active_class: "ui-state-active",
                 disable_class: "ui-button-disabled ui-state-disabled",
@@ -34,12 +34,9 @@ active_class: the class to use when a button is activated
                 var label = this.element.html();
                 $( "<span></span>")
                         .addClass( this.options.text_class )
-                        .addClass( this.options.classes )
                         .appendTo( this.element.empty() )
                         .html( label )
                         .text();
-
-                this.element.append( '<span class="ui-button-icon-secondary ui-icon-point"><img src="/images/needle?color=440000" width="23" height="23" /></span>' );
                 
                 return this;
             },

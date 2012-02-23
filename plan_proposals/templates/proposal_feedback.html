@@ -51,13 +51,13 @@ ja Lepolan osayleiskaavan (2009) maankäytön ratkaisuihin. Alue kuuluu valtakun
         {% trans "area" %}
         </button>
     </div>
-    <form id="proposal1-form" action="POST">
+    <form id="proposal-form" action="POST">
         {% csrf_token %}
         <table>
             <tr>
                 <td colspan="2">{% trans "Free comment" %}</td>
             </tr>
-            <tr class="free_comment_thanks hidden">
+            <tr class="free_comment_thanks">
                 <td colspan="2">
                     <div class="red">{% trans "Thank you for your comment!" %}</div>
                 </td>
@@ -84,7 +84,7 @@ ja Lepolan osayleiskaavan (2009) maankäytön ratkaisuihin. Alue kuuluu valtakun
     -->
 </div>
 
-<div id="more_info" class="hidden" title="{% trans 'More information about the plan' %}">
+<div id="more_info" title="{% trans 'More information about the plan' %}">
 <p>
 <b>Lepola III</b>-alue kuuluu osana valtakunnallisesti sekä maakunnallisesti merkittävään rakennettuun <b>Tuusulan Rantatien</b> kulttuuriympäristöön. Alueen erityisarvojen huomioimiseksi asemakaavoitus tehdään yhteistyössä museoviranomaisten kanssa. Asemakaavoituksen yhteydessä tarkistetaan alueen rakennusten ja piha-alueiden suojelutilanne. Alueen tärkeät virkistysarvot huomioidaan suunnittelussa.
 Yleiskaavojen perusteella alueeseen kohdistuu kulttuuriympäristöön liittyviä suunnittelurajoituksia.
@@ -151,16 +151,16 @@ Tavoitteena asemakaavan ja tonttijaon muutoksen hyväksyminen vuodenvaihteessa 2
 </div>
 
 <div id="pic1" title="{% trans "show image from north of this draft" %}">
-    <img alt="{% trans 'ilmakuva' %} 1" src="{{ STATIC_URL }}images/ILMAKUVA_1_web.jpg" width="800" height="521" />
+    <img alt="{% trans 'ilmakuva' %} 1" src="{{ STATIC_URL }}img/ILMAKUVA_1_web.jpg" width="800" height="521" />
 </div>
 <div id="pic2" title="{% trans "show image from south of this draft" %}">
-    <img alt="{% trans 'ilmakuva' %} 2" src="{{ STATIC_URL }}images/ILMAKUVA_2_web.jpg" width="800" height="521" />
+    <img alt="{% trans 'ilmakuva' %} 2" src="{{ STATIC_URL }}img/ILMAKUVA_2_web.jpg" width="800" height="521" />
 </div>
 <div id="pic3" title="{% trans "show image of the whole draft" %}">
-    <img alt="{% trans 'ilmakuva' %} 3" src="{{ STATIC_URL }}images/ILMAKUVA_3_web.jpg" width="800" height="527" />
+    <img alt="{% trans 'ilmakuva' %} 3" src="{{ STATIC_URL }}img/ILMAKUVA_3_web.jpg" width="800" height="527" />
 </div>
 <div id="streetview" title="{% trans "show streetview picture" %}">
-    <img alt="{% trans 'katukuva' %}" src="{{ STATIC_URL }}images/KATUPERSPEKTIIVI_1_web.jpg" width="800" height="420" />
+    <img alt="{% trans 'katukuva' %}" src="{{ STATIC_URL }}img/KATUPERSPEKTIIVI_1_web.jpg" width="800" height="420" />
 </div>
 
 {% endblock %}
