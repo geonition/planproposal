@@ -296,9 +296,11 @@ jQuery(document).ready(function(){
     /* geonition data */
     gnt.auth.create_session();
 
+    $(".free_comment_thanks").hide();
     $("#proposal1-form").submit(function(event) {
         event.preventDefault();
-        var value = $( this ).serializeArray()[0];
+        var value = $( this ).serializeArray();
+        console.log(value);
         $("#free_comment").attr("disabled", "disabled");
         $(".submit-evaluation").attr("disabled", "disabled");
         $(".free_comment_thanks").show();
