@@ -296,15 +296,25 @@ jQuery(document).ready(function(){
     /* geonition data */
     gnt.auth.create_session();
 
-    $("#proposal1-form").submit(function(event) {
+    $(".free_comment_thanks").hide();
+
+    $("#proposal-form").submit(function(event) {
         event.preventDefault();
-        var value = $( this ).serializeArray()[0];
+
+        var val_array = $( this ).serializeArray();
+        var value = "";
+        for(var i = 0; i < val_array.length; i++) {
+            if(val_array[i]['name'] === 'free_comment') {
+                value = val_array[i]['value'];
+                break;
+            }
+        }
         $("#free_comment").attr("disabled", "disabled");
         $(".submit-evaluation").attr("disabled", "disabled");
         $(".free_comment_thanks").show();
         gnt.opensocial_people.update_person('@me',
-                            {'free_comment': value['value']});
-        });
+                            {'free_comment': value});
+    });
 
     /* Openlayers */
 
@@ -526,6 +536,5 @@ jQuery(document).ready(function(){
 
 //delete the session on unload
 $(window).unload(function(event) {
-    console.log(event);
-    gnt.auth.delete_session();
+    //gnt.auth.delete_session();
     });

@@ -37,15 +37,7 @@ active_class: the class to use when a button is activated
                         .appendTo( this.element.empty() )
                         .html( label )
                         .text();
-
-
-                if ( this.options.icons.primary ) {
-                    this.element.prepend( '<span class="ui-button-icon-primary ui-icon ' + this.options.icons.primary + '"></span>' );
-                }
-
-                if ( this.options.icons.secondary ) {
-                    this.element.append( '<span class="ui-button-icon-secondary ui-icon ' + this.options.icons.secondary + '"></span>' );
-                }
+                
                 return this;
             },
 
