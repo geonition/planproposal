@@ -7,7 +7,8 @@
 {% endblock %}
 
 {% block content %}
-<!--
+
+{% comment %}
 <div class="breadcrump">
     <a class="reset" href="{% url dashboard %}">{% trans 'Dashboard' %}</a>
     &gt;&gt;
@@ -17,7 +18,7 @@
     &gt;&gt;
     <span>{{ proposal_name }}</span>
 </div>
--->
+{% endcomment %}
 
 <div class="proposal-info">
     <!--<h1 class="proposal-title">{{ proposal_name }}</h1>-->
@@ -37,45 +38,27 @@ ja Lepolan osayleiskaavan (2009) maankäytön ratkaisuihin. Alue kuuluu valtakun
     <a id="streetview_link" href="#">{% trans "show streetview picture" %}</a><br />
     </div>
     <h2>{% trans "Evaluate the draft" %}</h2>
+    <p>
+        {% trans "Comment on the plan draft by selecting any of the drawing tools below." %}
+    </p>
     <div class="draw_tools">
-        <div class="left">
-            {% trans "Comment on the plan draft by selecting any of the drawing tools on the right." %}
-        </div>
-        <div class="right">
-            <button type="button" class="drawbutton point" id="point_feedback" name="place">
-            {% trans "place" %}
-            </button><br />
-            <button type="button" class="drawbutton route" id="route_feedback" name="route">
-            {% trans "route" %}
-            </button><br />
-            <button type="button" class="drawbutton area" id="area_feedback" name="area">
-            {% trans "area" %}
-            </button>
-        </div>
+        <button type="button" class="drawbutton point" id="point_feedback" name="place">
+        {% trans "place" %}
+        </button><br />
+        <button type="button" class="drawbutton route" id="route_feedback" name="route">
+        {% trans "route" %}
+        </button><br />
+        <button type="button" class="drawbutton area" id="area_feedback" name="area">
+        {% trans "area" %}
+        </button>
     </div>
-    <form id="proposal1-form" action="POST">
+    <form id="proposal-form" action="POST">
         {% csrf_token %}
         <table>
-            <!--
-            <tr>
-                <td>{% trans "Give a general rating" %}:</td>
-                <td>
-                    <div class="ratings">
-                        <input name="star1" type="radio" class="star"/>
-                        <input name="star1" type="radio" class="star"/>
-                        <input name="star1" type="radio" class="star"/>
-                        <input name="star1" type="radio" class="star"/>
-                        <input name="star1" type="radio" class="star"/>
-                    </div>
-                </td>
-            </tr>
-            <tr><td></td><td></td></tr>
-            -->
-
             <tr>
                 <td colspan="2">{% trans "Free comment" %}</td>
             </tr>
-            <tr class="free_comment_thanks hidden">
+            <tr class="free_comment_thanks">
                 <td colspan="2">
                     <div class="red">{% trans "Thank you for your comment!" %}</div>
                 </td>
@@ -169,16 +152,16 @@ Tavoitteena asemakaavan ja tonttijaon muutoksen hyväksyminen vuodenvaihteessa 2
 </div>
 
 <div id="pic1" title="{% trans "show image from north of this draft" %}">
-    <img alt="{% trans 'ilmakuva' %} 1" src="{{ STATIC_URL }}images/ILMAKUVA_1_web.jpg" width="800" height="521" />
+    <img alt="{% trans 'ilmakuva' %} 1" src="{{ STATIC_URL }}img/ILMAKUVA_1_web.jpg" width="800" height="521" />
 </div>
 <div id="pic2" title="{% trans "show image from south of this draft" %}">
-    <img alt="{% trans 'ilmakuva' %} 2" src="{{ STATIC_URL }}images/ILMAKUVA_2_web.jpg" width="800" height="521" />
+    <img alt="{% trans 'ilmakuva' %} 2" src="{{ STATIC_URL }}img/ILMAKUVA_2_web.jpg" width="800" height="521" />
 </div>
 <div id="pic3" title="{% trans "show image of the whole draft" %}">
-    <img alt="{% trans 'ilmakuva' %} 3" src="{{ STATIC_URL }}images/ILMAKUVA_3_web.jpg" width="800" height="527" />
+    <img alt="{% trans 'ilmakuva' %} 3" src="{{ STATIC_URL }}img/ILMAKUVA_3_web.jpg" width="800" height="527" />
 </div>
 <div id="streetview" title="{% trans "show streetview picture" %}">
-    <img alt="{% trans 'katukuva' %}" src="{{ STATIC_URL }}images/KATUPERSPEKTIIVI_1_web.jpg" width="800" height="420" />
+    <img alt="{% trans 'katukuva' %}" src="{{ STATIC_URL }}img/KATUPERSPEKTIIVI_1_web.jpg" width="800" height="420" />
 </div>
 
 {% endblock %}
@@ -189,6 +172,6 @@ Tavoitteena asemakaavan ja tonttijaon muutoksen hyväksyminen vuodenvaihteessa 2
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 <script src="https://softgis.org.aalto.fi/OpenLayers/OpenLayers.js"></script>
 <script type="text/javascript" src="{% url api_javascript %}"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/jquery.ui.drawbutton.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}javascript/planning_feedback.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.ui.drawbutton.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/planning_feedback.js"></script>
 {% endblock javascript %}
