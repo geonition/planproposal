@@ -1,6 +1,6 @@
 {% extends "base_map.html"%}
 {% load i18n %}
-{% load webdesign %}
+
 
 {% block title %}
 {% trans 'Järvenpää' %} - {% trans 'pehmoGIS' %}
@@ -24,7 +24,6 @@
 
     <h1 class="project_title">{{ project_name }}</h1>
     <div class="short_description">
-        {% lorem 50 w %}
         <br />
         <br />
         <a id="opener" class="reset" href="http://www.jarvenpaa.fi">

@@ -297,9 +297,10 @@ jQuery(document).ready(function(){
     gnt.auth.create_session();
 
     $(".free_comment_thanks").hide();
+
     $("#proposal-form").submit(function(event) {
         event.preventDefault();
-        
+
         var val_array = $( this ).serializeArray();
         var value = "";
         for(var i = 0; i < val_array.length; i++) {

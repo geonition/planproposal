@@ -7,7 +7,8 @@
 {% endblock %}
 
 {% block content %}
-<!--
+
+{% comment %}
 <div class="breadcrump">
     <a class="reset" href="{% url dashboard %}">{% trans 'Dashboard' %}</a>
     &gt;&gt;
@@ -17,7 +18,7 @@
     &gt;&gt;
     <span>{{ proposal_name }}</span>
 </div>
--->
+{% endcomment %}
 
 <div class="proposal-info">
     <!--<h1 class="proposal-title">{{ proposal_name }}</h1>-->
