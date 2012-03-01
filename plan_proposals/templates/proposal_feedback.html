@@ -22,20 +22,17 @@
 
 <div class="proposal-info">
     <!--<h1 class="proposal-title">{{ proposal_name }}</h1>-->
-    <h1 class="proposal-title">Lepola III</h1>
+    <h1 class="proposal-title">
+    {{ proposal_details.name }}
+    </h1>
     <div class="short_description">
-        <p>Tällä sivulla voit katsella ja kommentoida Lepola III
-        suunnitelmaa.</p>
-        <p>Alueen asemakaava ja asemakaavan muutos perustuvat Järvenpään yleiskaavan 2020
-ja Lepolan osayleiskaavan (2009) maankäytön ratkaisuihin. Alue kuuluu valtakunnallisesti sekä maakunnallisesti merkittävään rakennettuun  kulttuuriympäristöön. Pääasiallinen käyttötarkoitus nykyiseen asemakaavaan nähden muuttuu asumispainotteiseksi, mutta monitoimialueen luonne säilyy.</p>
-<p>Palvelu on kehitetty yhteistyössä Aalto yliopiston kanssa. Lisätietoa ja yhteystiedot löytyvät <a href="http://ytk.aalto.fi/fi/tutkimus/hankkeet/urbaani_arki/">Urbaani arki</a> projektin sivulta.</p>
+    <p>{{ proposal_details.short_description }}</p>
     <a id="more_info_link" class="reset" href="#">
         {% trans "More information about the draft" %}
     </a><br /><br />
-    <a id="pic1_link" href="#">{% trans "show image from north of this draft" %}</a><br />
-    <a id="pic2_link" href="#">{% trans "show image from south of this draft" %}</a><br />
-    <a id="pic3_link" href="#">{% trans "show image of the whole draft" %}</a><br />
-    <a id="streetview_link" href="#">{% trans "show streetview picture" %}</a><br />
+    {% for p in proposal_image %}
+    <a id="proposal_img_{{ p.id }}" class="proposal_img" href ="#">{{ p.title }}</a><br />
+    {% endfor %}
     </div>
     <h2>{% trans "Evaluate the draft" %}</h2>
     <p>
@@ -86,31 +83,7 @@ ja Lepolan osayleiskaavan (2009) maankäytön ratkaisuihin. Alue kuuluu valtakun
 </div>
 
 <div id="more_info" title="{% trans 'More information about the plan' %}">
-<p>
-<b>Lepola III</b>-alue kuuluu osana valtakunnallisesti sekä maakunnallisesti merkittävään rakennettuun <b>Tuusulan Rantatien</b> kulttuuriympäristöön. Alueen erityisarvojen huomioimiseksi asemakaavoitus tehdään yhteistyössä museoviranomaisten kanssa. Asemakaavoituksen yhteydessä tarkistetaan alueen rakennusten ja piha-alueiden suojelutilanne. Alueen tärkeät virkistysarvot huomioidaan suunnittelussa.
-Yleiskaavojen perusteella alueeseen kohdistuu kulttuuriympäristöön liittyviä suunnittelurajoituksia.
-</p>
-<b>Suunnittelualue</b>
-<p>
-Suunnittelualue sijaitsee <b>Lepolan</b> kaupunginosassa keskustan eteläpuolella. Kaava-alue rajautuu pohjoisessa Sipoontiehen, itäpuolella rakenteilla olevan Lepolan I:n uusiin asuin- ja virkistysalueisiin ja Kyrölän peltoalueisiin,
-ja lännessä Sibeliuksenväylään. Etelässä kaava-alueeseen sisältyy osa Poikkitien maantiealueesta.
-</p>
-<b>Suunnittelun tavoite</b>
-<p>
-Alueen asemakaava ja asemakaavan muutos perustuvat Järvenpään yleiskaavan 2020 ja Lepolan osayleiskaavan (2009) maankäytön ratkaisuihin.  Alueen pääasiallinen käyttötarkoitus nykyiseen asemakaavaan nähden muuttuu asumispainotteiseksi, mutta monitoimialueen luonne säilyy. Asuinkortteleiden sijoittaminen alueelle on kestävän kehityksen mukaista raideliikenteeseen sekä keskustan palveluihin tukeutuen. Mahdolliselle Sibelius- vierailukeskukselle varataan korttelialue.
-</p>
-
-<b>Aikataulu</b>
-<p>
-Asemakaava ja asemakaavan muutos on käynnistetty helmikuussa 2011.
-Asemakaavaluonnos on nähtävänä (MRL 62 §) arviolta helmikuussa 2012.
-Yleisötilaisuus järjestetään kaavaluonnoksen nähtävilläolon yhteydessä.
-Asemakaavaehdotus asetetaan julkisesti nähtäväksi (MRL 65 §, MRA 27§)
-30 päivän ajaksi arviolta v.2012 lopulla.
-Tavoitteena asemakaavan ja tonttijaon muutoksen hyväksyminen vuodenvaihteessa 2012-2013.
-</p>
-<a href="http://www.jarvenpaa.fi/sivustot/lepola/">Lisätietoa löydät Lepolan suunnittelusivuilta</a>
-
+{{ proposal_details.detailed_description }}
 </div>
 
 <!-- infowindows with id's put here so that translations work -->
@@ -151,18 +124,11 @@ Tavoitteena asemakaavan ja tonttijaon muutoksen hyväksyminen vuodenvaihteessa 2
     </form>
 </div>
 
-<div id="pic1" title="{% trans "show image from north of this draft" %}">
-    <img alt="{% trans 'ilmakuva' %} 1" src="{{ STATIC_URL }}img/ILMAKUVA_1_web.jpg" width="800" height="521" />
+{% for p in proposal_image %}
+<div id="img_{{ p.id }}" title="{{p.title}}" class="dialog">
+    <img alt="{% trans 'ilmakuva' %} 1" src="{{p.image.url}}" width="800" height="521" />
 </div>
-<div id="pic2" title="{% trans "show image from south of this draft" %}">
-    <img alt="{% trans 'ilmakuva' %} 2" src="{{ STATIC_URL }}img/ILMAKUVA_2_web.jpg" width="800" height="521" />
-</div>
-<div id="pic3" title="{% trans "show image of the whole draft" %}">
-    <img alt="{% trans 'ilmakuva' %} 3" src="{{ STATIC_URL }}img/ILMAKUVA_3_web.jpg" width="800" height="527" />
-</div>
-<div id="streetview" title="{% trans "show streetview picture" %}">
-    <img alt="{% trans 'katukuva' %}" src="{{ STATIC_URL }}img/KATUPERSPEKTIIVI_1_web.jpg" width="800" height="420" />
-</div>
+{% endfor %}
 
 {% endblock %}
 

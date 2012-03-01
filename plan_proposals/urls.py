@@ -13,9 +13,4 @@ urlpatterns = patterns('plan_proposals.views',
         name='plan_proposal'),    
     )
     
-if settings.DEBUG:
-    # static files (images, css, javascript, etc.)
-    urlpatterns += patterns('',
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-        'document_root': settings.MEDIA_ROOT}))
 
