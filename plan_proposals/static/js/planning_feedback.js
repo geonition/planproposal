@@ -243,28 +243,7 @@ jQuery(document).ready(function(){
         width: 800,
         height: 600
     });
-    $( "#pic1" ).dialog({
-        autoOpen: false,
-        show: "blind",
-        width: 800,
-        maxHeight: 600,
-        resizable: false
-    });
-    $( "#pic2" ).dialog({
-        autoOpen: false,
-        show: "blind",
-        width: 800,
-        maxHeight: 600,
-        resizable: false
-    });
-    $( "#pic3" ).dialog({
-        autoOpen: false,
-        show: "blind",
-        width: 800,
-        maxHeight: 600,
-        resizable: false
-    });
-    $( "#streetview" ).dialog({
+    $( ".image.dialog" ).dialog({
         autoOpen: false,
         show: "blind",
         width: 800,
@@ -276,20 +255,10 @@ jQuery(document).ready(function(){
         $( "#more_info" ).dialog( "open" );
         return false;
     });
-    $( "#pic1_link" ).click(function() {
-        $( "#pic1" ).dialog( "open" );
-        return false;
-    });
-    $( "#pic2_link" ).click(function() {
-        $( "#pic2" ).dialog( "open" );
-        return false;
-    });
-    $( "#pic3_link" ).click(function() {
-        $( "#pic3" ).dialog( "open" );
-        return false;
-    });
-    $( "#streetview_link" ).click(function() {
-        $( "#streetview" ).dialog( "open" );
+
+    $( "a.proposal_img" ).click(function( event ) {
+        console.log(event);
+        //$( "#pic1" ).dialog( "open" );
         return false;
     });
 
