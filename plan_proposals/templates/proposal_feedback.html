@@ -26,7 +26,7 @@
     {{ proposal_details.name }}
     </h1>
     <div class="short_description">
-    <p>{{ proposal_details.short_description }}</p>
+    <p>{{ proposal_details.short_description|safe }}</p>
     <a id="more_info_link" class="reset" href="#">
         {% trans "More information about the draft" %}
     </a><br /><br />
@@ -83,7 +83,7 @@
 </div>
 
 <div id="more_info" title="{% trans 'More information about the plan' %}">
-{{ proposal_details.detailed_description }}
+{{ proposal_details.detailed_description|safe }}
 </div>
 
 <!-- infowindows with id's put here so that translations work -->

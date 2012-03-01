@@ -32,8 +32,8 @@ def plan_proposal(request, project_name, proposal_name):
 
     try:
         proposal = Proposal.objects.get(
-                            project__name=project_name,
-                            name=proposal_name)
+                            project__slug=project_name,
+                            slug=proposal_name)
     except Proposal.DoesNotExist:
         raise Http404
 
