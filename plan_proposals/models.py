@@ -1,12 +1,14 @@
 from django.db import models
+from django.contrib.gis.db import models as geomodel
 from django.contrib.sites.managers import CurrentSiteManager
 from django.core.files.storage import FileSystemStorage
 from django.contrib.sites.models import Site
 
+
 class PlanningProject(models.Model):
 
     name = models.CharField(max_length = 75)
-    area = models.CharField(max_length = 40)
+    area = geomodel.PolygonField()
     site = models.ForeignKey(Site)
     on_site = CurrentSiteManager()
 
