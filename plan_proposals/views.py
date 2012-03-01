@@ -1,8 +1,10 @@
 from base_page.models import CitySetting
 from models import PlanningProject
 from models import Image
-from models import Proposal 
+from models import Proposal
 from django.contrib.sites.models import Site
+from django.http import Http404
+from django.http import HttpResponseNotFound
 from django.shortcuts import render_to_response
 from django.shortcuts import redirect
 from django.template import RequestContext
@@ -27,16 +29,18 @@ def plan_proposal(request, project_name, proposal_name):
         city_settings = CitySetting.on_site.all()[0]
     except IndexError:
         city_settings = {}
-        
-    proposal_details = Proposal.objects.all()[0]
-    proposal_image = []
-    
-    for p in Image.objects.filter(proposal = proposal_details.id):
-        
-        proposal_image.append(p)
-    
+
+    try:
+        proposal = Proposal.objects.get(
+                            project__name=project_name,
+                            name=proposal_name)
+    except Proposal.DoesNotExist:
+        raise Http404
+
+    proposal_image = Image.objects.filter(proposal = proposal.id)
+
     return render_to_response('proposal_feedback.html',
-                              {'proposal_details': proposal_details,
+                              {'proposal_details': proposal,
                                'proposal_image': proposal_image,
                                'project_name' : project_name,
                                'proposal_name' : proposal_name,
