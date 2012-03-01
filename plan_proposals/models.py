@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.sites.managers import CurrentSiteManager
 from django.core.files.storage import FileSystemStorage
 from django.contrib.sites.models import Site
-from dashboard.models import ProjectSetting
 
 class PlanningProject(models.Model):
 
