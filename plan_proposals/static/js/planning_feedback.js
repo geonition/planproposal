@@ -257,8 +257,8 @@ jQuery(document).ready(function(){
     });
 
     $( "a.proposal_img" ).click(function( event ) {
-        console.log(event);
-        //$( "#pic1" ).dialog( "open" );
+        console.log($(event.currentTarget).attr('id'));
+        $( "." + $(event.currentTarget).attr('id') ).dialog( "open" );
         return false;
     });
 

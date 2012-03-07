@@ -30,7 +30,7 @@
         </a><br /><br />
 
         {% for p in proposal_image %}
-        <a class="proposal_img img_{{ p.id }}" href ="#">
+        <a id="img_{{ p.id }}" class="proposal_img" href ="#">
             {{ p.title }}
         </a><br />
         {% endfor %}
@@ -128,7 +128,7 @@
 </div>
 
 {% for p in proposal_image %}
-<div id="img_{{ p.id }}" title="{{p.title}}" class="image dialog">
+<div title="{{p.title}}" class="img_{{ p.id }} image dialog">
     <img alt="{% trans 'ilmakuva' %} 1" src="{{p.image.url}}" width="800" height="521" />
 </div>
 {% endfor %}
