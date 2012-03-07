@@ -31,7 +31,7 @@ def plan_proposal(request, project_name, proposal_name):
         city_settings = {}
 
     try:
-        proposal = Proposal.objects.get(
+        proposal = Proposal.objects.select_related().get(
                             project__slug=project_name,
                             slug=proposal_name)
     except Proposal.DoesNotExist:

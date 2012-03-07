@@ -329,6 +329,11 @@ jQuery(document).ready(function(){
         visibility: false}
     );*/
 
+    console.log(proposal_area);
+    var gf = new OpenLayers.Format.GeoJSON();
+    var proposal_area_feature = gf.read(proposal_area);
+    console.log(proposal_area_feature[0].geometry.getBounds());
+
     var proposalLayer = new OpenLayers.Layer.ArcGIS93Rest(
         "Ehdotus",
         "https://pehmogis.tkk.fi/ArcGIS/rest/services/Suunnittelu/MapServer/export",
@@ -336,11 +341,7 @@ jQuery(document).ready(function(){
         format: "png24",
         transparent: true},
         {isBaseLayer: false,
-        maxExtent: new OpenLayers.Bounds(
-            394523.0685,
-            6703070.816,
-            395368.006,
-            6704752.84725),
+        maxExtent: proposal_area_feature[0].geometry.getBounds(),
         buffer: 0}
     );
     /*

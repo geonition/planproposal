@@ -143,4 +143,7 @@
 <script type="text/javascript" src="{% url api_javascript %}"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.ui.drawbutton.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/planning_feedback.js"></script>
+<script type="text/javascript">
+var proposal_area = {{ proposal_details.project.area.json|safe }};
+</script>
 {% endblock javascript %}
