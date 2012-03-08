@@ -329,10 +329,8 @@ jQuery(document).ready(function(){
         visibility: false}
     );*/
 
-    console.log(proposal_area);
     var gf = new OpenLayers.Format.GeoJSON();
     var proposal_area_feature = gf.read(proposal_area);
-    console.log(proposal_area_feature[0].geometry.getBounds());
 
     var proposalLayer = new OpenLayers.Layer.ArcGIS93Rest(
         "Ehdotus",
@@ -341,7 +339,7 @@ jQuery(document).ready(function(){
         format: "png24",
         transparent: true},
         {isBaseLayer: false,
-        //maxExtent: proposal_area_feature[0].geometry.getBounds(),
+        maxExtent: proposal_area_feature[0].geometry.getBounds(),
         buffer: 0}
     );
 
@@ -422,9 +420,6 @@ jQuery(document).ready(function(){
     select_feature_control.activate();
 
     map.setCenter(proposal_area_feature[0].geometry.getBounds().getCenterLonLat(), 0);
-
-    console.log(proposal_area_feature);
-
     map.zoomToScale(492159825);
 
     //draw buttons to activate drawing functionality
