@@ -341,26 +341,9 @@ jQuery(document).ready(function(){
         format: "png24",
         transparent: true},
         {isBaseLayer: false,
-        maxExtent: proposal_area_feature[0].geometry.getBounds(),
+        //maxExtent: proposal_area_feature[0].geometry.getBounds(),
         buffer: 0}
     );
-    /*
-     new OpenLayers.Style(null, {
-                        rules: [
-                            new OpenLayers.Rule({
-                                symbolizer: {
-                                    graphic: false,
-                                    label: "Label for invisible point",
-                                    labelSelect: true,
-                                    fontStyle: "italic"
-                                },
-                                filter: new OpenLayers.Filter.Comparison({
-                                    type: "==",
-                                    property: "topic",
-                                    value: "point_invisible"
-                                })
-                            }),
-    */
 
     var pointLayer = new OpenLayers.Layer.Vector(
                 "Point Layer",
@@ -438,9 +421,9 @@ jQuery(document).ready(function(){
     map.addControl(select_feature_control);
     select_feature_control.activate();
 
+    map.setCenter(proposal_area_feature[0].geometry.getBounds().getCenterLonLat(), 0);
 
-    map.setCenter(new OpenLayers.LonLat(INITIAL_CENTER.x,
-                                        INITIAL_CENTER.y), 0);
+    console.log(proposal_area_feature);
 
     map.zoomToScale(492159825);
 
