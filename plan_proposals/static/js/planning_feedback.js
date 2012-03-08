@@ -257,7 +257,6 @@ jQuery(document).ready(function(){
     });
 
     $( "a.proposal_img" ).click(function( event ) {
-        console.log($(event.currentTarget).attr('id'));
         $( "." + $(event.currentTarget).attr('id') ).dialog( "open" );
         return false;
     });
