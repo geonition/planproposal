@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-27 10:54+0200\n"
-"PO-Revision-Date: 2012-03-12 09:55+0200\n"
+"PO-Revision-Date: 2012-03-12 10:08+0200\n"
 "Last-Translator: Kristoffer Snabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -32,7 +32,7 @@ msgstr "Hankesivusto"
 #: templates/planning_project.html:31
 #: templates/planning_project.html.py:71
 msgid "More information about the project"
-msgstr "Lisää tietoa projektista"
+msgstr "Lisätietoa suunnitelmasta"
 
 #: templates/planning_project.html:39
 #: templates/planning_project.html.py:50
@@ -58,7 +58,7 @@ msgstr "Järvenpään kaupunki"
 
 #: templates/proposal_feedback.html:33
 msgid "More information about the draft"
-msgstr "Lisätietoa projektista"
+msgstr "Lisätietoa suunnitelmasta"
 
 #: templates/proposal_feedback.html:35
 #: templates/proposal_feedback.html:154
@@ -118,7 +118,7 @@ msgstr "Takaisin edelliselle sivulle"
 
 #: templates/proposal_feedback.html:88
 msgid "More information about the plan"
-msgstr "Lisätietoa projektista"
+msgstr "Lisätietoa suunnitelmasta"
 
 #: templates/proposal_feedback.html:118
 msgid "Please, tell us more about the place"
