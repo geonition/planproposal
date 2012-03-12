@@ -8,21 +8,15 @@
 
 {% block content %}
 
-<ul class="breadcrumb">
-    <li>
-        <a href="{% url dashboard %}">{% trans "Dashboard" %}</a>
-        <span class="divider">&gt;&gt;</span>
+<ul class="breadcrumb base_bgcolor">
+    <li class="disk" onclick="window.location = '{% url dashboard %}'">
     </li>
-    <li class="active">
+    <li class="active base_bgcolor">
         {{ proposal_details.name }}
     </li>
 </ul>
 
 <div class="proposal-info">
-    <!--<h1 class="proposal-title">{{ proposal_name }}</h1>-->
-    <h1 class="proposal-title">
-    {{ proposal_details.name }}
-    </h1>
     <div class="short_description">
         <p>{{ proposal_details.short_description|safe }}</p>
         <a id="more_info_link" class="reset" href="#">
