@@ -385,8 +385,30 @@ jQuery(document).ready(function(){
                         }
                     })
                 });
-    map.addLayers([arcgisLayer, proposalLayer, areaLayer, routeLayer, pointLayer ]);
-
+    //add an information layer where annotations and other
+    //visual information can be set on the proposal
+    var projectInformationLayer = new OpenLayers.Layer.Vector(
+                "Project information",
+                {
+                    styleMap: new OpenLayers.StyleMap({
+                        'default': {
+                            strokeWidth: 3,
+                            strokeColor: $('body').css('background-color'),
+                            fillOpacity: 0,
+                            strokeDashstyle: 'dash'
+                        }
+                    })
+                });
+    
+    projectInformationLayer.addFeatures(proposal_area_feature);
+    
+    map.addLayers([arcgisLayer,
+                   proposalLayer,
+                   areaLayer,
+                   routeLayer,
+                   pointLayer,
+                   projectInformationLayer]);
+    
     var pointcontrol = new OpenLayers.Control.DrawFeature(pointLayer,
                                 OpenLayers.Handler.Point,
                                 {'id': 'pointcontrol',
