@@ -8,21 +8,15 @@
 
 {% block content %}
 
-<ul class="breadcrumb">
-    <li>
-        <a href="{% url dashboard %}">{% trans "Dashboard" %}</a>
-        <span class="divider">&gt;&gt;</span>
+<ul class="breadcrumb base_bgcolor">
+    <li class="disk" onclick="window.location = '{% url dashboard %}'">
     </li>
-    <li class="active">
+    <li class="active base_bgcolor">
         {{ proposal_details.name }}
     </li>
 </ul>
 
 <div class="proposal-info">
-    <!--<h1 class="proposal-title">{{ proposal_name }}</h1>-->
-    <h1 class="proposal-title">
-    {{ proposal_details.name }}
-    </h1>
     <div class="short_description">
         <p>{{ proposal_details.short_description|safe }}</p>
         <a id="more_info_link" class="reset" href="#">
@@ -39,7 +33,7 @@
 
     <h2>{% trans "Evaluate the draft" %}</h2>
     <p>
-        {% trans "Comment on the plan draft by selecting any of the drawing tools below." %}
+        {% trans "Mark places on the draft where you feel the draft is good and where it needs improvement. Use the drawing tools below." %}
     </p>
     <div class="draw_tools">
         <button type="button" class="drawbutton point" id="point_feedback" name="place">

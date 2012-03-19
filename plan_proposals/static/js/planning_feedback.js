@@ -342,6 +342,19 @@ jQuery(document).ready(function(){
         buffer: 0}
     );
 
+    var annotationLayer = new OpenLayers.Layer.Vector(
+                "Annotations Layer",
+                {
+                    styleMap: new OpenLayers.StyleMap({
+                        'default': {
+                            strokeWidth: 2,
+                            strokeColor: '#ee9900',
+                            cursor: 'pointer'
+                        }
+                    })
+                }
+    );
+
     var pointLayer = new OpenLayers.Layer.Vector(
                 "Point Layer",
                 {

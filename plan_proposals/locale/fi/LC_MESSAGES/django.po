@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-27 10:54+0200\n"
-"PO-Revision-Date: 2012-03-12 10:08+0200\n"
+"POT-Creation-Date: 2012-03-13 09:59+0200\n"
+"PO-Revision-Date: 2012-03-13 10:00+0200\n"
 "Last-Translator: Kristoffer Snabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -29,142 +29,135 @@ msgstr "pehmoGIS"
 msgid "Dashboard"
 msgstr "Hankesivusto"
 
-#: templates/planning_project.html:31
-#: templates/planning_project.html.py:71
+#: templates/planning_project.html:30
+#: templates/planning_project.html.py:70
 msgid "More information about the project"
 msgstr "Lisätietoa suunnitelmasta"
 
-#: templates/planning_project.html:39
-#: templates/planning_project.html.py:50
-#: templates/planning_project.html:60
+#: templates/planning_project.html:38
+#: templates/planning_project.html.py:49
+#: templates/planning_project.html:59
 msgid "Pajalanpiha"
 msgstr "Pajalanpiha"
 
-#: templates/planning_project.html:39
-#: templates/planning_project.html.py:50
-#: templates/planning_project.html:60
+#: templates/planning_project.html:38
+#: templates/planning_project.html.py:49
+#: templates/planning_project.html:59
 msgid "proposal"
 msgstr "ehdotus"
 
-#: templates/planning_project.html:46
-#: templates/planning_project.html.py:56
-#: templates/planning_project.html:66
+#: templates/planning_project.html:45
+#: templates/planning_project.html.py:55
+#: templates/planning_project.html:65
 msgid "Look at and evaluate the proposal"
 msgstr "Katso ja arvioi ehdotusta"
 
-#: templates/planning_project.html:82
+#: templates/planning_project.html:81
 msgid "Järvenpään kaupunki"
 msgstr "Järvenpään kaupunki"
 
-#: templates/proposal_feedback.html:33
+#: templates/proposal_feedback.html:23
 msgid "More information about the draft"
 msgstr "Lisätietoa suunnitelmasta"
 
-#: templates/proposal_feedback.html:35
-#: templates/proposal_feedback.html:154
-msgid "show image from north of this draft"
-msgstr "Näytä pohjoissuunnasta otettu viistokuva"
-
-#: templates/proposal_feedback.html:36
-#: templates/proposal_feedback.html:157
-msgid "show image from south of this draft"
-msgstr "Näytä eteläsuunnasta otettu viistokuva"
-
-#: templates/proposal_feedback.html:37
-#: templates/proposal_feedback.html:160
-msgid "show image of the whole draft"
-msgstr "Näytä viistokuva koko alueesta"
-
-#: templates/proposal_feedback.html:38
-#: templates/proposal_feedback.html:163
-msgid "show streetview picture"
-msgstr "Näytä katunäkymäkuva"
-
-#: templates/proposal_feedback.html:40
+#: templates/proposal_feedback.html:34
 msgid "Evaluate the draft"
 msgstr "Arvioi ehdotusta"
 
-#: templates/proposal_feedback.html:42
-msgid "Comment on the plan draft by selecting any of the drawing tools below."
-msgstr "Kommentoi ehdotusta valitsemalla alla olevista piirtotyökaluista"
+#: templates/proposal_feedback.html:36
+msgid "Mark places on the draft where you feel the draft is good and where it needs improvement. Use the drawing tools below."
+msgstr "Merkitse suunnitelmaan, missä kohdissa kaava on onnistunut ja mitä kohtia pitäisi kehittää. Käytä alla olevia piirtotyökaluja."
 
-#: templates/proposal_feedback.html:46
+#: templates/proposal_feedback.html:40
 msgid "place"
 msgstr "paikka"
 
-#: templates/proposal_feedback.html:49
+#: templates/proposal_feedback.html:43
 msgid "route"
 msgstr "reitti"
 
-#: templates/proposal_feedback.html:52
+#: templates/proposal_feedback.html:46
 msgid "area"
 msgstr "alue"
 
-#: templates/proposal_feedback.html:59
+#: templates/proposal_feedback.html:53
 msgid "Free comment"
 msgstr "Vapaa kommentti"
 
-#: templates/proposal_feedback.html:63
+#: templates/proposal_feedback.html:57
 msgid "Thank you for your comment!"
 msgstr "Kiitos palautteesta!"
 
-#: templates/proposal_feedback.html:75
+#: templates/proposal_feedback.html:69
 msgid "Send comment"
 msgstr "Lähetä kommentti"
 
-#: templates/proposal_feedback.html:83
+#: templates/proposal_feedback.html:77
 msgid "Back to previous page"
 msgstr "Takaisin edelliselle sivulle"
 
-#: templates/proposal_feedback.html:88
+#: templates/proposal_feedback.html:82
 msgid "More information about the plan"
 msgstr "Lisätietoa suunnitelmasta"
 
-#: templates/proposal_feedback.html:118
+#: templates/proposal_feedback.html:88
 msgid "Please, tell us more about the place"
 msgstr "Kerro meille lisää paikasta"
 
-#: templates/proposal_feedback.html:122
+#: templates/proposal_feedback.html:92
 msgid "save place"
 msgstr "tallenna paikka"
 
-#: templates/proposal_feedback.html:125
+#: templates/proposal_feedback.html:95
 msgid "remove place"
 msgstr "poista paikka"
 
-#: templates/proposal_feedback.html:130
+#: templates/proposal_feedback.html:100
 msgid "Please, tell us more about the route"
 msgstr "Kerro meille lisää reitistä"
 
-#: templates/proposal_feedback.html:134
+#: templates/proposal_feedback.html:104
 msgid "save route"
 msgstr "tallenna reitti"
 
-#: templates/proposal_feedback.html:137
+#: templates/proposal_feedback.html:107
 msgid "remove route"
 msgstr "poista reitti"
 
-#: templates/proposal_feedback.html:142
+#: templates/proposal_feedback.html:112
 msgid "Please, tell us more about the area"
 msgstr "Kerro meille lisää alueesta"
 
-#: templates/proposal_feedback.html:146
+#: templates/proposal_feedback.html:116
 msgid "save area"
 msgstr "tallenna alue"
 
-#: templates/proposal_feedback.html:149
+#: templates/proposal_feedback.html:119
 msgid "remove area"
 msgstr "poista alue"
 
-#: templates/proposal_feedback.html:155
-#: templates/proposal_feedback.html:158
-#: templates/proposal_feedback.html:161
+#: templates/proposal_feedback.html:126
 msgid "ilmakuva"
 msgstr "ilmakuva"
 
-#: templates/proposal_feedback.html:164
-msgid "katukuva"
-msgstr "katukuva"
+#~ msgid "show image from north of this draft"
+#~ msgstr "Näytä pohjoissuunnasta otettu viistokuva"
+
+#~ msgid "show image from south of this draft"
+#~ msgstr "Näytä eteläsuunnasta otettu viistokuva"
+
+#~ msgid "show image of the whole draft"
+#~ msgstr "Näytä viistokuva koko alueesta"
+
+#~ msgid "show streetview picture"
+#~ msgstr "Näytä katunäkymäkuva"
+
+#~ msgid ""
+#~ "Comment on the plan draft by selecting any of the drawing tools below."
+#~ msgstr "Kommentoi ehdotusta valitsemalla alla olevista piirtotyökaluista"
+
+#~ msgid "katukuva"
+#~ msgstr "katukuva"
 
 #~ msgid "Give a general rating"
 #~ msgstr "Anna yleisarvosana"
