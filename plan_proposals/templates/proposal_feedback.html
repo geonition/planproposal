@@ -23,11 +23,21 @@
             {% trans "More information about the draft" %}
         </a><br /><br />
 
-        {% for p in proposal_image %}
-        <a id="img_{{ p.id }}" class="proposal_img" href ="#">
-            {{ p.title }}
-        </a><br />
-        {% endfor %}
+        <div id="imageCarousel" class="carousel">
+
+            <div class="carousel-inner">
+
+                {% for p in proposal_image %}
+                    <div class="{% if forloop.first %}active {% endif %}item">
+                        <img src="{{ p.image.url }}" alt="{% trans 'proposal image' %}" height="70" width="70" />
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id="full_image">
+            hello world
+        </div>
 
     </div>
 
@@ -122,8 +132,8 @@
 </div>
 
 {% for p in proposal_image %}
-<div title="{{p.title}}" class="img_{{ p.id }} image dialog">
-    <img alt="{% trans 'ilmakuva' %} 1" src="{{p.image.url}}" width="800" height="521" />
+<div title="{{ p.title }}" class="img_{{ p.id }} image dialog">
+    <img alt="{% trans 'proposal image' %}" src="{{ p.image.url }}" width="800" height="521" />
 </div>
 {% endfor %}
 

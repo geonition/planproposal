@@ -14,6 +14,7 @@ setup(
             "templates/*.js",
             "static/css/*.css",
             "static/js/*.js",
+            "static/js/libs/*.js",
             "static/img/*.jpg",
             "static/img/*.gif",
             "static/img/*.png",
