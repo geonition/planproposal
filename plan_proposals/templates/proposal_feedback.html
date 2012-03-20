@@ -26,19 +26,13 @@
         <div id="imageCarousel" class="carousel">
 
             <div class="carousel-inner">
-
                 {% for p in proposal_image %}
-                    <div class="{% if forloop.first %}active {% endif %}item">
+                    <div id="img_{{ p.id }}" class="item">
                         <img src="{{ p.image.url }}" alt="{% trans 'proposal image' %}" height="70" width="70" />
                     </div>
                 {% endfor %}
             </div>
         </div>
-
-        <div id="full_image">
-            hello world
-        </div>
-
     </div>
 
     <h2>{% trans "Evaluate the draft" %}</h2>

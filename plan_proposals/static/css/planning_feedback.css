@@ -63,3 +63,6 @@ button.drawbutton {
     width: 100%;
     overflow: hidden;
 }
+.carousel .full_image {
+    position: relative;
+}

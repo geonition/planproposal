@@ -256,7 +256,7 @@ jQuery(document).ready(function(){
         return false;
     });
 
-    $( "a.proposal_img" ).click(function( event ) {
+    $( ".carousel-inner .item" ).click(function( event ) {
         $( "." + $(event.currentTarget).attr('id') ).dialog( "open" );
         return false;
     });
@@ -412,16 +412,16 @@ jQuery(document).ready(function(){
                         }
                     })
                 });
-    
+
     projectInformationLayer.addFeatures(proposal_area_feature);
-    
+
     map.addLayers([arcgisLayer,
                    proposalLayer,
                    areaLayer,
                    routeLayer,
                    pointLayer,
                    projectInformationLayer]);
-    
+
     var pointcontrol = new OpenLayers.Control.DrawFeature(pointLayer,
                                 OpenLayers.Handler.Point,
                                 {'id': 'pointcontrol',
