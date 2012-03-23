@@ -8,20 +8,25 @@
 
 {% block content %}
 
-<ul class="breadcrumb base_bgcolor">
-    <li class="disk" onclick="window.location = '{% url dashboard %}'">
+
+<ul class="breadcrumb">
+    <li class="disk hover base_bgcolor" onclick="window.location = '{% url dashboard %}'">
     </li>
     <li class="active base_bgcolor">
-        {{ proposal_details.name }}
+        <h3>
+            {{ proposal_details.name }}
+        </h3>
     </li>
 </ul>
 
 <div class="proposal-info">
     <div class="short_description">
-        <p>{{ proposal_details.short_description|safe }}</p>
-        <a id="more_info_link" class="reset" href="#">
-            {% trans "More information about the draft" %}
-        </a><br /><br />
+        <p>{{ proposal_details.short_description|safe }}
+            <a id="more_info_link" class="reset" href="#">
+                {% trans "More information about the draft" %}
+            </a>
+        </p>
+        <br /><br />
 
         <div id="imageCarousel" class="carousel">
 
@@ -35,7 +40,7 @@
         </div>
     </div>
 
-    <h2>{% trans "Evaluate the draft" %}</h2>
+    <h4>{% trans "Evaluate the draft" %}</h4>
     <p>
         {% trans "Mark places on the draft where you feel the draft is good and where it needs improvement. Use the drawing tools below." %}
     </p>
