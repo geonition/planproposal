@@ -4,15 +4,22 @@ ul.breadcrumb {
 }
 ul.breadcrumb .active {
     color: white;
-    width: 322px;
-    padding-left: 6px;
     font-family: 'Enriqueta', serif;
     font-weight: 400;
     text-transform: uppercase;
     font-size: 16px;
     vertical-align: middle;
-    padding-top: 6px;
-    padding-bottom: 6px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    position: relative;
+    right: 6px;
+}
+ul.breadcrumb .separator {
+    background-color: white;
+    height: 100%;
+    width: 3px;
+    position: relative;
+    right: 6px;
 }
 .draw_tools {
     width: 100%;
@@ -57,8 +64,9 @@ button.drawbutton {
 /* Carousel style */
 .carousel {
     width: 100%;
-    overflow: hidden;
+    overflow-y: scroll;
     white-space: nowrap;
+    text-align: center;
 }
 .carousel .carousel-inner .item {
     display: inline-block;
@@ -71,10 +79,6 @@ button.drawbutton {
 .carousel .carousel-inner .active.item {
     opacity: 1;
     border: 2px solid black;
-}
-.carousel .carousel-inner {
-    width: 100%;
-    overflow: hidden;
 }
 .carousel .full_image {
     position: relative;

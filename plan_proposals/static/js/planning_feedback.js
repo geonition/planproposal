@@ -235,20 +235,22 @@ function feature_added(evt) {
 // increase the default animation speed to exaggerate the effect
 $.fx.speeds._default = 500;
 
-jQuery(document).ready(function(){
-
+jQuery(document).ready(function() {
+    
     $( "#more_info" ).dialog({
         autoOpen: false,
         show: "blind",
         width: 800,
-        height: 600
+        height: 600,
+        modal: true
     });
     $( ".image.dialog" ).dialog({
         autoOpen: false,
         show: "blind",
         width: 800,
         maxHeight: 600,
-        resizable: false
+        resizable: false,
+        modal: true
     });
 
     $( "#more_info_link" ).click(function() {

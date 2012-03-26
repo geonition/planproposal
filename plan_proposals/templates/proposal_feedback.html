@@ -9,10 +9,12 @@
 {% block content %}
 
 
-<ul class="breadcrumb">
-    <li class="disk hover base_bgcolor" onclick="window.location = '{% url dashboard %}'">
+<ul class="breadcrumb base_bgcolor">
+    <li class="disk hover" onclick="window.location = '{% url dashboard %}'">
     </li>
-    <li class="active base_bgcolor">
+    <li class="separator">
+    </li>
+    <li class="active">
         <h3>
             {{ proposal_details.name }}
         </h3>
@@ -23,10 +25,9 @@
     <div class="short_description">
         <p>{{ proposal_details.short_description|safe }}
             <a id="more_info_link" class="reset" href="#">
-                {% trans "More information about the draft" %}
+                {% trans "Read more about the draft..." %}
             </a>
         </p>
-        <br /><br />
 
         <div id="imageCarousel" class="carousel">
 
@@ -40,7 +41,7 @@
         </div>
     </div>
 
-    <h4>{% trans "Evaluate the draft" %}</h4>
+    <h4 class="base_textcolor">{% trans "Evaluate the draft" %}</h4>
     <p>
         {% trans "Mark places on the draft where you feel the draft is good and where it needs improvement. Use the drawing tools below." %}
     </p>
@@ -59,7 +60,9 @@
         {% csrf_token %}
         <table>
             <tr>
-                <td colspan="2">{% trans "Free comment" %}</td>
+                <td colspan="2">
+                    <label>{% trans "Free comment" %}</label>
+                </td>
             </tr>
             <tr class="free_comment_thanks">
                 <td colspan="2">
