@@ -236,7 +236,7 @@ function feature_added(evt) {
 $.fx.speeds._default = 500;
 
 jQuery(document).ready(function() {
-    
+
     $( "#more_info" ).dialog({
         autoOpen: false,
         show: "blind",

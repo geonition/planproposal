@@ -64,7 +64,6 @@ button.drawbutton {
 /* Carousel style */
 .carousel {
     width: 100%;
-    overflow-y: scroll;
     white-space: nowrap;
     text-align: center;
 }
