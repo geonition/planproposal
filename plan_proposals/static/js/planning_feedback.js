@@ -419,8 +419,9 @@ jQuery(document).ready(function() {
                         }
                     })
                 });
-
+    /* not working properly at the moment
     projectInformationLayer.addFeatures(proposal_area_feature);
+    */
 
     map.addLayers([arcgisLayer,
                    proposalLayer,
