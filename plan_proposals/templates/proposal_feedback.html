@@ -151,5 +151,6 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/planning_feedback.js"></script>
 <script type="text/javascript">
 var proposal_area = {{ proposal_details.project.area.json|safe }};
+var feature_group = 'PP-{{ proposal_details.project.slug }}-{{ proposal_details.slug }}';
 </script>
 {% endblock javascript %}

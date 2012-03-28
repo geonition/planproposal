@@ -65,22 +65,27 @@ function save_handler(evt) {
 
     if (evt.data[0].fid === undefined || evt.data[0].fid === null) {
 
-        gnt.geo.create_feature(geojson, function(event) {
-            var new_feature = null;
-            // retrieve feature without fid and give it the id from the right layer
-            if( event.geometry.type === 'Point') {
-                new_feature = map.getLayersByName('Point Layer')[0].getFeatureByFid(undefined);
-            } else if ( event.geometry.type === 'LineString' ) {
-                new_feature = map.getLayersByName('Route Layer')[0].getFeatureByFid(undefined);
-            } else if ( event.geometry.type === 'Polygon' ) {
-                new_feature = map.getLayersByName('Area Layer')[0].getFeatureByFid(undefined);
-            }
-            new_feature.fid = event.id;
-        });
+        gnt.geo.create_feature('@me', feature_group, geojson, {
+            'success': function(data, textStatus, jqXHR) {
+                var new_feature = null;
+                // retrieve feature without fid and give it the id from the right layer
+                if( data.geometry.type === 'Point') {
+                    new_feature = map.getLayersByName('Point Layer')[0].getFeatureByFid(undefined);
+                } else if ( data.geometry.type === 'LineString' ) {
+                    new_feature = map.getLayersByName('Route Layer')[0].getFeatureByFid(undefined);
+                } else if ( data.geometry.type === 'Polygon' ) {
+                    new_feature = map.getLayersByName('Area Layer')[0].getFeatureByFid(undefined);
+                }
+                new_feature.fid = data.id;
+        }
+    });
 
     } else {
         //update the feature
-        gnt.geo.update_feature(geojson);
+        gnt.geo.update_feature(undefined,
+                               feature_group,
+                               geojson,
+                               undefined);
     }
 
     //unselect feature
@@ -108,7 +113,7 @@ function remove_handler(evt) {
     var geojson = gf.write(evt.data[0]);
 
     if (evt.data[0].fid !== undefined && evt.data[0].fid !== null) {
-        gnt.geo.delete_feature(geojson);
+        gnt.geo.delete_feature(undefined, feature_group, geojson);
     }
 
     if(popup !== undefined) {
@@ -473,49 +478,53 @@ jQuery(document).ready(function() {
     $('.popup').hide();
 
     //get the users feature if any
-    gnt.geo.get_features('?time__now=true', function(event) {
-
-        if (event.features) {
-            var pl = map.getLayersByName('Point Layer')[0];
-            var rl = map.getLayersByName('Route Layer')[0];
-            var al = map.getLayersByName('Area Layer')[0];
-            var gf = new OpenLayers.Format.GeoJSON();
-            var popupcontent = " default content ";
-
-            for(var i = 0; i < event.features.length; i++) {
-                var feature = gf.parseFeature(event.features[i]);
-                feature.lonlat = get_popup_lonlat(feature.geometry);
-
-
-                if(feature.geometry.id.contains( "Point" )) {
-                    pl.addFeatures(feature);
-                    popupcontent = $('#place').html();
-                } else if(feature.geometry.id.contains( "LineString" )) {
-                    rl.addFeatures(feature);
-                    popupcontent = $('#route').html();
-                } else if(feature.geometry.id.contains( "Polygon" )) {
-                    al.addFeatures(feature);
-                    popupcontent = $('#area').html();
-                }
-
-                feature.popupClass = OpenLayers.Popup.FramedCloud;
-                feature.data = {
-                    popupSize: null,
-                    popupContentHTML: popupcontent
-                };
-
-                //the createPopup function did not seem to work so here
-                feature.popup = new OpenLayers.Popup.FramedCloud(
-                                    feature.id,
-                                    feature.lonlat,
-                                    feature.data.popupSize,
-                                    feature.data.popupContentHTML,
-                                    null,
-                                    false);
-
-            }
-        }
-    });
+    gnt.geo.get_features(undefined,
+                         feature_group,
+                         '',
+        {
+           'success': function(data) {
+               if (data.features) {
+                   var pl = map.getLayersByName('Point Layer')[0];
+                   var rl = map.getLayersByName('Route Layer')[0];
+                   var al = map.getLayersByName('Area Layer')[0];
+                   var gf = new OpenLayers.Format.GeoJSON();
+                   var popupcontent = " default content ";
+       
+                   for(var i = 0; i < data.features.length; i++) {
+                       var feature = gf.parseFeature(data.features[i]);
+                       feature.lonlat = get_popup_lonlat(feature.geometry);
+       
+       
+                       if(feature.geometry.id.contains( "Point" )) {
+                           pl.addFeatures(feature);
+                           popupcontent = $('#place').html();
+                       } else if(feature.geometry.id.contains( "LineString" )) {
+                           rl.addFeatures(feature);
+                           popupcontent = $('#route').html();
+                       } else if(feature.geometry.id.contains( "Polygon" )) {
+                           al.addFeatures(feature);
+                           popupcontent = $('#area').html();
+                       }
+       
+                       feature.popupClass = OpenLayers.Popup.FramedCloud;
+                       feature.data = {
+                           popupSize: null,
+                           popupContentHTML: popupcontent
+                       };
+       
+                       //the createPopup function did not seem to work so here
+                       feature.popup = new OpenLayers.Popup.FramedCloud(
+                                           feature.id,
+                                           feature.lonlat,
+                                           feature.data.popupSize,
+                                           feature.data.popupContentHTML,
+                                           null,
+                                           false);
+       
+                   }
+               }
+           }
+       });
 });
 
 //delete the session on unload
