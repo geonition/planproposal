@@ -1,7 +1,6 @@
 /*
  map settings
 */
-var map;
 
 var SHOW_PLAN = false;
 var INITIAL_CENTER = {
@@ -294,8 +293,9 @@ jQuery(document).ready(function() {
     /* Openlayers */
 
     // set language
+    create_map('map', function(map) {
     OpenLayers.Lang.setCode('fi');
-    var mapOptions = {
+    /*var mapOptions = {
         maxExtent: new OpenLayers.Bounds(89949.504,
                                          6502687.508,
                                          502203.000,
@@ -338,7 +338,7 @@ jQuery(document).ready(function() {
     var gf = new OpenLayers.Format.GeoJSON();
     var proposal_area_feature = gf.read(proposal_area);
 
-    var proposalLayer = new OpenLayers.Layer.ArcGIS93Rest(
+   /*var proposalLayer = new OpenLayers.Layer.ArcGIS93Rest(
         "Ehdotus",
         "https://pehmogis.tkk.fi/ArcGIS/rest/services/Suunnittelu/MapServer/export",
         {layers: "show:0",
@@ -347,7 +347,7 @@ jQuery(document).ready(function() {
         {isBaseLayer: false,
         maxExtent: proposal_area_feature[0].geometry.getBounds(),
         buffer: 0}
-    );
+    );*/
 
     var annotationLayer = new OpenLayers.Layer.Vector(
                 "Annotations Layer",
@@ -423,9 +423,7 @@ jQuery(document).ready(function() {
     projectInformationLayer.addFeatures(proposal_area_feature);
     */
 
-    map.addLayers([arcgisLayer,
-                   proposalLayer,
-                   areaLayer,
+    map.addLayers([areaLayer,
                    routeLayer,
                    pointLayer,
                    projectInformationLayer]);
@@ -463,7 +461,7 @@ jQuery(document).ready(function() {
 
     map.setCenter(proposal_area_feature[0].geometry.getBounds().getCenterLonLat(), 0);
     map.zoomToScale(492159825);
-
+		});
     //draw buttons to activate drawing functionality
     $( "#point_feedback").drawButton({
         drawcontrol: "pointcontrol"
