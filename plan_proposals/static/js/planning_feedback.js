@@ -458,10 +458,8 @@ jQuery(document).ready(function() {
             });
     map.addControl(select_feature_control);
     select_feature_control.activate();
-
-    map.zoomToExtent(proposal_area_feature[0].geometry.getBounds(),true);
     map.setCenter(proposal_area_feature[0].geometry.getBounds().getCenterLonLat(), 0);
-    map.zoomTo(getZoomForExtent(proposal_area_feature[0].geometry.getBounds(),true));
+    map.zoomToExtent(proposal_area_feature[0].geometry.getBounds(),true);
 		});
 		
     //draw buttons to activate drawing functionality
