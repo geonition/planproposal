@@ -13,7 +13,7 @@ class PlanningProject(models.Model):
                             unique=True)
     slug = models.SlugField(max_length = 75,
                             editable=False)
-    area = geomodel.PolygonField(srid = getattr(settings, 'SPATIAL_REFERENCE_SYSTEM_ID', 4326))
+    area = geomodel.PolygonField(srid = getattr(settings, 'SPATIAL_REFERENCE_SYSTEM_ID', 3067))
     site = models.ForeignKey(Site)
     on_site = CurrentSiteManager()
 
