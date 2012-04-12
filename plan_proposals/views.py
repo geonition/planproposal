@@ -36,7 +36,7 @@ def plan_proposal(request, project_name, proposal_name):
                             slug=proposal_name)
     except Proposal.DoesNotExist:
         raise Http404
-
+    
     proposal_image = Image.objects.filter(proposal = proposal.id)
 
     return render_to_response('proposal_feedback.html',
