@@ -213,7 +213,7 @@ function feature_added(evt) {
         popupSize: null,
         popupContentHTML: popupcontent
     };
-    
+
     evt.attributes.name = draw_button_name;
 
     //the createPopup function did not seem to work so here
@@ -231,8 +231,8 @@ function feature_added(evt) {
     //unselect the button
     $(".drawbutton.ui-state-active")
         .drawButton( 'deactivate' );
-    
-    evt.layer.redraw();    
+
+    evt.layer.redraw();
 }
 
 
@@ -298,233 +298,233 @@ jQuery(document).ready(function() {
 
     // set language
     create_map('map', function(map) {
-    OpenLayers.Lang.setCode('fi');
-    /*var mapOptions = {
-        maxExtent: new OpenLayers.Bounds(89949.504,
-                                         6502687.508,
-                                         502203.000,
-                                         7137049.802),
-        projection: "EPSG:3067",
-        maxResolution: 50,
-        numZoomLevels: 10,
-        tileSize: new OpenLayers.Size(512, 512)
-    };
-    map = new OpenLayers.Map('map', mapOptions);
+        OpenLayers.Lang.setCode('fi');
+        /*var mapOptions = {
+            maxExtent: new OpenLayers.Bounds(89949.504,
+                                             6502687.508,
+                                             502203.000,
+                                             7137049.802),
+            projection: "EPSG:3067",
+            maxResolution: 50,
+            numZoomLevels: 10,
+            tileSize: new OpenLayers.Size(512, 512)
+        };
+        map = new OpenLayers.Map('map', mapOptions);
 
-    var arcgisLayer = new OpenLayers.Layer.ArcGIS93Rest(
-        "kartta",
-        "https://pehmogis.tkk.fi/ArcGIS/rest/services/suomi/MapServer/export",
-        {layers: "show:0,7,43,79,115,150,151,187,222,258,294,330",
-        format: "png24"},
-        {isBaseLayer: true,
-        maxExtent: new OpenLayers.Bounds(
-            390523.0685,
-            6700070.816,
-            399368.006,
-            6709752.84725),
-        buffer: 0}
-    );
+        var arcgisLayer = new OpenLayers.Layer.ArcGIS93Rest(
+            "kartta",
+            "https://pehmogis.tkk.fi/ArcGIS/rest/services/suomi/MapServer/export",
+            {layers: "show:0,7,43,79,115,150,151,187,222,258,294,330",
+            format: "png24"},
+            {isBaseLayer: true,
+            maxExtent: new OpenLayers.Bounds(
+                390523.0685,
+                6700070.816,
+                399368.006,
+                6709752.84725),
+            buffer: 0}
+        );
 
-    //this is for testing modify later
-    /*
-    var imageLayer = new OpenLayers.Layer.Image(
-        "Image layer test",
-        "https://softgis.org.aalto.fi/jarvenpaa/static/images/test/test.png",
-        new OpenLayers.Bounds(394738.512,
-                            6709404.6945,
-                            395377.5745,
-                            6709881.257),
-        new OpenLayers.Size(208, 334),
-        {isBaseLayer: false,
-        visibility: false}
-    );*/
+        //this is for testing modify later
+        /*
+        var imageLayer = new OpenLayers.Layer.Image(
+            "Image layer test",
+            "https://softgis.org.aalto.fi/jarvenpaa/static/images/test/test.png",
+            new OpenLayers.Bounds(394738.512,
+                                6709404.6945,
+                                395377.5745,
+                                6709881.257),
+            new OpenLayers.Size(208, 334),
+            {isBaseLayer: false,
+            visibility: false}
+        );*/
 
-    var gf = new OpenLayers.Format.GeoJSON();
-    var proposal_area_feature = gf.read(proposal_area);
+        var gf = new OpenLayers.Format.GeoJSON();
+        var proposal_area_feature = gf.read(proposal_area);
 
-   /*var proposalLayer = new OpenLayers.Layer.ArcGIS93Rest(
-        "Ehdotus",
-        "https://pehmogis.tkk.fi/ArcGIS/rest/services/Suunnittelu/MapServer/export",
-        {layers: "show:0",
-        format: "png24",
-        transparent: true},
-        {isBaseLayer: false,
-        maxExtent: proposal_area_feature[0].geometry.getBounds(),
-        buffer: 0}
-    );*/
+       /*var proposalLayer = new OpenLayers.Layer.ArcGIS93Rest(
+            "Ehdotus",
+            "https://pehmogis.tkk.fi/ArcGIS/rest/services/Suunnittelu/MapServer/export",
+            {layers: "show:0",
+            format: "png24",
+            transparent: true},
+            {isBaseLayer: false,
+            maxExtent: proposal_area_feature[0].geometry.getBounds(),
+            buffer: 0}
+        );*/
 
-    var annotationLayer = new OpenLayers.Layer.Vector(
-                "Annotations Layer",
+        var annotationLayer = new OpenLayers.Layer.Vector(
+                    "Annotations Layer",
+                    {
+                        styleMap: new OpenLayers.StyleMap({
+                            'default': {
+                                strokeWidth: 2,
+                                strokeColor: '#ee9900',
+                                cursor: 'pointer'
+                            }
+                        })
+                    }
+        );
+
+        var pointLayer = new OpenLayers.Layer.Vector(
+                    "Point Layer",
+                    {
+                        styleMap: new OpenLayers.StyleMap({
+                            'default': {
+                                externalGraphic: "/images/needle?color=ee9900",
+                                graphicHeight: 36,
+                                graphicWidth: 23,
+                                graphicYOffset: -30,
+                                cursor: 'pointer'
+                            },
+                            'temporary': {
+                                externalGraphic: "/images/needle?color=ee9900",
+                                graphicHeight: 36,
+                                graphicWidth: 23,
+                                graphicYOffset: -30
+                            }
+                        })
+                    });
+        var routeLayer = new OpenLayers.Layer.Vector(
+                    "Route Layer",
+                    {
+                        styleMap: new OpenLayers.StyleMap({
+                            'default': {
+                                strokeWidth: 2,
+                                strokeColor: '#ee9900',
+                                cursor: 'pointer'
+                            }
+                        })
+                    });
+        var areaLayer = new OpenLayers.Layer.Vector(
+                    "Area Layer",
+                    {
+                        styleMap: new OpenLayers.StyleMap({
+                            'default': {
+                                strokeWidth: 2,
+                                strokeColor: '#ee9900',
+                                cursor: 'pointer',
+                                fillColor: '#ee9900',
+                                fillOpacity: 0.3
+                            }
+                        })
+                    });
+        //add an information layer where annotations and other
+        //visual information can be set on the proposal
+        var projectInformationLayer = new OpenLayers.Layer.Vector(
+                    "Project information",
+                    {
+                        styleMap: new OpenLayers.StyleMap({
+                            'default': {
+                                strokeWidth: 3,
+                                strokeColor: $('body').css('background-color'),
+                                fillOpacity: 0,
+                                strokeDashstyle: 'dash'
+                            }
+                        })
+                    });
+        /* not working properly at the moment
+        projectInformationLayer.addFeatures(proposal_area_feature);
+        */
+
+        map.addLayers([areaLayer,
+                       routeLayer,
+                       pointLayer,
+                       projectInformationLayer]);
+
+        var pointcontrol = new OpenLayers.Control.DrawFeature(pointLayer,
+                                    OpenLayers.Handler.Point,
+                                    {'id': 'pointcontrol',
+                                    'featureAdded': feature_added});
+        var routecontrol = new OpenLayers.Control.DrawFeature(routeLayer,
+                                    OpenLayers.Handler.Path,
+                                    {'id': 'routecontrol',
+                                    'featureAdded': feature_added})
+        var areacontrol = new OpenLayers.Control.DrawFeature(areaLayer,
+                                    OpenLayers.Handler.Polygon,
+                                    {'id': 'areacontrol',
+                                    'featureAdded': feature_added})
+
+        map.addControls([pointcontrol, routecontrol, areacontrol ]);
+        map.addControl(new OpenLayers.Control.LayerSwitcher());
+
+        //select feature control
+        var select_feature_control = new OpenLayers.Control.SelectFeature(
+                [pointLayer, routeLayer, areaLayer],
                 {
-                    styleMap: new OpenLayers.StyleMap({
-                        'default': {
-                            strokeWidth: 2,
-                            strokeColor: '#ee9900',
-                            cursor: 'pointer'
-                        }
-                    })
-                }
-    );
-
-    var pointLayer = new OpenLayers.Layer.Vector(
-                "Point Layer",
-                {
-                    styleMap: new OpenLayers.StyleMap({
-                        'default': {
-                            externalGraphic: "/images/needle?color=ee9900",
-                            graphicHeight: 36,
-                            graphicWidth: 23,
-                            graphicYOffset: -30,
-                            cursor: 'pointer'
-                        },
-                        'temporary': {
-                            externalGraphic: "/images/needle?color=ee9900",
-                            graphicHeight: 36,
-                            graphicWidth: 23,
-                            graphicYOffset: -30
-                        }
-                    })
+                id: 'selectcontrol',
+                onSelect: on_feature_select_handler,
+                onUnselect: on_feature_unselect_handler,
+                toggle: false,
+                clickout: true,
+                multiple: false,
+                hover: false
                 });
-    var routeLayer = new OpenLayers.Layer.Vector(
-                "Route Layer",
-                {
-                    styleMap: new OpenLayers.StyleMap({
-                        'default': {
-                            strokeWidth: 2,
-                            strokeColor: '#ee9900',
-                            cursor: 'pointer'
-                        }
-                    })
-                });
-    var areaLayer = new OpenLayers.Layer.Vector(
-                "Area Layer",
-                {
-                    styleMap: new OpenLayers.StyleMap({
-                        'default': {
-                            strokeWidth: 2,
-                            strokeColor: '#ee9900',
-                            cursor: 'pointer',
-                            fillColor: '#ee9900',
-                            fillOpacity: 0.3
-                        }
-                    })
-                });
-    //add an information layer where annotations and other
-    //visual information can be set on the proposal
-    var projectInformationLayer = new OpenLayers.Layer.Vector(
-                "Project information",
-                {
-                    styleMap: new OpenLayers.StyleMap({
-                        'default': {
-                            strokeWidth: 3,
-                            strokeColor: $('body').css('background-color'),
-                            fillOpacity: 0,
-                            strokeDashstyle: 'dash'
-                        }
-                    })
-                });
-    /* not working properly at the moment
-    projectInformationLayer.addFeatures(proposal_area_feature);
-    */
-
-    map.addLayers([areaLayer,
-                   routeLayer,
-                   pointLayer,
-                   projectInformationLayer]);
-
-    var pointcontrol = new OpenLayers.Control.DrawFeature(pointLayer,
-                                OpenLayers.Handler.Point,
-                                {'id': 'pointcontrol',
-                                'featureAdded': feature_added});
-    var routecontrol = new OpenLayers.Control.DrawFeature(routeLayer,
-                                OpenLayers.Handler.Path,
-                                {'id': 'routecontrol',
-                                'featureAdded': feature_added})
-    var areacontrol = new OpenLayers.Control.DrawFeature(areaLayer,
-                                OpenLayers.Handler.Polygon,
-                                {'id': 'areacontrol',
-                                'featureAdded': feature_added})
-
-    map.addControls([pointcontrol, routecontrol, areacontrol ]);
-    map.addControl(new OpenLayers.Control.LayerSwitcher());
-
-    //select feature control
-    var select_feature_control = new OpenLayers.Control.SelectFeature(
-            [pointLayer, routeLayer, areaLayer],
-            {
-            id: 'selectcontrol',
-            onSelect: on_feature_select_handler,
-            onUnselect: on_feature_unselect_handler,
-            toggle: false,
-            clickout: true,
-            multiple: false,
-            hover: false
+        map.addControl(select_feature_control);
+        select_feature_control.activate();
+        map.setCenter(proposal_area_feature[0].geometry.getBounds().getCenterLonLat(), 0);
+        map.zoomToExtent(proposal_area_feature[0].geometry.getBounds(),true);
             });
-    map.addControl(select_feature_control);
-    select_feature_control.activate();
-    map.setCenter(proposal_area_feature[0].geometry.getBounds().getCenterLonLat(), 0);
-    map.zoomToExtent(proposal_area_feature[0].geometry.getBounds(),true);
-		});
-		
-    //draw buttons to activate drawing functionality
-    $( ".drawbutton.point").drawButton({
-        drawcontrol: "pointcontrol"
-    });
-    $( ".drawbutton.route").drawButton({
-        drawcontrol: "routecontrol"
-    });
-    $( ".drawbutton.area").drawButton({
-        drawcontrol: "areacontrol"
-    });
 
-    //hide all popups as default
-    $('.popup').hide();
+        //draw buttons to activate drawing functionality
+        $( ".drawbutton.point").drawButton({
+            drawcontrol: "pointcontrol"
+        });
+        $( ".drawbutton.route").drawButton({
+            drawcontrol: "routecontrol"
+        });
+        $( ".drawbutton.area").drawButton({
+            drawcontrol: "areacontrol"
+        });
 
-    //get the users feature if any
-    gnt.geo.get_features(undefined,
-                         feature_group,
-                         '',
-        {
-           'success': function(data) {
-               if (data.features) {
-                   var pl = map.getLayersByName('Point Layer')[0];
-                   var rl = map.getLayersByName('Route Layer')[0];
-                   var al = map.getLayersByName('Area Layer')[0];
-                   var gf = new OpenLayers.Format.GeoJSON();
-                   var popupcontent = " default content ";
-       
-                   for(var i = 0; i < data.features.length; i++) {
-                       var feature = gf.parseFeature(data.features[i]);
-                       feature.lonlat = get_popup_lonlat(feature.geometry);
-                       if(feature.geometry.id.contains( "Point" )) {
-                           pl.addFeatures(feature);
-                           popupcontent = $('#place').html();
-                       } else if(feature.geometry.id.contains( "LineString" )) {
-                           rl.addFeatures(feature);
-                           popupcontent = $('#route').html();
-                       } else if(feature.geometry.id.contains( "Polygon" )) {
-                           al.addFeatures(feature);
-                           popupcontent = $('#area').html();
+        //hide all popups as default
+        $('.popup').hide();
+
+        //get the users feature if any
+        gnt.geo.get_features(undefined,
+                             feature_group,
+                             '',
+            {
+               'success': function(data) {
+                   if (data.features) {
+                       var pl = map.getLayersByName('Point Layer')[0];
+                       var rl = map.getLayersByName('Route Layer')[0];
+                       var al = map.getLayersByName('Area Layer')[0];
+                       var gf = new OpenLayers.Format.GeoJSON();
+                       var popupcontent = " default content ";
+
+                       for(var i = 0; i < data.features.length; i++) {
+                           var feature = gf.parseFeature(data.features[i]);
+                           feature.lonlat = get_popup_lonlat(feature.geometry);
+                           if(feature.geometry.id.contains( "Point" )) {
+                               pl.addFeatures(feature);
+                               popupcontent = $('#place').html();
+                           } else if(feature.geometry.id.contains( "LineString" )) {
+                               rl.addFeatures(feature);
+                               popupcontent = $('#route').html();
+                           } else if(feature.geometry.id.contains( "Polygon" )) {
+                               al.addFeatures(feature);
+                               popupcontent = $('#area').html();
+                           }
+
+                           feature.popupClass = OpenLayers.Popup.FramedCloud;
+                           feature.data = {
+                               popupSize: null,
+                               popupContentHTML: popupcontent
+                           };
+
+                           //the createPopup function did not seem to work so here
+                           feature.popup = new OpenLayers.Popup.FramedCloud(
+                                               feature.id,
+                                               feature.lonlat,
+                                               feature.data.popupSize,
+                                               feature.data.popupContentHTML,
+                                               null,
+                                               false);
+
                        }
-       
-                       feature.popupClass = OpenLayers.Popup.FramedCloud;
-                       feature.data = {
-                           popupSize: null,
-                           popupContentHTML: popupcontent
-                       };
-       
-                       //the createPopup function did not seem to work so here
-                       feature.popup = new OpenLayers.Popup.FramedCloud(
-                                           feature.id,
-                                           feature.lonlat,
-                                           feature.data.popupSize,
-                                           feature.data.popupContentHTML,
-                                           null,
-                                           false);
-       
                    }
                }
-           }
        });
 });
 
