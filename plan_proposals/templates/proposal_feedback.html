@@ -100,7 +100,7 @@
 <!-- infowindows with id's put here so that translations work -->
 <div id="place" class="popup hidden">
     <p>{% trans "Please, tell us more about the place" %}:</p>
-    <form name="popupform" action="#">
+    <form class="popupform" action="#">
         <textarea name="comment" cols="24" rows="5" ></textarea><br />
         <button type="button" class="save_feature">
         {% trans "save place" %}
@@ -112,7 +112,7 @@
 </div>
 <div id="route" class="popup hidden">
     <p>{% trans "Please, tell us more about the route" %}:</p>
-    <form name="popupform" action="#">
+    <form class="popupform" action="#">
         <textarea name="comment" cols="24" rows="5" ></textarea><br />
         <button type="button" class="save_feature">
         {% trans "save route" %}
@@ -124,7 +124,7 @@
 </div>
 <div id="area" class="popup hidden">
     <p>{% trans "Please, tell us more about the area" %}:</p>
-    <form name="popupform" action="#" method="post">
+    <form class="popupform" action="#" method="post">
         <textarea name="comment" cols="24" rows="5" ></textarea><br />
         <button type="button" class="save_feature">
         {% trans "save area" %}

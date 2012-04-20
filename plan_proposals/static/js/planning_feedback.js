@@ -42,23 +42,15 @@ function get_popup_lonlat(geometry) {
  connected to the save button in the popup form
 */
 function save_handler(evt) {
+    console.log("save feature handler");
 
     //get the form data
     //var popup_values = $('form[name=popupform].active').serializeArray();
     var popup_values = $('form.popupform.active').serializeArray();
+    console.log(popup_values);
 
-    //set the popup form as not active
-    //$('form[name=popupform]').removeClass('active');
-
-    //build new attributes for the features
-    /*var new_attributes = {};
-    for(var val in popup_values) {
-        new_attributes[popup_values[val]['name']] =
-            popup_values[val]['value'];
-    }
-
-    evt.data[0].attributes = new_attributes;*/
     evt.data[0].attributes.form_values = popup_values;
+
     //save the geojson
     var gf = new OpenLayers.Format.GeoJSON();
     var geojson = gf.write(evt.data[0]);
@@ -82,7 +74,7 @@ function save_handler(evt) {
 
     } else {
         //update the feature
-        gnt.geo.update_feature(undefined,
+        gnt.geo.update_feature('@me',
                                feature_group,
                                geojson,
                                undefined);
@@ -143,16 +135,36 @@ function show_popup_for_feature(feature) {
         map.addPopup(popup);
 
         //add a class to the form to recognize it as active
-        $('div[id="' + feature.id + '"] form[name="popupform"]').addClass('active');
+        console.log('div[id="' + feature.id + '"] form.popupform');
+        $('div[id="' + feature.id + '"] form.popupform').addClass('active');
 
         // add values to the form the values are connected but the form element name
         // and the name value in the feature attributes
-        var input_elements = $('div[id="' + feature.id + '"] form[name="popupform"] :input');
-        input_elements.each(function() {
-            $(this).val( feature.attributes[ $(this).attr( 'name' ) ] );
+        $('form.popupform.active :input').val(function (index, value) {
+
+            for(var i = 0; i < feature.attributes.form_values.length; i++) {
+                var val_obj = feature.attributes.form_values[i];
+
+                if($(this).attr('name') === val_obj.name) {
+                    //this shuold be done for all kinds of multiple value inputs
+                    if($(this).attr('type') === 'checkbox' &&
+                       $(this).attr('value') === val_obj.value) {
+
+                        $(this).attr('checked', 'checked');
+                        return value;
+
+                    } else if($(this).attr('type') === 'checkbox') {
+                    } else {
+
+                        return val_obj.value;
+                    }
+                }
+            }
+            return value;
         });
 
         //connect the event to the infowindow buttons
+        $('div[id="' + feature.id + '"] .save_feature').off();
         $('div[id="' + feature.id + '"] .save_feature').click([feature],
                                                       save_handler);
         $('div[id="' + feature.id + '"] .remove_feature').click([feature],
