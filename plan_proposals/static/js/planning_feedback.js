@@ -44,20 +44,21 @@ function get_popup_lonlat(geometry) {
 function save_handler(evt) {
 
     //get the form data
-    var popup_values = $('form[name=popupform].active').serializeArray();
+    //var popup_values = $('form[name=popupform].active').serializeArray();
+    var popup_values = $('form.popupform.active').serializeArray();
 
     //set the popup form as not active
-    $('form[name=popupform]').removeClass('active');
+    //$('form[name=popupform]').removeClass('active');
 
     //build new attributes for the features
-    var new_attributes = {};
+    /*var new_attributes = {};
     for(var val in popup_values) {
         new_attributes[popup_values[val]['name']] =
             popup_values[val]['value'];
     }
 
-    evt.data[0].attributes = new_attributes;
-
+    evt.data[0].attributes = new_attributes;*/
+    evt.data[0].attributes.form_values = popup_values;
     //save the geojson
     var gf = new OpenLayers.Format.GeoJSON();
     var geojson = gf.write(evt.data[0]);
@@ -196,7 +197,6 @@ function on_feature_unselect_handler(evt) {
  to be shown as the content in popup.
 */
 function feature_added(evt) {
-
     //get the right lonlat for the popup position
     evt.lonlat = get_popup_lonlat(evt.geometry);
 
@@ -213,6 +213,8 @@ function feature_added(evt) {
         popupSize: null,
         popupContentHTML: popupcontent
     };
+    
+    evt.attributes.name = draw_button_name;
 
     //the createPopup function did not seem to work so here
     evt.popup = new OpenLayers.Popup.FramedCloud(
@@ -229,6 +231,8 @@ function feature_added(evt) {
     //unselect the button
     $(".drawbutton.ui-state-active")
         .drawButton( 'deactivate' );
+    
+    evt.layer.redraw();    
 }
 
 
@@ -442,7 +446,7 @@ jQuery(document).ready(function() {
                                 'featureAdded': feature_added})
 
     map.addControls([pointcontrol, routecontrol, areacontrol ]);
-    //map.addControl(new OpenLayers.Control.LayerSwitcher());
+    map.addControl(new OpenLayers.Control.LayerSwitcher());
 
     //select feature control
     var select_feature_control = new OpenLayers.Control.SelectFeature(
@@ -463,13 +467,13 @@ jQuery(document).ready(function() {
 		});
 		
     //draw buttons to activate drawing functionality
-    $( "#point_feedback").drawButton({
+    $( ".drawbutton.point").drawButton({
         drawcontrol: "pointcontrol"
     });
-    $( "#route_feedback").drawButton({
+    $( ".drawbutton.route").drawButton({
         drawcontrol: "routecontrol"
     });
-    $( "#area_feedback").drawButton({
+    $( ".drawbutton.area").drawButton({
         drawcontrol: "areacontrol"
     });
 
@@ -492,8 +496,6 @@ jQuery(document).ready(function() {
                    for(var i = 0; i < data.features.length; i++) {
                        var feature = gf.parseFeature(data.features[i]);
                        feature.lonlat = get_popup_lonlat(feature.geometry);
-       
-       
                        if(feature.geometry.id.contains( "Point" )) {
                            pl.addFeatures(feature);
                            popupcontent = $('#place').html();
