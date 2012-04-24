@@ -24,6 +24,8 @@
 <div class="proposal-info">
     <div class="short_description">
         <p>{{ proposal_details.short_description|safe }}
+        </p>
+        <p>
             <a id="more_info_link" class="reset" href="#">
                 {% trans "Read more about the draft..." %}
             </a>
@@ -46,15 +48,15 @@
         {% trans "Mark places on the draft where you feel the draft is good and where it needs improvement. Use the drawing tools below." %}
     </p>
     <div class="draw_tools">
-        <button type="button" class="drawbutton point" id="point_feedback" name="place" data-color="ee9900">
+        <button type="button" class="drawbutton point" id="point_feedback" name="place" data-color="ee9900" data-popup="place">
         {% trans "place" %}
         </button><br />
         <button type="button" class="drawbutton route" id="route_feedback" name="route"
-        data-color="ee9900">
+        data-color="ee9900" data-popup="route">
         {% trans "route" %}
         </button><br />
         <button type="button" class="drawbutton area" id="area_feedback" name="area"
-        data-color="ee9900">
+        data-color="ee9900" data-popup="area">
         {% trans "area" %}
         </button>
     </div>
@@ -100,36 +102,36 @@
 <!-- infowindows with id's put here so that translations work -->
 <div id="place" class="popup hidden">
     <p>{% trans "Please, tell us more about the place" %}:</p>
-    <form class="popupform" action="#">
+    <form name="place" class="popupform" action="#">
         <textarea name="comment" cols="24" rows="5" ></textarea><br />
-        <button type="button" class="save_feature">
+        <button type="button" class="save">
         {% trans "save place" %}
         </button>
-        <button type="button" class="remove_feature">
+        <button type="button" class="remove">
         {% trans "remove place" %}
         </button>
     </form>
 </div>
 <div id="route" class="popup hidden">
     <p>{% trans "Please, tell us more about the route" %}:</p>
-    <form class="popupform" action="#">
+    <form name="route" class="popupform" action="#">
         <textarea name="comment" cols="24" rows="5" ></textarea><br />
-        <button type="button" class="save_feature">
+        <button type="button" class="save">
         {% trans "save route" %}
         </button>
-        <button type="button" class="remove_feature">
+        <button type="button" class="remove">
         {% trans "remove route" %}
         </button>
     </form>
 </div>
 <div id="area" class="popup hidden">
     <p>{% trans "Please, tell us more about the area" %}:</p>
-    <form class="popupform" action="#" method="post">
+    <form name="area" class="popupform" action="#" method="post">
         <textarea name="comment" cols="24" rows="5" ></textarea><br />
-        <button type="button" class="save_feature">
+        <button type="button" class="save">
         {% trans "save area" %}
         </button>
-        <button type="button" class="remove_feature">
+        <button type="button" class="remove">
         {% trans "remove area" %}
         </button>
     </form>

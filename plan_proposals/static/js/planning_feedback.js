@@ -36,19 +36,16 @@ function get_popup_lonlat(geometry) {
     return lonlat;
 }
 
-
 /*
  popup save feature event handler
  connected to the save button in the popup form
 */
 function save_handler(evt) {
-    console.log("save feature handler");
-
+    
     //get the form data
-    //var popup_values = $('form[name=popupform].active').serializeArray();
     var popup_values = $('form.popupform.active').serializeArray();
-    console.log(popup_values);
 
+    //set form value attributes for feature
     evt.data[0].attributes.form_values = popup_values;
 
     //save the geojson
@@ -56,7 +53,6 @@ function save_handler(evt) {
     var geojson = gf.write(evt.data[0]);
 
     if (evt.data[0].fid === undefined || evt.data[0].fid === null) {
-
         gnt.geo.create_feature('@me', feature_group, geojson, {
             'success': function(data, textStatus, jqXHR) {
                 var new_feature = null;
@@ -69,20 +65,23 @@ function save_handler(evt) {
                     new_feature = map.getLayersByName('Area Layer')[0].getFeatureByFid(undefined);
                 }
                 new_feature.fid = data.id;
-        }
-    });
-
+            }
+        });
+        
     } else {
         //update the feature
-        gnt.geo.update_feature('@me',
+        gnt.geo.update_feature(undefined,
                                feature_group,
                                geojson,
                                undefined);
     }
 
     //unselect feature
-    map.getControlsByClass( 'OpenLayers.Control.SelectFeature' )[0].unselectAll(evt);
+   map.getControlsByClass( 'OpenLayers.Control.SelectFeature' )[0].unselectAll(evt);
 
+    //set the popup form as not active
+    $('form.popupform.active').removeClass('active');
+    
     //remove popup from map
     if(popup !== undefined) {
         map.removePopup(popup);
@@ -120,55 +119,68 @@ This function makes the popup and shows it for the feature given.
 Expects there to be a feature.popup created
 that can be called.
 */
-function show_popup_for_feature(feature) {
-
+function show_popup_for_feature(feature, popup_name) {
+    console.log("show popup for feature");
+    console.log(feature);
+    console.log(popup_name);
     if ( feature.popup !== undefined ) {
-
+        
+        if(popup_name === undefined) {
+            popup_name = $('.drawbutton[name=' +
+                           feature.attributes.name +
+                           ']').data('popup');
+        }
+        console.log(popup_name);
         //remove old popup if existing
         if(popup !== undefined) {
             map.removePopup(popup);
             popup = undefined;
         }
-
+        
         //create popup and put it on the map
         popup = feature.popup;
         map.addPopup(popup);
 
         //add a class to the form to recognize it as active
-        console.log('div[id="' + feature.id + '"] form.popupform');
-        $('div[id="' + feature.id + '"] form.popupform').addClass('active');
-
+        $('.olFramedCloudPopupContent form[name="' + popup_name + '"]').addClass('active');
+        console.log($('.olFramedCloudPopupContent form[name="' + popup_name + '"]'));
         // add values to the form the values are connected but the form element name
         // and the name value in the feature attributes
+        if(feature.attributes.form_values === undefined) {
+            feature.attributes.form_values = [];
+        }
+        
         $('form.popupform.active :input').val(function (index, value) {
-
+            
             for(var i = 0; i < feature.attributes.form_values.length; i++) {
                 var val_obj = feature.attributes.form_values[i];
-
+                
                 if($(this).attr('name') === val_obj.name) {
                     //this shuold be done for all kinds of multiple value inputs
                     if($(this).attr('type') === 'checkbox' &&
                        $(this).attr('value') === val_obj.value) {
-
+                        
                         $(this).attr('checked', 'checked');
                         return value;
-
+                    
                     } else if($(this).attr('type') === 'checkbox') {
                     } else {
-
+                        
                         return val_obj.value;
                     }
                 }
             }
             return value;
         });
-
+        
         //connect the event to the infowindow buttons
-        $('div[id="' + feature.id + '"] .save_feature').off();
-        $('div[id="' + feature.id + '"] .save_feature').click([feature],
-                                                      save_handler);
-        $('div[id="' + feature.id + '"] .remove_feature').click([feature],
-                                                        remove_handler);
+        console.log("connect events to");
+        console.log($('form[name="' + popup_name + '"] button.save'));
+        console.log('form[name="' + popup_name + '"] button.save');
+        $('form[name="' + popup_name + '"] button.save').click([feature],
+                                                               save_handler);
+        $('form[name="' + popup_name + '"] button.remove').click([feature],
+                                                                 remove_handler);
 
         return true;
 
@@ -177,26 +189,6 @@ function show_popup_for_feature(feature) {
         return false;
 
     }
-}
-
-/*
-This function handles the on feature select
-where it shows the popup with the correct
-values from the feature attributes.
-*/
-function on_feature_select_handler(evt) {
-    show_popup_for_feature(evt);
-}
-
-/*
-This function handles the on feature unselect
-where it closes the popup.
-*/
-function on_feature_unselect_handler(evt) {
-
-    //remove popup from map
-    map.removePopup(popup);
-    popup = undefined;
 }
 
 /*
@@ -209,24 +201,25 @@ function on_feature_unselect_handler(evt) {
  to be shown as the content in popup.
 */
 function feature_added(evt) {
+    
     //get the right lonlat for the popup position
     evt.lonlat = get_popup_lonlat(evt.geometry);
 
-    //get the active button name = infowindow name
-    var draw_button_name = $('button.ui-state-active').attr('name');
+    //get the active buttons popup name
+    var name = $('button.ui-state-active').attr('name');
+    var popup_name = $('button.ui-state-active').data('popup');
     var popupcontent = " default info content ";
 
     //get the right content for the popup
-    if( draw_button_name !== undefined ) {
-        popupcontent = $('#' + draw_button_name).html();
+    if( popup_name !== undefined ) {
+        popupcontent = $('#' + popup_name).html();
     }
     evt.popupClass = OpenLayers.Popup.FramedCloud;
     evt.data = {
-        popupSize: null,
-        popupContentHTML: popupcontent
+        'popupSize': null,
+        'popupContentHTML': popupcontent
     };
-
-    evt.attributes.name = draw_button_name;
+    evt.attributes.name = name;
 
     //the createPopup function did not seem to work so here
     evt.popup = new OpenLayers.Popup.FramedCloud(
@@ -236,17 +229,37 @@ function feature_added(evt) {
                         evt.data.popupContentHTML,
                         null,
                         false);
-
-    show_popup_for_feature(evt);
+    
+    show_popup_for_feature(evt, popup_name);
 
     //deactivate the map and the drawing
     //unselect the button
     $(".drawbutton.ui-state-active")
         .drawButton( 'deactivate' );
-
+        
     evt.layer.redraw();
 }
 
+/*
+This function handles the on feature select
+where it shows the popup with the correct
+values from the feature attributes.
+*/
+function on_feature_select_handler(evt) {
+    console.log("on feature select");
+    console.log(evt);
+    show_popup_for_feature(evt);
+}
+
+/*
+This function handles the on feature unselect
+where it closes the popup.
+*/
+function on_feature_unselect_handler(evt) {
+    //remove popup from map
+    map.removePopup(popup);
+    popup = undefined;
+}
 
 
 /*
