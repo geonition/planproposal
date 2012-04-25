@@ -408,7 +408,8 @@ jQuery(document).ready(function() {
                                 graphicWidth: 23,
                                 graphicYOffset: -30
                             }
-                        })
+                        }),
+                        displayInLayerSwitcher: false
                     });
         var routeLayer = new OpenLayers.Layer.Vector(
                     "Route Layer",
@@ -419,7 +420,8 @@ jQuery(document).ready(function() {
                                 strokeColor: '#ee9900',
                                 cursor: 'pointer'
                             }
-                        })
+                        }),
+                        displayInLayerSwitcher: false
                     });
         var areaLayer = new OpenLayers.Layer.Vector(
                     "Area Layer",
@@ -432,7 +434,8 @@ jQuery(document).ready(function() {
                                 fillColor: '#ee9900',
                                 fillOpacity: 0.3
                             }
-                        })
+                        }),
+                        displayInLayerSwitcher: false
                     });
         //add an information layer where annotations and other
         //visual information can be set on the proposal
@@ -446,7 +449,8 @@ jQuery(document).ready(function() {
                                 fillOpacity: 0,
                                 strokeDashstyle: 'dash'
                             }
-                        })
+                        }),
+                        displayInLayerSwitcher: false
                     });
         /* not working properly at the moment
         projectInformationLayer.addFeatures(proposal_area_feature);
