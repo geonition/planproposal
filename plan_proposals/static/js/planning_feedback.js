@@ -120,9 +120,6 @@ Expects there to be a feature.popup created
 that can be called.
 */
 function show_popup_for_feature(feature, popup_name) {
-    console.log("show popup for feature");
-    console.log(feature);
-    console.log(popup_name);
     if ( feature.popup !== undefined ) {
         
         if(popup_name === undefined) {
@@ -130,7 +127,7 @@ function show_popup_for_feature(feature, popup_name) {
                            feature.attributes.name +
                            ']').data('popup');
         }
-        console.log(popup_name);
+        
         //remove old popup if existing
         if(popup !== undefined) {
             map.removePopup(popup);
@@ -143,7 +140,7 @@ function show_popup_for_feature(feature, popup_name) {
 
         //add a class to the form to recognize it as active
         $('.olFramedCloudPopupContent form[name="' + popup_name + '"]').addClass('active');
-        console.log($('.olFramedCloudPopupContent form[name="' + popup_name + '"]'));
+        
         // add values to the form the values are connected but the form element name
         // and the name value in the feature attributes
         if(feature.attributes.form_values === undefined) {
@@ -174,9 +171,6 @@ function show_popup_for_feature(feature, popup_name) {
         });
         
         //connect the event to the infowindow buttons
-        console.log("connect events to");
-        console.log($('form[name="' + popup_name + '"] button.save'));
-        console.log('form[name="' + popup_name + '"] button.save');
         $('form[name="' + popup_name + '"] button.save').click([feature],
                                                                save_handler);
         $('form[name="' + popup_name + '"] button.remove').click([feature],
@@ -246,8 +240,6 @@ where it shows the popup with the correct
 values from the feature attributes.
 */
 function on_feature_select_handler(evt) {
-    console.log("on feature select");
-    console.log(evt);
     show_popup_for_feature(evt);
 }
 
