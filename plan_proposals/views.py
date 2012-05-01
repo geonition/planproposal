@@ -8,6 +8,7 @@ from django.http import HttpResponseNotFound
 from django.shortcuts import render_to_response
 from django.shortcuts import redirect
 from django.template import RequestContext
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 
 def planning_project(request, project_name):
@@ -19,6 +20,7 @@ def planning_project(request, project_name):
                               {'project_name' : project_name},
                               context_instance=RequestContext(request))
 
+@ensure_csrf_cookie
 def plan_proposal(request, project_name, proposal_name):
     """
     This is the page of one planning proposal. The proposal
