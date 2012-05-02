@@ -1,0 +1,143 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-05-02 13:55+0300\n"
+"PO-Revision-Date: 2012-05-02 14:05+0200\n"
+"Last-Translator: Kristoffer Snabb <kristoffer.snabb@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: templates/planning_project.html:6
+msgid "Järvenpää"
+msgstr ""
+
+#: templates/planning_project.html:6
+msgid "pehmoGIS"
+msgstr ""
+
+#: templates/planning_project.html:19
+msgid "Dashboard"
+msgstr ""
+
+#: templates/planning_project.html:30
+#: templates/planning_project.html.py:70
+msgid "More information about the project"
+msgstr ""
+
+#: templates/planning_project.html:38
+#: templates/planning_project.html.py:49
+#: templates/planning_project.html:59
+msgid "Pajalanpiha"
+msgstr ""
+
+#: templates/planning_project.html:38
+#: templates/planning_project.html.py:49
+#: templates/planning_project.html:59
+msgid "proposal"
+msgstr ""
+
+#: templates/planning_project.html:45
+#: templates/planning_project.html.py:55
+#: templates/planning_project.html:65
+msgid "Look at and evaluate the proposal"
+msgstr ""
+
+#: templates/planning_project.html:81
+msgid "Järvenpään kaupunki"
+msgstr ""
+
+#: templates/proposal_feedback.html:30
+msgid "Read more about the draft..."
+msgstr ""
+
+#: templates/proposal_feedback.html:39
+#: templates/proposal_feedback.html:142
+msgid "proposal image"
+msgstr ""
+
+#: templates/proposal_feedback.html:46
+msgid "Evaluate the draft"
+msgstr ""
+
+#: templates/proposal_feedback.html:48
+msgid "Mark places on the draft where you feel the draft is good and where it needs improvement. Use the drawing tools below."
+msgstr ""
+
+#: templates/proposal_feedback.html:52
+msgid "place"
+msgstr ""
+
+#: templates/proposal_feedback.html:56
+msgid "route"
+msgstr ""
+
+#: templates/proposal_feedback.html:60
+msgid "area"
+msgstr ""
+
+#: templates/proposal_feedback.html:68
+msgid "Free comment"
+msgstr "Ge fri respons"
+
+#: templates/proposal_feedback.html:73
+msgid "Thank you for your comment!"
+msgstr "Din respons har sparats!"
+
+#: templates/proposal_feedback.html:85
+msgid "Send comment"
+msgstr "Skicka"
+
+#: templates/proposal_feedback.html:93
+msgid "Back to previous page"
+msgstr "Tillbaka till föregående sida"
+
+#: templates/proposal_feedback.html:98
+msgid "More information about the plan"
+msgstr "Mera information om detaljplanen"
+
+#: templates/proposal_feedback.html:104
+msgid "Please, tell us more about the place"
+msgstr "Var god och berätta mera om platsen"
+
+#: templates/proposal_feedback.html:108
+msgid "save place"
+msgstr "spara platsen"
+
+#: templates/proposal_feedback.html:111
+msgid "remove place"
+msgstr "ta bort platsen"
+
+#: templates/proposal_feedback.html:116
+msgid "Please, tell us more about the route"
+msgstr "Var god och berätta mera om rutten"
+
+#: templates/proposal_feedback.html:120
+msgid "save route"
+msgstr "spara rutten"
+
+#: templates/proposal_feedback.html:123
+msgid "remove route"
+msgstr "ta bort rutten"
+
+#: templates/proposal_feedback.html:128
+msgid "Please, tell us more about the area"
+msgstr "Var god och berätta mera om området"
+
+#: templates/proposal_feedback.html:132
+msgid "save area"
+msgstr "spara området"
+
+#: templates/proposal_feedback.html:135
+msgid "remove area"
+msgstr "ta bort området"
+
