@@ -47,25 +47,32 @@
     <p>
         {% trans "Mark places on the draft where you feel the draft is good and where it needs improvement. Use the drawing tools below." %}
     </p>
-    <div class="draw_tools">
-        <button type="button" class="drawbutton point" id="point_feedback" name="place" data-color="ee9900" data-popup="place">
-        {% trans "place" %}
-        </button><br />
-        <button type="button" class="drawbutton route" id="route_feedback" name="route"
-        data-color="ee9900" data-popup="route">
-        {% trans "route" %}
-        </button><br />
-        <button type="button" class="drawbutton area" id="area_feedback" name="area"
-        data-color="ee9900" data-popup="area">
-        {% trans "area" %}
-        </button>
-    </div>
+    
     <form id="proposal-form" action="POST">
-        {% csrf_token %}
+        
+        <div class="draw_tools">
+            <button type="button" class="drawbutton point" id="point_feedback" name="place" data-color="ee9900" data-popup="place">
+            {% trans "place" %}
+            </button><br />
+            <button type="button" class="drawbutton route" id="route_feedback" name="route"
+            data-color="ee9900" data-popup="route">
+            {% trans "route" %}
+            </button><br />
+            <button type="button" class="drawbutton area" id="area_feedback" name="area"
+            data-color="ee9900" data-popup="area">
+            {% trans "area" %}
+            </button>
+        </div>
+        
         <table>
             <tr>
                 <td colspan="2">
                     <label>{% trans "Free comment" %}</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea id="free_comment" name="free_comment" cols="33" rows="5"></textarea>
                 </td>
             </tr>
             <tr class="free_comment_thanks">
@@ -74,15 +81,10 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="2">
-                    <textarea id="free_comment" name="free_comment" cols="33" rows="5"></textarea>
-                </td>
-            </tr>
-            <tr>
                 <td>
                 </td>
                 <td>
-                    <input type="submit" class="submit-evaluation" value="{% trans 'Send comment' %}" />
+                    <button type="button" class="submit-evaluation">{% trans 'Send comment' %}</button>
                 </td>
             </tr>
         </table>
@@ -100,41 +102,43 @@
 </div>
 
 <!-- infowindows with id's put here so that translations work -->
-<div id="place" class="popup hidden">
-    <p>{% trans "Please, tell us more about the place" %}:</p>
-    <form name="place" class="popupform" action="#">
-        <textarea name="comment" cols="24" rows="5" ></textarea><br />
-        <button type="button" class="save">
-        {% trans "save place" %}
-        </button>
-        <button type="button" class="remove">
-        {% trans "remove place" %}
-        </button>
-    </form>
-</div>
-<div id="route" class="popup hidden">
-    <p>{% trans "Please, tell us more about the route" %}:</p>
-    <form name="route" class="popupform" action="#">
-        <textarea name="comment" cols="24" rows="5" ></textarea><br />
-        <button type="button" class="save">
-        {% trans "save route" %}
-        </button>
-        <button type="button" class="remove">
-        {% trans "remove route" %}
-        </button>
-    </form>
-</div>
-<div id="area" class="popup hidden">
-    <p>{% trans "Please, tell us more about the area" %}:</p>
-    <form name="area" class="popupform" action="#" method="post">
-        <textarea name="comment" cols="24" rows="5" ></textarea><br />
-        <button type="button" class="save">
-        {% trans "save area" %}
-        </button>
-        <button type="button" class="remove">
-        {% trans "remove area" %}
-        </button>
-    </form>
+<div id="popups">
+    <div id="place" class="popup hidden">
+        <p>{% trans "Please, tell us more about the place" %}:</p>
+        <form name="place" class="popupform" action="#">
+            <textarea name="comment" cols="24" rows="5" ></textarea><br />
+            <button type="button" class="save">
+            {% trans "save place" %}
+            </button>
+            <button type="button" class="remove">
+            {% trans "remove place" %}
+            </button>
+        </form>
+    </div>
+    <div id="route" class="popup hidden">
+        <p>{% trans "Please, tell us more about the route" %}:</p>
+        <form name="route" class="popupform" action="#">
+            <textarea name="comment" cols="24" rows="5" ></textarea><br />
+            <button type="button" class="save">
+            {% trans "save route" %}
+            </button>
+            <button type="button" class="remove">
+            {% trans "remove route" %}
+            </button>
+        </form>
+    </div>
+    <div id="area" class="popup hidden">
+        <p>{% trans "Please, tell us more about the area" %}:</p>
+        <form name="area" class="popupform" action="#" method="post">
+            <textarea name="comment" cols="24" rows="5" ></textarea><br />
+            <button type="button" class="save">
+            {% trans "save area" %}
+            </button>
+            <button type="button" class="remove">
+            {% trans "remove area" %}
+            </button>
+        </form>
+    </div>
 </div>
 
 {% for p in proposal_image %}
@@ -151,11 +155,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 <script src="https://softgis.org.aalto.fi/OpenLayers/OpenLayers.js"></script>
 <script type="text/javascript" src="{% url api_javascript %}"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.ui.drawbutton.js"></script>
 <script type="text/javascript" src="{% url map_js map_slug_name='plans' %}"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/planning_feedback.js"></script>
 <script type="text/javascript">
 var proposal_area = {{ proposal_details.project.area.json|safe }};
-var feature_group = 'PP-{{ proposal_details.project.slug }}-{{ proposal_details.slug }}';
+var data_group = 'PP-{{ proposal_details.project.slug }}-{{ proposal_details.slug }}';
+
+
 </script>
 {% endblock javascript %}
