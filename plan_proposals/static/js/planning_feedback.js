@@ -36,12 +36,13 @@ jQuery(document).ready(function() {
         return false;
     });
 
-    /* initialize the questionnaire */
+    //initialize the questionnaire
     gnt.questionnaire.init('#proposal-form',
                            '',
                            undefined,
                            proposal_area,
-                           data_group);
+                           data_group,
+                           function() {console.log(map);});
     
     $(".free_comment_thanks").hide();
     $(".submit-evaluation").click(function(evt) {
