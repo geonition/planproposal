@@ -107,36 +107,39 @@
         <p>{% trans "Please, tell us more about the place" %}:</p>
         <form name="place" class="popupform" action="#">
             <textarea name="comment" cols="24" rows="5" ></textarea><br />
+            <label><input type="checkbox" name="private" value="false" checked="checked" /> {% trans 'This feedback is public' %} </label><br />
             <button type="button" class="save">
             {% trans "save place" %}
-            </button>
+            </button>&nbsp
             <button type="button" class="remove">
             {% trans "remove place" %}
-            </button>
+            </button><br />
         </form>
     </div>
     <div id="route" class="popup hidden">
         <p>{% trans "Please, tell us more about the route" %}:</p>
         <form name="route" class="popupform" action="#">
             <textarea name="comment" cols="24" rows="5" ></textarea><br />
+            <label><input type="checkbox" name="private" value="false" checked="checked" /> {% trans 'This feedback is public' %} </label><br />
             <button type="button" class="save">
-            {% trans "save route" %}
-            </button>
+            {% trans "save place" %}
+            </button>&nbsp
             <button type="button" class="remove">
-            {% trans "remove route" %}
-            </button>
+            {% trans "remove place" %}
+            </button><br />
         </form>
     </div>
     <div id="area" class="popup hidden">
         <p>{% trans "Please, tell us more about the area" %}:</p>
-        <form name="area" class="popupform" action="#" method="post">
+        <form name="area" class="popupform" action="#">
             <textarea name="comment" cols="24" rows="5" ></textarea><br />
+            <label><input type="checkbox" name="private" value="false" checked="checked" /> {% trans 'This feedback is public' %} </label><br />
             <button type="button" class="save">
-            {% trans "save area" %}
-            </button>
+            {% trans "save place" %}
+            </button>&nbsp
             <button type="button" class="remove">
-            {% trans "remove area" %}
-            </button>
+            {% trans "remove place" %}
+            </button><br />
         </form>
     </div>
 </div>
