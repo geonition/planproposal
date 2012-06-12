@@ -42,12 +42,84 @@ jQuery(document).ready(function() {
                            undefined,
                            proposal_area,
                            data_group,
-                           function() {console.log(map);});
+                           function() {
+        
+        //This function will get the feedback (features and properties) of the current user when he checks 
+        //the checkbox to display his 'own' feedback
+        var otherLayer = new OpenLayers.Layer.Vector("Others Layer");
+        otherLayer.setVisibility(false);
+        map.addLayer(otherLayer);
+        var maplayers = map.getControl('selectcontrol').layers;
+        console.log(maplayers);
+        console.log(map.getControl('selectcontrol').layers[i]);
+        map.getControl('selectcontrol').setLayer([otherLayer, maplayers]);
+                    
+                
+        var others_feature_collected = false
+        
+        $('form.feedback input:checkbox').change(function (evt) {
+            console.log('planproposals')
+            console.log(evt);
+            console.log($(this).attr('checked'));
+            var other = map.getLayersByName('Others Layer')[0];
+            if ( $(this).attr('checked') === 'checked' ) {
+                console.log("checked");
+                if (others_feature_collected === false) {
+                    console.log('checkbox is now false.features will be added now to other layer');
+                    gnt.geo.get_features('@others',
+                                         data_group,
+                                         '',
+                        {
+                            'success': function(data) {
+                                if (data.features) {
+                                    var gf = new OpenLayers.Format.GeoJSON();
+                                    var user, comment;
+                                    for(var i = 0; i < data.features.length; i++) {
+                                        var feature = gf.parseFeature(data.features[i]);
+                                        //add values losed in parsing should be added again
+                                        feature['private'] = data.features[i]['private'];
+                                        feature.lonlat = gnt.questionnaire.get_popup_lonlat(feature.geometry);
+                                        other.addFeatures(feature);
+                                        comment = feature.attributes.form_values[0]['value'];
+                                        user = feature.attributes.user;
+                                        console.log(user +' '+ comment);
+                                        var popupcontent = user + " says " + comment;
+                                        feature.popupClass = OpenLayers.Popup.FramedCloud;
+                                        feature.popup = new OpenLayers.Popup.FramedCloud(
+                                                   feature.id,
+                                                   feature.lonlat,
+                                                   null,
+                                                   popupcontent,
+                                                   null,
+                                                   false);
+                                    }
+                                }
+                           }
+                       });
+                    others_feature_collected = true;
+                    console.log('feature collected and added to other layer');
+                    other.setVisibility(true);
+                } else if (others_feature_collected === true) {
+                    console.log('Features allready added.just displaying layer')
+                    other.setVisibility(true);
+                }
+            } else /*if ( $(this).attr('checked') === 'unchecked' )*/ {
+                console.log("unchecked");
+                other.setVisibility(false);
+            }            
+        })
+    });
+                           
+                           
+                           
+                           
     
     $(".free_comment_thanks").hide();
     $(".submit-evaluation").click(function(evt) {
         $(".free_comment_thanks").show();
     });
+    
+    
 
 });
 

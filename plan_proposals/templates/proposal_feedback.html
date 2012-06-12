@@ -4,6 +4,7 @@
 {% block stylesheet %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/planning_feedback.css" />
     <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://softgis.org.aalto.fi/OpenLayers/theme/default/style.css" type="text/css" />
 {% endblock %}
 
 {% block content %}
@@ -47,7 +48,10 @@
     <p>
         {% trans "Mark places on the draft where you feel the draft is good and where it needs improvement. Use the drawing tools below." %}
     </p>
-    
+    <form id="feedback-layers" class="feedback" action="#">
+        <label><input type="checkbox" id="others" value="@others" /> {% trans 'Display Others feedback' %} </label><br />
+    </form>
+    <br />
     <form id="proposal-form" action="POST">
         
         <div class="draw_tools">
@@ -141,6 +145,12 @@
             {% trans "remove place" %}
             </button>
         </form>
+    </div>
+    <div id="other" class="popup hidden">
+        <p>{% trans "Please, tell us more about the place" %}:</p>
+       
+            <p> Others features </p>
+       
     </div>
 </div>
 
