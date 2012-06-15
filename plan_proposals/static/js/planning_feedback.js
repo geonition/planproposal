@@ -49,12 +49,12 @@ jQuery(document).ready(function() {
         var otherLayer = new OpenLayers.Layer.Vector("Others Layer");
         otherLayer.setVisibility(false);
         map.addLayer(otherLayer);
-        var maplayers = map.getControl('selectcontrol').layers;
-        console.log(maplayers);
-        console.log(map.getControl('selectcontrol').layers[i]);
-        map.getControl('selectcontrol').setLayer([otherLayer, maplayers]);
-                    
-                
+        var all_layers = [];
+        all_layers = map.layers;
+        console.log(all_layers);
+        var new_select_control = map.getControl('selectcontrol');
+        new_select_control.setLayer((new_select_control.layers).concat(otherLayer));
+        
         var others_feature_collected = false
         
         $('form.feedback input:checkbox').change(function (evt) {
