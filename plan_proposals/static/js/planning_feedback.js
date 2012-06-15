@@ -44,28 +44,26 @@ jQuery(document).ready(function() {
                            data_group,
                            function() {
         
-        //This function will get the feedback (features and properties) of the current user when he checks 
-        //the checkbox to display his 'own' feedback
+        // Create a 'otherLayer' to collect public feedback from other users and add it to the map.
+        //The layer also is added to the existing select feature control 'selectcontrol'
         var otherLayer = new OpenLayers.Layer.Vector("Others Layer");
         otherLayer.setVisibility(false);
         map.addLayer(otherLayer);
+        
         var all_layers = [];
         all_layers = map.layers;
-        console.log(all_layers);
         var new_select_control = map.getControl('selectcontrol');
         new_select_control.setLayer((new_select_control.layers).concat(otherLayer));
         
         var others_feature_collected = false
         
+        //This function will get the feedback (features and properties) of the current user when he checks 
+        //the checkbox to display his 'own' feedback
         $('form.feedback input:checkbox').change(function (evt) {
-            console.log('planproposals')
-            console.log(evt);
             console.log($(this).attr('checked'));
             var other = map.getLayersByName('Others Layer')[0];
             if ( $(this).attr('checked') === 'checked' ) {
-                console.log("checked");
                 if (others_feature_collected === false) {
-                    console.log('checkbox is now false.features will be added now to other layer');
                     gnt.geo.get_features('@others',
                                          data_group,
                                          '',
@@ -82,7 +80,6 @@ jQuery(document).ready(function() {
                                         other.addFeatures(feature);
                                         comment = feature.attributes.form_values[0]['value'];
                                         user = feature.attributes.user;
-                                        console.log(user +' '+ comment);
                                         var popupcontent = user + " says " + comment;
                                         feature.popupClass = OpenLayers.Popup.FramedCloud;
                                         feature.popup = new OpenLayers.Popup.FramedCloud(
@@ -97,29 +94,21 @@ jQuery(document).ready(function() {
                            }
                        });
                     others_feature_collected = true;
-                    console.log('feature collected and added to other layer');
                     other.setVisibility(true);
                 } else if (others_feature_collected === true) {
-                    console.log('Features allready added.just displaying layer')
                     other.setVisibility(true);
                 }
             } else /*if ( $(this).attr('checked') === 'unchecked' )*/ {
-                console.log("unchecked");
                 other.setVisibility(false);
             }            
         })
+    
     });
-                           
-                           
-                           
-                           
     
     $(".free_comment_thanks").hide();
     $(".submit-evaluation").click(function(evt) {
         $(".free_comment_thanks").show();
-    });
+        });
     
-    
-
 });
 
