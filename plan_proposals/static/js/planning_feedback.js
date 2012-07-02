@@ -57,8 +57,8 @@ jQuery(document).ready(function() {
         
         var others_feature_collected = false
         
-        //This function will get the feedback (features and properties) of the current user when he checks 
-        //the checkbox to display his 'own' feedback
+        //This function will get the feedback (features and properties) of the other users when he checks 
+        //the checkbox to display 'others' feedback
         $('form.feedback input:checkbox').change(function (evt) {
             console.log($(this).attr('checked'));
             var other = map.getLayersByName('Others Layer')[0];
