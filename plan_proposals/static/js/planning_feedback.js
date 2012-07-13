@@ -49,6 +49,8 @@ jQuery(document).ready(function() {
         var otherLayer = new OpenLayers.Layer.Vector("Others Layer");
         otherLayer.setVisibility(false);
         map.addLayer(otherLayer);
+        map.zoomToExtent(proposal_area);
+        
         
         var all_layers = [];
         all_layers = map.layers;
@@ -62,6 +64,7 @@ jQuery(document).ready(function() {
         $('form.feedback input:checkbox').change(function (evt) {
             console.log($(this).attr('checked'));
             var other = map.getLayersByName('Others Layer')[0];
+            //other.events.register("featureadded", null, featureFilter);
             if ( $(this).attr('checked') === 'checked' ) {
                 if (others_feature_collected === false) {
                     gnt.geo.get_features('@others',
@@ -102,6 +105,46 @@ jQuery(document).ready(function() {
                 other.setVisibility(false);
             }            
         })
+        
+        function featureFilter(event) {
+            console.log('event occured'+ event.type);
+            var current_extent = map.getExtent();
+            console.log(current_extent);
+            var onscreen_features = [];
+            
+            var layer = map.getLayersByName('Others Layer')[0];
+            var layer_features = layer.features;
+            getOnScreenFeatures(layer_features);
+            
+            layer = map.getLayersByName('Route Layer')[0];
+            layer_features = layer.features;
+            getOnScreenFeatures(layer_features);
+            
+            layer = map.getLayersByName('Area Layer')[0];
+            layer_features = layer.features;
+            getOnScreenFeatures(layer_features);
+            
+            layer = map.getLayersByName('Point Layer')[0];
+            layer_features = layer.features;
+            getOnScreenFeatures(layer_features);
+            
+            
+            function getOnScreenFeatures(layer_features) {
+                for(i=0;i< layer_features.length;i++) {
+                    var feature = layer_features[i];
+                    if (feature.onScreen() === true) {
+                        onscreen_features.push(feature)
+                        }
+                    
+                    }
+                }
+            
+            console.log(onscreen_features);
+            
+            }
+        
+        map.events.register("moveend", null, featureFilter);
+        
     
     });
     
