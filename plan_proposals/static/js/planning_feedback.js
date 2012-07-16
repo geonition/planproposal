@@ -62,7 +62,6 @@ jQuery(document).ready(function() {
         //This function will get the feedback (features and properties) of the other users when he checks 
         //the checkbox to display 'others' feedback
         $('form.feedback input:checkbox').change(function (evt) {
-            console.log($(this).attr('checked'));
             var other = map.getLayersByName('Others Layer')[0];
             //other.events.register("featureadded", null, featureFilter);
             if ( $(this).attr('checked') === 'checked' ) {
@@ -107,9 +106,7 @@ jQuery(document).ready(function() {
         })
         
         function featureFilter(event) {
-            console.log('event occured'+ event.type);
             var current_extent = map.getExtent();
-            console.log(current_extent);
             var onscreen_features = [];
             
             //var vector_layers = map.getLayersByName(('Others Layer'|'Route Layers'|green));
@@ -140,9 +137,6 @@ jQuery(document).ready(function() {
                     
                     }
                 }
-            
-            console.log(onscreen_features);
-            
             }
         
         map.events.register("moveend", null, featureFilter);
