@@ -46,10 +46,22 @@ jQuery(document).ready(function() {
         
         // Create a 'otherLayer' to collect public feedback from other users and add it to the map.
         //The layer also is added to the existing select feature control 'selectcontrol'
-        var otherLayer = new OpenLayers.Layer.Vector("Others Layer");
+        var otherLayer = new OpenLayers.Layer.Vector("Others Layer",
+                                                    {
+                                                        styleMap: new OpenLayers.StyleMap({
+                                                            'default': {
+                                                                strokeWidth: 3,
+                                                                strokeColor: '#aaaaff',
+                                                                cursor: 'pointer',
+                                                                fillColor: '#aaaaff',
+                                                                fillOpacity: 0.3,
+                                                                pointRadius: 5
+                                                            }
+                                                        })
+                                                    });
         otherLayer.setVisibility(false);
         map.addLayer(otherLayer);
-              
+
         
         var all_layers = [];
         all_layers = map.layers;
@@ -80,7 +92,18 @@ jQuery(document).ready(function() {
                                         other.addFeatures(feature);
                                         comment = feature.attributes.form_values[0]['value'];
                                         user = feature.attributes.user;
-                                        var popupcontent = user + " says " + comment;
+                                        
+                                        // set the right content
+                                        var anonymous_regexp = new RegExp( 'T[0-9]+.[0-9]+R[0-9]+.[0-9]+' );
+                                        if( !anonymous_regexp.test( user ) ) {
+                                            $( '#other .username' ).text( user );
+                                        }
+                                        $( '#other .comment' ).text( comment );
+                                        
+                                        //get the content
+                                        var popupcontent = $('#other').html();
+                                        
+                                        //var popupcontent = user + " says " + comment;
                                         feature.popupClass = OpenLayers.Popup.FramedCloud;
                                         feature.popup = new OpenLayers.Popup.FramedCloud(
                                                    feature.id,
