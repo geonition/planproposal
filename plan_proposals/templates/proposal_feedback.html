@@ -23,26 +23,6 @@
 </ul>
 
 <div class="proposal-info">
-    <div class="short_description">
-        <p>{{ proposal_details.short_description|safe }}
-        </p>
-        <p>
-            <a id="more_info_link" class="reset" href="#">
-                {% trans "Read more about the draft..." %}
-            </a>
-        </p>
-
-        <div id="imageCarousel" class="carousel">
-
-            <div class="carousel-inner">
-                {% for p in proposal_image %}
-                    <div id="img_{{ p.id }}" class="item">
-                        <img src="{{ p.image.url }}" alt="{% trans 'proposal image' %}" height="70" width="70" />
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
 
     <h4 class="base_textcolor">{% trans "Evaluate the draft" %}</h4>
     <p>
@@ -99,6 +79,31 @@
     {% trans "Back to previous page" %}
     </a>
     -->
+    
+    <h4 class="base_textcolor">{% trans "Information about this draft" %}</h4>
+    
+    <div class="short_description">
+        <p>{{ proposal_details.short_description|safe }}
+        </p>
+
+        <div id="imageCarousel" class="carousel">
+
+            <div class="carousel-inner">
+                {% for p in proposal_image %}
+                    <div id="img_{{ p.id }}" class="item">
+                        <img src="{{ p.image.url }}" alt="{% trans 'proposal image' %}" height="70" width="70" />
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <p>
+            <a id="more_info_link" class="reset" href="#">
+                {% trans "Read more about the draft..." %}
+            </a>
+        </p>
+    </div>
+    
 </div>
 
 <div id="more_info" title="{% trans 'More information about the plan' %}">
