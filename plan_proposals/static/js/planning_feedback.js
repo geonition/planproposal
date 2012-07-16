@@ -112,6 +112,7 @@ jQuery(document).ready(function() {
             console.log(current_extent);
             var onscreen_features = [];
             
+            //var vector_layers = map.getLayersByName(('Others Layer'|'Route Layers'|green));
             var layer = map.getLayersByName('Others Layer')[0];
             var layer_features = layer.features;
             getOnScreenFeatures(layer_features);
@@ -132,7 +133,8 @@ jQuery(document).ready(function() {
             function getOnScreenFeatures(layer_features) {
                 for(i=0;i< layer_features.length;i++) {
                     var feature = layer_features[i];
-                    if (feature.onScreen() === true) {
+                    if (feature.getVisibility() === true && 
+                        feature.onScreen() === true) {
                         onscreen_features.push(feature)
                         }
                     
