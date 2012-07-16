@@ -49,8 +49,7 @@ jQuery(document).ready(function() {
         var otherLayer = new OpenLayers.Layer.Vector("Others Layer");
         otherLayer.setVisibility(false);
         map.addLayer(otherLayer);
-        map.zoomToExtent(proposal_area);
-        
+              
         
         var all_layers = [];
         all_layers = map.layers;
@@ -63,7 +62,6 @@ jQuery(document).ready(function() {
         //the checkbox to display 'others' feedback
         $('form.feedback input:checkbox').change(function (evt) {
             var other = map.getLayersByName('Others Layer')[0];
-            //other.events.register("featureadded", null, featureFilter);
             if ( $(this).attr('checked') === 'checked' ) {
                 if (others_feature_collected === false) {
                     gnt.geo.get_features('@others',
@@ -97,11 +95,16 @@ jQuery(document).ready(function() {
                        });
                     others_feature_collected = true;
                     other.setVisibility(true);
+                    featureFilter(event);
+                    
                 } else if (others_feature_collected === true) {
                     other.setVisibility(true);
+                    featureFilter(event);
+                    
                 }
             } else /*if ( $(this).attr('checked') === 'unchecked' )*/ {
                 other.setVisibility(false);
+                featureFilter(event);
             }            
         })
         
@@ -110,9 +113,12 @@ jQuery(document).ready(function() {
             var onscreen_features = [];
             
             //var vector_layers = map.getLayersByName(('Others Layer'|'Route Layers'|green));
-            var layer = map.getLayersByName('Others Layer')[0];
-            var layer_features = layer.features;
-            getOnScreenFeatures(layer_features);
+            
+                var layer = map.getLayersByName('Others Layer')[0];
+                var layer_features = layer.features;
+                getOnScreenFeatures(layer_features);
+               
+
             
             layer = map.getLayersByName('Route Layer')[0];
             layer_features = layer.features;
@@ -137,6 +143,8 @@ jQuery(document).ready(function() {
                     
                     }
                 }
+                
+            console.log(onscreen_features);
             }
         
         map.events.register("moveend", null, featureFilter);
