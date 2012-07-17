@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-02 13:55+0300\n"
-"PO-Revision-Date: 2012-05-02 14:05+0200\n"
+"POT-Creation-Date: 2012-07-17 01:55-0500\n"
+"PO-Revision-Date: 2012-07-17 09:58+0200\n"
 "Last-Translator: Kristoffer Snabb <kristoffer.snabb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,20 +19,20 @@ msgstr ""
 
 #: templates/planning_project.html:6
 msgid "Järvenpää"
-msgstr ""
+msgstr "Träskända"
 
 #: templates/planning_project.html:6
 msgid "pehmoGIS"
-msgstr ""
+msgstr "softGIS"
 
 #: templates/planning_project.html:19
 msgid "Dashboard"
-msgstr ""
+msgstr "Första sidan"
 
 #: templates/planning_project.html:30
 #: templates/planning_project.html.py:70
 msgid "More information about the project"
-msgstr ""
+msgstr "Mera information om projektet"
 
 #: templates/planning_project.html:38
 #: templates/planning_project.html.py:49
@@ -56,88 +56,110 @@ msgstr ""
 msgid "Järvenpään kaupunki"
 msgstr ""
 
-#: templates/proposal_feedback.html:30
-msgid "Read more about the draft..."
-msgstr ""
-
-#: templates/proposal_feedback.html:39
-#: templates/proposal_feedback.html:142
-msgid "proposal image"
-msgstr ""
-
-#: templates/proposal_feedback.html:46
+#: templates/proposal_feedback.html:27
 msgid "Evaluate the draft"
 msgstr ""
 
-#: templates/proposal_feedback.html:48
+#: templates/proposal_feedback.html:29
 msgid "Mark places on the draft where you feel the draft is good and where it needs improvement. Use the drawing tools below."
 msgstr ""
 
-#: templates/proposal_feedback.html:52
+#: templates/proposal_feedback.html:32
+msgid "Display Others feedback"
+msgstr ""
+
+#: templates/proposal_feedback.html:39
 msgid "place"
 msgstr ""
 
-#: templates/proposal_feedback.html:56
+#: templates/proposal_feedback.html:43
 msgid "route"
 msgstr ""
 
-#: templates/proposal_feedback.html:60
+#: templates/proposal_feedback.html:47
 msgid "area"
 msgstr ""
 
-#: templates/proposal_feedback.html:68
+#: templates/proposal_feedback.html:54
 msgid "Free comment"
 msgstr "Ge fri respons"
 
-#: templates/proposal_feedback.html:73
+#: templates/proposal_feedback.html:64
 msgid "Thank you for your comment!"
 msgstr "Din respons har sparats!"
 
-#: templates/proposal_feedback.html:85
+#: templates/proposal_feedback.html:71
 msgid "Send comment"
 msgstr "Skicka"
 
-#: templates/proposal_feedback.html:93
+#: templates/proposal_feedback.html:79
 msgid "Back to previous page"
 msgstr "Tillbaka till föregående sida"
 
-#: templates/proposal_feedback.html:98
+#: templates/proposal_feedback.html:83
+#, fuzzy
+msgid "Information about this draft"
+msgstr "Mera information om detaljplanen"
+
+#: templates/proposal_feedback.html:94
+#: templates/proposal_feedback.html:165
+msgid "proposal image"
+msgstr ""
+
+#: templates/proposal_feedback.html:102
+msgid "Read more about the draft..."
+msgstr ""
+
+#: templates/proposal_feedback.html:109
 msgid "More information about the plan"
 msgstr "Mera information om detaljplanen"
 
-#: templates/proposal_feedback.html:104
+#: templates/proposal_feedback.html:116
 msgid "Please, tell us more about the place"
 msgstr "Var god och berätta mera om platsen"
 
-#: templates/proposal_feedback.html:108
+#: templates/proposal_feedback.html:119
+#: templates/proposal_feedback.html:132
+#: templates/proposal_feedback.html:145
+msgid "This feedback is public"
+msgstr ""
+
+#: templates/proposal_feedback.html:121
+#: templates/proposal_feedback.html:134
+#: templates/proposal_feedback.html:147
 msgid "save place"
 msgstr "spara platsen"
 
-#: templates/proposal_feedback.html:111
+#: templates/proposal_feedback.html:124
+#: templates/proposal_feedback.html:137
+#: templates/proposal_feedback.html:150
 msgid "remove place"
 msgstr "ta bort platsen"
 
-#: templates/proposal_feedback.html:116
+#: templates/proposal_feedback.html:129
 msgid "Please, tell us more about the route"
 msgstr "Var god och berätta mera om rutten"
 
-#: templates/proposal_feedback.html:120
-msgid "save route"
-msgstr "spara rutten"
-
-#: templates/proposal_feedback.html:123
-msgid "remove route"
-msgstr "ta bort rutten"
-
-#: templates/proposal_feedback.html:128
+#: templates/proposal_feedback.html:142
 msgid "Please, tell us more about the area"
 msgstr "Var god och berätta mera om området"
 
-#: templates/proposal_feedback.html:132
-msgid "save area"
-msgstr "spara området"
+#: templates/proposal_feedback.html:156
+msgid "Anonymous"
+msgstr ""
 
-#: templates/proposal_feedback.html:135
-msgid "remove area"
-msgstr "ta bort området"
+#: templates/proposal_feedback.html:157
+msgid "says"
+msgstr ""
 
+#~ msgid "save route"
+#~ msgstr "spara rutten"
+
+#~ msgid "remove route"
+#~ msgstr "ta bort rutten"
+
+#~ msgid "save area"
+#~ msgstr "spara området"
+
+#~ msgid "remove area"
+#~ msgstr "ta bort området"
