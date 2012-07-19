@@ -8,16 +8,16 @@ var INITIAL_CENTER = {
     "y": 6704086.647
 };
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
 
-    $( "#more_info" ).dialog({
+    $("#more_info").dialog({
         autoOpen: false,
         show: "blind",
         width: 800,
         height: 600,
         modal: true
     });
-    $( ".image.dialog" ).dialog({
+    $(".image.dialog").dialog({
         autoOpen: false,
         show: "blind",
         width: 800,
@@ -26,13 +26,13 @@ jQuery(document).ready(function() {
         modal: true
     });
 
-    $( "#more_info_link" ).click(function() {
-        $( "#more_info" ).dialog( "open" );
+    $("#more_info_link").click(function () {
+        $("#more_info").dialog("open");
         return false;
     });
 
-    $( ".carousel-inner .item" ).click(function( event ) {
-        $( "." + $(event.currentTarget).attr('id') ).dialog( "open" );
+    $(".carousel-inner .item").click(function (event) {
+        $("." + $(event.currentTarget).attr('id')).dialog("open");
         return false;
     });
 
@@ -42,143 +42,115 @@ jQuery(document).ready(function() {
                            undefined,
                            proposal_area,
                            data_group,
-                           function() {
-        
+                           function () {
         // Create a 'otherLayer' to collect public feedback from other users and add it to the map.
         //The layer also is added to the existing select feature control 'selectcontrol'
-        var otherLayer = new OpenLayers.Layer.Vector("Others Layer",
-                                                    {
-                                                        styleMap: new OpenLayers.StyleMap({
-                                                            'default': {
-                                                                strokeWidth: 3,
-                                                                strokeColor: '#aaaaff',
-                                                                cursor: 'pointer',
-                                                                fillColor: '#aaaaff',
-                                                                fillOpacity: 0.3,
-                                                                pointRadius: 5
-                                                            }
-                                                        })
-                                                    });
-        otherLayer.setVisibility(false);
-        map.addLayer(otherLayer);
-
-        
-        var all_layers = [];
-        all_layers = map.layers;
-        var new_select_control = map.getControl('selectcontrol');
-        new_select_control.setLayer((new_select_control.layers).concat(otherLayer));
-        
-        var others_feature_collected = false
-        
-        //This function will get the feedback (features and properties) of the other users when he checks 
-        //the checkbox to display 'others' feedback
-        $('form.feedback input:checkbox').change(function (evt) {
-            var other = map.getLayersByName('Others Layer')[0];
-            if ( $(this).attr('checked') === 'checked' ) {
-                if (others_feature_collected === false) {
-                    gnt.geo.get_features('@others',
-                                         data_group,
-                                         '',
-                        {
-                            'success': function(data) {
-                                if (data.features) {
-                                    var gf = new OpenLayers.Format.GeoJSON();
-                                    var user, comment;
-                                    for(var i = 0; i < data.features.length; i++) {
-                                        var feature = gf.parseFeature(data.features[i]);
-                                        //add values losed in parsing should be added again
-                                        feature['private'] = data.features[i]['private'];
-                                        feature.lonlat = gnt.questionnaire.get_popup_lonlat(feature.geometry);
-                                        other.addFeatures(feature);
-                                        comment = feature.attributes.form_values[0]['value'];
-                                        user = feature.attributes.user;
-                                        
-                                        // set the right content
-                                        var anonymous_regexp = new RegExp( 'T[0-9]+.[0-9]+R[0-9]+.[0-9]+' );
-                                        if( !anonymous_regexp.test( user ) ) {
-                                            $( '#other .username' ).text( user );
-                                        }
-                                        $( '#other .comment' ).text( comment );
-                                        
-                                        //get the content
-                                        var popupcontent = $('#other').html();
-                                        
-                                        //var popupcontent = user + " says " + comment;
-                                        feature.popupClass = OpenLayers.Popup.FramedCloud;
-                                        feature.popup = new OpenLayers.Popup.FramedCloud(
-                                                   feature.id,
-                                                   feature.lonlat,
-                                                   null,
-                                                   popupcontent,
-                                                   null,
-                                                   false);
-                                    }
-                                }
-                           }
-                       });
-                    others_feature_collected = true;
-                    other.setVisibility(true);
-                    featureFilter(event);
-                    
-                } else if (others_feature_collected === true) {
-                    other.setVisibility(true);
-                    featureFilter(event);
-                    
-                }
-            } else /*if ( $(this).attr('checked') === 'unchecked' )*/ {
-                other.setVisibility(false);
-                featureFilter(event);
-            }            
-        })
-        
-        function featureFilter(event) {
-            var current_extent = map.getExtent();
-            var onscreen_features = [];
-            
-            //var vector_layers = map.getLayersByName(('Others Layer'|'Route Layers'|green));
-            
-                var layer = map.getLayersByName('Others Layer')[0];
-                var layer_features = layer.features;
-                getOnScreenFeatures(layer_features);
-               
-
-            
-            layer = map.getLayersByName('Route Layer')[0];
-            layer_features = layer.features;
-            getOnScreenFeatures(layer_features);
-            
-            layer = map.getLayersByName('Area Layer')[0];
-            layer_features = layer.features;
-            getOnScreenFeatures(layer_features);
-            
-            layer = map.getLayersByName('Point Layer')[0];
-            layer_features = layer.features;
-            getOnScreenFeatures(layer_features);
-            
-            
-            function getOnScreenFeatures(layer_features) {
-                for(i=0;i< layer_features.length;i++) {
-                    var feature = layer_features[i];
-                    if (feature.getVisibility() === true && 
-                        feature.onScreen() === true) {
-                        onscreen_features.push(feature)
+            var otherLayer = new OpenLayers.Layer.Vector("Others Layer", {
+                    styleMap: new OpenLayers.StyleMap({
+                        'default': {
+                            strokeWidth: 3,
+                            strokeColor: '#aaaaff',
+                            cursor: 'pointer',
+                            fillColor: '#aaaaff',
+                            fillOpacity: 0.3,
+                            pointRadius: 5
                         }
-                    
+                    })
+                });
+            otherLayer.setVisibility(false);
+            map.addLayer(otherLayer);
+            map.events.register("moveend", null, featureFilter);
+            var all_layers = map.layers,
+                new_select_control = map.getControl('selectcontrol'),
+                others_feature_collected = false;
+            new_select_control.setLayer((new_select_control.layers).concat(otherLayer));
+            //This function collects all the onscreen features currently visible
+            function featureFilter(event) {
+                var onscreen_features = [];
+                function getOnScreenFeatures(layer_features) {
+                    for (var i = 0; i < layer_features.length; i++) {
+                        var feature = layer_features[i];
+                        if (feature.getVisibility() === true && feature.onScreen() === true) {
+                            onscreen_features.push(feature);
+                        }
                     }
                 }
-                
-            console.log(onscreen_features);
+                //var vector_layers = map.getLayersByName(('Others Layer'|'Route Layers'|green));
+                var layer = map.getLayersByName('Route Layer')[0],
+                    layer_features = layer.features;
+                getOnScreenFeatures(layer_features);
+                layer = map.getLayersByName('Area Layer')[0];
+                layer_features = layer.features;
+                getOnScreenFeatures(layer_features);
+                layer = map.getLayersByName('Point Layer')[0];
+                layer_features = layer.features;
+                getOnScreenFeatures(layer_features);
+                layer = map.getLayersByName('Others Layer')[0];
+                layer_features = layer.features;
+                getOnScreenFeatures(layer_features);
+                console.log(onscreen_features);
             }
-        
-        map.events.register("moveend", null, featureFilter);
-        
-    
-    });
-    
-    $(".free_comment_thanks").hide();
-    $(".submit-evaluation").click(function(evt) {
-        $(".free_comment_thanks").show();
+            //This function will get the feedback (features and properties) of the other users when he checks 
+            //the checkbox to display 'others' feedback
+            $('form.feedback input:checkbox').change(function (evt) {
+                var other = map.getLayersByName('Others Layer')[0];
+                if ($(this).attr('checked') === 'checked') {
+                    if (others_feature_collected === false) {
+                        gnt.geo.get_features('@others',
+                                             data_group,
+                                             '',
+                            {
+                                'success': function (data) {
+                                    if (data.features) {
+                                        var gf = new OpenLayers.Format.GeoJSON(),
+                                            user,
+                                            comment;
+                                        for (var i = 0; i < data.features.length; i++) {
+                                            var feature = gf.parseFeature(data.features[i]);
+                                            //add values losed in parsing should be added again
+                                            feature['private'] = data.features[i]['private'];
+                                            feature.lonlat = gnt.questionnaire.get_popup_lonlat(feature.geometry);
+                                            other.addFeatures(feature);
+                                            comment = feature.attributes.form_values[0]['value'];
+                                            user = feature.attributes.user;
+                                            // set the right content
+                                            var anonymous_regexp = new RegExp('T[0-9]+.[0-9]+R[0-9]+.[0-9]+');
+                                            if (!anonymous_regexp.test(user)) {
+                                                $('#other .username').text(user);
+                                            }
+                                            $('#other .comment').text(comment);
+                                            //get the content
+                                            var popupcontent = $('#other').html();
+                                            //var popupcontent = user + " says " + comment;
+                                            feature.popupClass = OpenLayers.Popup.FramedCloud;
+                                            feature.popup = new OpenLayers.Popup.FramedCloud(
+                                                feature.id,
+                                                feature.lonlat,
+                                                null,
+                                                popupcontent,
+                                                null,
+                                                false
+                                            );
+                                        }
+                                    }
+                                }
+                            });
+                        others_feature_collected = true;
+                        other.setVisibility(true);
+                        featureFilter(event);
+                    } else if (others_feature_collected === true) {
+                        other.setVisibility(true);
+                        featureFilter(event);
+                    }
+                } else {
+                    other.setVisibility(false);
+                    featureFilter(event);
+                }            
+            });
         });
-    
+    $(".free_comment_thanks").hide();
+    $(".submit-evaluation").click(function (evt) {
+        $(".free_comment_thanks").show();
+    });
 });
 
