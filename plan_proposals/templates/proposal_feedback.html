@@ -167,7 +167,14 @@
 </div>
 {% endfor %}
 
-{% endblock %}
+{% endblock content %}
+
+{% block map %}
+    <div id="map">
+        <ul class="feature_comments">
+        </ul>
+    </div>
+{% endblock map %}  
 
 
 {% block javascript %}

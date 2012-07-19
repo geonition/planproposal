@@ -59,3 +59,22 @@ button.drawbutton {
 .carousel .full_image {
     position: relative;
 }
+
+ul.feature_comments {
+    position: absolute;
+    z-index: 999;
+    width:  330px;
+    right: 20px;
+    list-style: none;
+    padding: 0;
+}
+
+ul.feature_comments li {
+    background-color: #555555;
+    opacity: 0.9;
+    color: white;
+    padding: 1em;
+    border: 1px solid #cccccc;
+    border-radius: 13px;
+    font-weight: bold;
+}

@@ -43,8 +43,8 @@ jQuery(document).ready(function () {
                            proposal_area,
                            data_group,
                            function () {
-        // Create a 'otherLayer' to collect public feedback from other users and add it to the map.
-        //The layer also is added to the existing select feature control 'selectcontrol'
+            // Create a 'otherLayer' to collect public feedback from other users and add it to the map.
+            //The layer also is added to the existing select feature control 'selectcontrol'
             var otherLayer = new OpenLayers.Layer.Vector("Others Layer", {
                     styleMap: new OpenLayers.StyleMap({
                         'default': {
@@ -52,6 +52,14 @@ jQuery(document).ready(function () {
                             strokeColor: '#aaaaff',
                             cursor: 'pointer',
                             fillColor: '#aaaaff',
+                            fillOpacity: 0.3,
+                            pointRadius: 5
+                        },
+                        'highlight': {
+                            strokeWidth: 3,
+                            strokeColor: '#555555',
+                            cursor: 'pointer',
+                            fillColor: '#555555',
                             fillOpacity: 0.3,
                             pointRadius: 5
                         }
@@ -147,7 +155,43 @@ jQuery(document).ready(function () {
                     featureFilter(event);
                 }            
             });
-        });
+        // set on hover hightlight on others layer
+        if( !Modernizr.touch ) {
+            var highlightCtrl = new OpenLayers.Control.SelectFeature(
+                map.getLayersByName('Others Layer')[0], {
+                    hover: true,
+                    highlightOnly: true,
+                    renderIntent: 'highlight',
+                    multiple: true,
+                    eventListeners: {
+                        featurehighlighted: function (e) {
+                            for(i = 0; i < e.feature.attributes.form_values.length; i++) {
+                                if(e.feature.attributes.form_values[i].name == 'comment') {
+                                    var show_list_item = $('ul.feature_comments li.' + e.feature.id);
+                                    if(show_list_item.length === 0) {
+                                        $('ul.feature_comments').prepend('<li class="' +
+                                                                     e.feature.id +
+                                                                     '">' +
+                                                                     e.feature.attributes.form_values[i].value +
+                                                                     '<br />' +
+                                                                     $.datepicker.parseDate('yy-mm-dd', e.feature.attributes.time.create_time.split('T')[0]).toDateString() +
+                                                                     '</li>');
+                                    show_list_item = $('ul.feature_comments li.' + e.feature.id);
+                                }
+                                show_list_item.fadeIn(750);
+                            }
+                        }
+                    },
+                    featureunhighlighted: function(e) {
+                        var hide_list_item = $('ul.feature_comments li.' + e.feature.id);
+                        hide_list_item.fadeOut(750);
+                    }
+                }
+            });
+            map.addControl(highlightCtrl);
+            highlightCtrl.activate();
+        }
+    });
     $(".free_comment_thanks").hide();
     $(".submit-evaluation").click(function (evt) {
         $(".free_comment_thanks").show();
