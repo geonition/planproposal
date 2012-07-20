@@ -156,7 +156,7 @@ jQuery(document).ready(function () {
                 }            
             });
         // set on hover hightlight on others layer
-        if( !Modernizr.touch ) {
+        if($('html').hasClass('no-touch')) {
             var highlightCtrl = new OpenLayers.Control.SelectFeature(
                 map.getLayersByName('Others Layer')[0], {
                     hover: true,
