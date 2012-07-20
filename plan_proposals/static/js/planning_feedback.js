@@ -69,9 +69,11 @@ jQuery(document).ready(function () {
             map.addLayer(otherLayer);
             map.events.register("moveend", null, featureFilter);
             var all_layers = map.layers,
-                new_select_control = map.getControl('selectcontrol'),
+                //new_select_control,
                 others_feature_collected = false;
-            new_select_control.setLayer((new_select_control.layers).concat(otherLayer));
+            //new_select_control = map.getControl('selectcontrol');
+            //new_select_control.setLayer((new_select_control.layers).concat(otherLayer));
+            
             //This function collects all the onscreen features currently visible
             function featureFilter(event) {
                 var onscreen_features = [];
@@ -128,7 +130,6 @@ jQuery(document).ready(function () {
                                             $('#other .comment').text(comment);
                                             //get the content
                                             var popupcontent = $('#other').html();
-                                            //var popupcontent = user + " says " + comment;
                                             feature.popupClass = OpenLayers.Popup.FramedCloud;
                                             feature.popup = new OpenLayers.Popup.FramedCloud(
                                                 feature.id,
@@ -161,32 +162,46 @@ jQuery(document).ready(function () {
                     hover: true,
                     highlightOnly: true,
                     renderIntent: 'highlight',
-                    multiple: true,
                     eventListeners: {
                         featurehighlighted: function (e) {
                             for(i = 0; i < e.feature.attributes.form_values.length; i++) {
-                                if(e.feature.attributes.form_values[i].name == 'comment') {
+                                if(e.feature.attributes.form_values[i].name === 'comment') {
                                     var show_list_item = $('ul.feature_comments li.' + e.feature.id);
                                     if(show_list_item.length === 0) {
+                                        var username = e.feature.attributes.user;
+                                        var anonymous_regexp = new RegExp('T[0-9]+.[0-9]+R[0-9]+.[0-9]+');
+                                        if (anonymous_regexp.test(username)) {
+                                            username = '';
+                                        }
                                         $('ul.feature_comments').prepend('<li class="' +
                                                                      e.feature.id +
                                                                      '">' +
                                                                      e.feature.attributes.form_values[i].value +
                                                                      '<br />' +
+                                                                     username +
+                                                                     ' ' +
                                                                      $.datepicker.parseDate('yy-mm-dd', e.feature.attributes.time.create_time.split('T')[0]).toDateString() +
                                                                      '</li>');
-                                    show_list_item = $('ul.feature_comments li.' + e.feature.id);
+                                        show_list_item = $('ul.feature_comments li.' + e.feature.id);
+                                    }
+                                    if(!show_list_item.hasClass('highlight')) {
+                                        show_list_item.addClass('highlight');
+                                    }
+                                    show_list_item.stop(true, true);
+                                    show_list_item.fadeIn(750);
                                 }
-                                show_list_item.fadeIn(750);
                             }
+                        },
+                        featureunhighlighted: function(e) {
+                            var hide_list_item = $('ul.feature_comments li.' + e.feature.id);
+                            if(hide_list_item.hasClass('highlight')) {
+                                hide_list_item.removeClass('highlight');
+                            }
+                            hide_list_item.stop(true, true);
+                            hide_list_item.delay(2000).fadeOut(750);
                         }
-                    },
-                    featureunhighlighted: function(e) {
-                        var hide_list_item = $('ul.feature_comments li.' + e.feature.id);
-                        hide_list_item.fadeOut(750);
                     }
-                }
-            });
+                });
             map.addControl(highlightCtrl);
             highlightCtrl.activate();
         }
