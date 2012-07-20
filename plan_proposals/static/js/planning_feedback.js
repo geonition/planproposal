@@ -96,7 +96,6 @@ jQuery(document).ready(function () {
                 layer = map.getLayersByName('Others Layer')[0];
                 layer_features = layer.features;
                 getOnScreenFeatures(layer_features);
-                console.log(onscreen_features);
             }
             //This function will get the feedback (features and properties) of the other users when he checks 
             //the checkbox to display 'others' feedback
