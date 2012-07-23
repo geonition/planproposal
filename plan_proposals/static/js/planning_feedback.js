@@ -69,8 +69,8 @@ jQuery(document).ready(function () {
             map.addLayer(otherLayer);
             map.events.register("moveend", null, featureFilter);
             var all_layers = map.layers,
-                //new_select_control,
-                others_feature_collected = false;
+            //new_select_control,
+            others_feature_collected = false;
             //new_select_control = map.getControl('selectcontrol');
             //new_select_control.setLayer((new_select_control.layers).concat(otherLayer));
             
@@ -145,10 +145,10 @@ jQuery(document).ready(function () {
                             });
                         others_feature_collected = true;
                         other.setVisibility(true);
-                        featureFilter(event);
+                        featureFilter();
                     } else if (others_feature_collected === true) {
                         other.setVisibility(true);
-                        featureFilter(event);
+                        featureFilter();
                     }
                 } else {
                     other.setVisibility(false);
