@@ -178,8 +178,9 @@
 
 
 {% block javascript %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+<script src="{{ STATIC_URL }}js/libs/jquery-1.7.2.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
+<script src="{{ STATIC_URL }}js/libs/i18n/jquery.ui.datepicker-{{ LANGUAGE_CODE }}.js"></script>
 <script src="{{ STATIC_URL }}js/libs/OpenLayers-gnt.js"></script>
 <!--<script src="http://openlayers.org/dev/OpenLayers.js"></script>-->
 <script type="text/javascript" src="{% url api_javascript %}"></script>
@@ -188,7 +189,6 @@
 <script type="text/javascript">
 var proposal_area = {{ proposal_details.project.area.json|safe }};
 var data_group = 'PP-{{ proposal_details.project.slug }}-{{ proposal_details.slug }}';
-
 
 </script>
 {% endblock javascript %}

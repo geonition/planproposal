@@ -1,3 +1,4 @@
+/*global  JQuery*/
 /*
  map settings
 */
@@ -9,7 +10,7 @@ var INITIAL_CENTER = {
 };
 
 jQuery(document).ready(function () {
-
+    "use strict";
     $("#more_info").dialog({
         autoOpen: false,
         show: "blind",
@@ -45,7 +46,11 @@ jQuery(document).ready(function () {
                            function () {
             // Create a 'otherLayer' to collect public feedback from other users and add it to the map.
             //The layer also is added to the existing select feature control 'selectcontrol'
-            var otherLayer = new OpenLayers.Layer.Vector("Others Layer", {
+            var i,
+                highlightCtrl,
+                select_control,
+                others_feature_collected = false,
+                otherLayer = new OpenLayers.Layer.Vector("Others Layer", {
                     styleMap: new OpenLayers.StyleMap({
                         'default': {
                             strokeWidth: 3,
@@ -67,13 +72,9 @@ jQuery(document).ready(function () {
                 });
             otherLayer.setVisibility(false);
             map.addLayer(otherLayer);
-            map.events.register("moveend", null, featureFilter);
-            var all_layers = map.layers,
-            //new_select_control,
-            others_feature_collected = false;
-            //new_select_control = map.getControl('selectcontrol');
-            //new_select_control.setLayer((new_select_control.layers).concat(otherLayer));
-            
+            //map.events.register("moveend", null, featureFilter);
+
+            /*
             //This function collects all the onscreen features currently visible
             function featureFilter(event) {
                 var onscreen_features = [];
@@ -99,10 +100,12 @@ jQuery(document).ready(function () {
                 layer_features = layer.features;
                 getOnScreenFeatures(layer_features);
             }
+            */
             //This function will get the feedback (features and properties) of the other users when he checks 
             //the checkbox to display 'others' feedback
-            $('form.feedback input:checkbox').change(function (evt) {
+            $('form.feedback input:checkbox').change(function () {
                 var other = map.getLayersByName('Others Layer')[0];
+                //add the other layer to
                 if ($(this).attr('checked') === 'checked') {
                     if (others_feature_collected === false) {
                         gnt.geo.get_features('@others',
@@ -113,23 +116,27 @@ jQuery(document).ready(function () {
                                     if (data.features) {
                                         var gf = new OpenLayers.Format.GeoJSON(),
                                             user,
-                                            comment;
-                                        for (var i = 0; i < data.features.length; i++) {
-                                            var feature = gf.parseFeature(data.features[i]);
+                                            comment,
+                                            i,
+                                            feature,
+                                            anonymous_regexp,
+                                            popupcontent;
+                                        for (i = 0; i < data.features.length; i += 1) {
+                                            feature = gf.parseFeature(data.features[i]);
                                             //add values losed in parsing should be added again
                                             feature['private'] = data.features[i]['private'];
                                             feature.lonlat = gnt.questionnaire.get_popup_lonlat(feature.geometry);
                                             other.addFeatures(feature);
-                                            comment = feature.attributes.form_values[0]['value'];
+                                            comment = feature.attributes.form_values[0].value;
                                             user = feature.attributes.user;
                                             // set the right content
-                                            var anonymous_regexp = new RegExp('T[0-9]+.[0-9]+R[0-9]+.[0-9]+');
+                                            anonymous_regexp = new RegExp('T[0-9]+.[0-9]+R[0-9]+.[0-9]+');
                                             if (!anonymous_regexp.test(user)) {
                                                 $('#other .username').text(user);
                                             }
                                             $('#other .comment').text(comment);
                                             //get the content
-                                            var popupcontent = $('#other').html();
+                                            popupcontent = $('#other').html();
                                             feature.popupClass = OpenLayers.Popup.FramedCloud;
                                             feature.popup = new OpenLayers.Popup.FramedCloud(
                                                 feature.id,
@@ -145,69 +152,82 @@ jQuery(document).ready(function () {
                             });
                         others_feature_collected = true;
                         other.setVisibility(true);
-                        featureFilter();
+                        //featureFilter();
                     } else if (others_feature_collected === true) {
                         other.setVisibility(true);
-                        featureFilter();
+                        //featureFilter();
                     }
                 } else {
                     other.setVisibility(false);
-                    featureFilter(event);
-                }            
+                    //featureFilter();
+                }
             });
-        // set on hover hightlight on others layer
-        if($('html').hasClass('no-touch')) {
-            var highlightCtrl = new OpenLayers.Control.SelectFeature(
-                map.getLayersByName('Others Layer')[0], {
-                    hover: true,
-                    highlightOnly: true,
-                    renderIntent: 'highlight',
-                    eventListeners: {
-                        featurehighlighted: function (e) {
-                            for(i = 0; i < e.feature.attributes.form_values.length; i++) {
-                                if(e.feature.attributes.form_values[i].name === 'comment') {
-                                    var show_list_item = $('ul.feature_comments li.' + e.feature.id);
-                                    if(show_list_item.length === 0) {
-                                        var username = e.feature.attributes.user;
-                                        var anonymous_regexp = new RegExp('T[0-9]+.[0-9]+R[0-9]+.[0-9]+');
-                                        if (anonymous_regexp.test(username)) {
-                                            username = '';
+            // set on hover hightlight on others layer
+            if ($('html').hasClass('no-touch')) {
+                highlightCtrl = new OpenLayers.Control.SelectFeature(
+                    map.getControl('selectcontrol').layers.concat(map.getLayersByName('Others Layer')[0]),
+                    {
+                        hover: true,
+                        highlightOnly: true,
+                        multiple: true,
+                        renderIntent: 'highlight',
+                        eventListeners: {
+                            featurehighlighted: function (e) {
+                                //fix for unhighlight in OpenLayers not always triggering
+                                $('ul.feature_comments li:visible').fadeOut(500);
+                                for (i = 0; i < e.feature.attributes.form_values.length; i += 1) {
+                                    if (e.feature.attributes.form_values[i].name === 'comment') {
+                                        var create_time_string,
+                                            username,
+                                            anonymous_regexp,
+                                            show_list_item = $('ul.feature_comments li.' + e.feature.id);
+                                        if (show_list_item.length === 0) {
+                                            username = e.feature.attributes.user;
+                                            anonymous_regexp = new RegExp('T[0-9]+.[0-9]+R[0-9]+.[0-9]+');
+                                            if (anonymous_regexp.test(username)) {
+                                                username = '';
+                                            }
+                                            create_time_string = '';
+                                            if (e.feature.attributes.time.create_time !== undefined) {
+                                                create_time_string = $.datepicker.formatDate('D, d M yy',
+                                                                                         $.datepicker.parseDate('yy-mm-dd', e.feature.attributes.time.create_time.split('T')[0]));
+                                            }
+                                            $('ul.feature_comments').prepend('<li class="' +
+                                                                         e.feature.id +
+                                                                         '"><span class="comment">' +
+                                                                         e.feature.attributes.form_values[i].value +
+                                                                         '</span><br />' +
+                                                                         username +
+                                                                         ' ' +
+                                                                         create_time_string +
+                                                                         '</li>');
+                                            show_list_item = $('ul.feature_comments li.' + e.feature.id);
+                                        } else if ($('ul.feature_comments li.' + e.feature.id + ' span.comment').text() !== e.feature.attributes.form_values[i].value) {
+                                            $('ul.feature_comments li.' + e.feature.id + ' span.comment').text(e.feature.attributes.form_values[i].value);
                                         }
-                                        $('ul.feature_comments').prepend('<li class="' +
-                                                                     e.feature.id +
-                                                                     '">' +
-                                                                     e.feature.attributes.form_values[i].value +
-                                                                     '<br />' +
-                                                                     username +
-                                                                     ' ' +
-                                                                     $.datepicker.parseDate('yy-mm-dd', e.feature.attributes.time.create_time.split('T')[0]).toDateString() +
-                                                                     '</li>');
-                                        show_list_item = $('ul.feature_comments li.' + e.feature.id);
+                                        show_list_item.stop(true, true);
+                                        show_list_item.fadeIn(500);
                                     }
-                                    if(!show_list_item.hasClass('highlight')) {
-                                        show_list_item.addClass('highlight');
-                                    }
-                                    show_list_item.stop(true, true);
-                                    show_list_item.fadeIn(750);
                                 }
+                            },
+                            featureunhighlighted: function (e) {
+                                var hide_list_item = $('ul.feature_comments li.' + e.feature.id);
+                                hide_list_item.stop(true, true);
+                                hide_list_item.fadeOut(500);
                             }
-                        },
-                        featureunhighlighted: function(e) {
-                            var hide_list_item = $('ul.feature_comments li.' + e.feature.id);
-                            if(hide_list_item.hasClass('highlight')) {
-                                hide_list_item.removeClass('highlight');
-                            }
-                            hide_list_item.stop(true, true);
-                            hide_list_item.delay(2000).fadeOut(750);
                         }
                     }
-                });
-            map.addControl(highlightCtrl);
-            highlightCtrl.activate();
-        }
-    });
+                );
+                map.addControl(highlightCtrl);
+                highlightCtrl.activate();
+                // The select_control needs to be deactivated and activated to make
+                // hover and select on different layers to work together (done by setLayer)
+                select_control = map.getControl('selectcontrol');
+                select_control.setLayer((select_control.layers).concat(otherLayer));
+            }
+        });
     $(".free_comment_thanks").hide();
-    $(".submit-evaluation").click(function (evt) {
+    $(".submit-evaluation").click(function () {
         $(".free_comment_thanks").show();
     });
 });

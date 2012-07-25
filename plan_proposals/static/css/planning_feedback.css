@@ -70,15 +70,14 @@ ul.feature_comments {
 }
 
 ul.feature_comments li {
-    background-color: white;
+    background-color: #555555;
+    color: white;
     opacity: 0.9;
     padding: 1em;
+    border-color: #444444;
     border: 1px solid #EEEEEE;
     border-radius: 13px;
     font-weight: bold;
-}
-ul.feature_comments li.highlight {
-    background-color: #555555;
-    border-color: #444444;
-    color: white;
+    position: absolute;
+    top: 0;
 }
