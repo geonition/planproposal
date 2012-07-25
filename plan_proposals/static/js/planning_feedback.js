@@ -184,11 +184,11 @@ jQuery(document).ready(function () {
                                         if (show_list_item.length === 0) {
                                             username = e.feature.attributes.user;
                                             anonymous_regexp = new RegExp('T[0-9]+.[0-9]+R[0-9]+.[0-9]+');
-                                            if (anonymous_regexp.test(username)) {
+                                            if (anonymous_regexp.test(username) || username === undefined) {
                                                 username = '';
                                             }
                                             create_time_string = '';
-                                            if (e.feature.attributes.time.create_time !== undefined) {
+                                            if (e.feature.attributes.time !== undefined) {
                                                 create_time_string = $.datepicker.formatDate('D, d M yy',
                                                                                          $.datepicker.parseDate('yy-mm-dd', e.feature.attributes.time.create_time.split('T')[0]));
                                             }
