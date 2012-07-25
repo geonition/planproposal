@@ -1,0 +1,147 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-07-17 01:55-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: templates/planning_project.html:6
+msgid "Järvenpää"
+msgstr ""
+
+#: templates/planning_project.html:6
+msgid "pehmoGIS"
+msgstr ""
+
+#: templates/planning_project.html:19
+msgid "Dashboard"
+msgstr ""
+
+#: templates/planning_project.html:30 templates/planning_project.html.py:70
+msgid "More information about the project"
+msgstr ""
+
+#: templates/planning_project.html:38 templates/planning_project.html.py:49
+#: templates/planning_project.html:59
+msgid "Pajalanpiha"
+msgstr ""
+
+#: templates/planning_project.html:38 templates/planning_project.html.py:49
+#: templates/planning_project.html:59
+msgid "proposal"
+msgstr ""
+
+#: templates/planning_project.html:45 templates/planning_project.html.py:55
+#: templates/planning_project.html:65
+msgid "Look at and evaluate the proposal"
+msgstr ""
+
+#: templates/planning_project.html:81
+msgid "Järvenpään kaupunki"
+msgstr ""
+
+#: templates/proposal_feedback.html:27
+msgid "Evaluate the draft"
+msgstr ""
+
+#: templates/proposal_feedback.html:29
+msgid ""
+"Mark places on the draft where you feel the draft is good and where it needs "
+"improvement. Use the drawing tools below."
+msgstr ""
+
+#: templates/proposal_feedback.html:32
+msgid "Display Others feedback"
+msgstr ""
+
+#: templates/proposal_feedback.html:39
+msgid "place"
+msgstr ""
+
+#: templates/proposal_feedback.html:43
+msgid "route"
+msgstr ""
+
+#: templates/proposal_feedback.html:47
+msgid "area"
+msgstr ""
+
+#: templates/proposal_feedback.html:54
+msgid "Free comment"
+msgstr ""
+
+#: templates/proposal_feedback.html:64
+msgid "Thank you for your comment!"
+msgstr ""
+
+#: templates/proposal_feedback.html:71
+msgid "Send comment"
+msgstr ""
+
+#: templates/proposal_feedback.html:79
+msgid "Back to previous page"
+msgstr ""
+
+#: templates/proposal_feedback.html:83
+msgid "Information about this draft"
+msgstr ""
+
+#: templates/proposal_feedback.html:94 templates/proposal_feedback.html:165
+msgid "proposal image"
+msgstr ""
+
+#: templates/proposal_feedback.html:102
+msgid "Read more about the draft..."
+msgstr ""
+
+#: templates/proposal_feedback.html:109
+msgid "More information about the plan"
+msgstr ""
+
+#: templates/proposal_feedback.html:116
+msgid "Please, tell us more about the place"
+msgstr ""
+
+#: templates/proposal_feedback.html:119 templates/proposal_feedback.html:132
+#: templates/proposal_feedback.html:145
+msgid "This feedback is public"
+msgstr ""
+
+#: templates/proposal_feedback.html:121 templates/proposal_feedback.html:134
+#: templates/proposal_feedback.html:147
+msgid "save place"
+msgstr ""
+
+#: templates/proposal_feedback.html:124 templates/proposal_feedback.html:137
+#: templates/proposal_feedback.html:150
+msgid "remove place"
+msgstr ""
+
+#: templates/proposal_feedback.html:129
+msgid "Please, tell us more about the route"
+msgstr ""
+
+#: templates/proposal_feedback.html:142
+msgid "Please, tell us more about the area"
+msgstr ""
+
+#: templates/proposal_feedback.html:156
+msgid "Anonymous"
+msgstr ""
+
+#: templates/proposal_feedback.html:157
+msgid "says"
+msgstr ""
