@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-05 07:16-0500\n"
-"PO-Revision-Date: 2012-07-17 09:57+0200\n"
+"PO-Revision-Date: 2012-09-05 15:18+0200\n"
 "Last-Translator: Kristoffer Snabb <kristoffer.snabb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -29,21 +29,25 @@ msgstr "pehmoGIS"
 msgid "Dashboard"
 msgstr "Hankesivusto"
 
-#: templates/planning_project.html:29 templates/planning_project.html.py:69
+#: templates/planning_project.html:29
+#: templates/planning_project.html.py:69
 msgid "More information about the project"
 msgstr "Lisätietoa suunnitelmasta"
 
-#: templates/planning_project.html:37 templates/planning_project.html.py:48
+#: templates/planning_project.html:37
+#: templates/planning_project.html.py:48
 #: templates/planning_project.html:58
 msgid "Pajalanpiha"
 msgstr "Pajalanpiha"
 
-#: templates/planning_project.html:37 templates/planning_project.html.py:48
+#: templates/planning_project.html:37
+#: templates/planning_project.html.py:48
 #: templates/planning_project.html:58
 msgid "proposal"
 msgstr "ehdotus"
 
-#: templates/planning_project.html:44 templates/planning_project.html.py:54
+#: templates/planning_project.html:44
+#: templates/planning_project.html.py:54
 #: templates/planning_project.html:64
 msgid "Look at and evaluate the proposal"
 msgstr "Katso ja arvioi ehdotusta"
@@ -54,19 +58,15 @@ msgstr "Järvenpään kaupunki"
 
 #: templates/proposal_feedback.html:17
 msgid "Planning projects"
-msgstr ""
+msgstr "Suunnitteluprojektit"
 
 #: templates/proposal_feedback.html:31
 msgid "Evaluate the draft"
 msgstr "Arvioi ehdotusta"
 
 #: templates/proposal_feedback.html:33
-msgid ""
-"Mark places on the draft where you feel the draft is good and where it needs "
-"improvement. Use the drawing tools below."
-msgstr ""
-"Merkitse suunnitelmaan, missä kohdissa kaava on onnistunut ja mitä kohtia "
-"pitäisi kehittää. Käytä alla olevia piirtotyökaluja."
+msgid "Mark places on the draft where you feel the draft is good and where it needs improvement. Use the drawing tools below."
+msgstr "Merkitse suunnitelmaan, missä kohdissa kaava on onnistunut ja mitä kohtia pitäisi kehittää. Käytä alla olevia piirtotyökaluja."
 
 #: templates/proposal_feedback.html:36
 msgid "Display Others feedback"
@@ -104,7 +104,8 @@ msgstr "Takaisin edelliselle sivulle"
 msgid "Information about this draft"
 msgstr "Lisätietoa tästä suunnitelmasta"
 
-#: templates/proposal_feedback.html:98 templates/proposal_feedback.html:169
+#: templates/proposal_feedback.html:98
+#: templates/proposal_feedback.html:169
 msgid "proposal image"
 msgstr "Kuva ehdotuksesta"
 
@@ -120,17 +121,20 @@ msgstr "Lisätietoa suunnitelmasta"
 msgid "Please, tell us more about the place"
 msgstr "Kerro meille lisää paikasta"
 
-#: templates/proposal_feedback.html:123 templates/proposal_feedback.html:136
+#: templates/proposal_feedback.html:123
+#: templates/proposal_feedback.html:136
 #: templates/proposal_feedback.html:149
 msgid "This feedback is public"
 msgstr "Tämä on julkinen palaute"
 
-#: templates/proposal_feedback.html:125 templates/proposal_feedback.html:138
+#: templates/proposal_feedback.html:125
+#: templates/proposal_feedback.html:138
 #: templates/proposal_feedback.html:151
 msgid "save place"
 msgstr "tallenna paikka"
 
-#: templates/proposal_feedback.html:128 templates/proposal_feedback.html:141
+#: templates/proposal_feedback.html:128
+#: templates/proposal_feedback.html:141
 #: templates/proposal_feedback.html:154
 msgid "remove place"
 msgstr "poista paikka"
