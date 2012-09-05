@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-17 01:55-0500\n"
+"POT-Creation-Date: 2012-09-05 07:16-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,122 +26,126 @@ msgstr ""
 msgid "pehmoGIS"
 msgstr ""
 
-#: templates/planning_project.html:19
+#: templates/planning_project.html:18
 msgid "Dashboard"
 msgstr ""
 
-#: templates/planning_project.html:30 templates/planning_project.html.py:70
+#: templates/planning_project.html:29 templates/planning_project.html.py:69
 msgid "More information about the project"
 msgstr ""
 
-#: templates/planning_project.html:38 templates/planning_project.html.py:49
-#: templates/planning_project.html:59
+#: templates/planning_project.html:37 templates/planning_project.html.py:48
+#: templates/planning_project.html:58
 msgid "Pajalanpiha"
 msgstr ""
 
-#: templates/planning_project.html:38 templates/planning_project.html.py:49
-#: templates/planning_project.html:59
+#: templates/planning_project.html:37 templates/planning_project.html.py:48
+#: templates/planning_project.html:58
 msgid "proposal"
 msgstr ""
 
-#: templates/planning_project.html:45 templates/planning_project.html.py:55
-#: templates/planning_project.html:65
+#: templates/planning_project.html:44 templates/planning_project.html.py:54
+#: templates/planning_project.html:64
 msgid "Look at and evaluate the proposal"
 msgstr ""
 
-#: templates/planning_project.html:81
+#: templates/planning_project.html:80
 msgid "Järvenpään kaupunki"
 msgstr ""
 
-#: templates/proposal_feedback.html:27
+#: templates/proposal_feedback.html:17
+msgid "Planning projects"
+msgstr ""
+
+#: templates/proposal_feedback.html:31
 msgid "Evaluate the draft"
 msgstr ""
 
-#: templates/proposal_feedback.html:29
+#: templates/proposal_feedback.html:33
 msgid ""
 "Mark places on the draft where you feel the draft is good and where it needs "
 "improvement. Use the drawing tools below."
 msgstr ""
 
-#: templates/proposal_feedback.html:32
+#: templates/proposal_feedback.html:36
 msgid "Display Others feedback"
 msgstr ""
 
-#: templates/proposal_feedback.html:39
+#: templates/proposal_feedback.html:43
 msgid "place"
 msgstr ""
 
-#: templates/proposal_feedback.html:43
+#: templates/proposal_feedback.html:47
 msgid "route"
 msgstr ""
 
-#: templates/proposal_feedback.html:47
+#: templates/proposal_feedback.html:51
 msgid "area"
 msgstr ""
 
-#: templates/proposal_feedback.html:54
+#: templates/proposal_feedback.html:58
 msgid "Free comment"
 msgstr ""
 
-#: templates/proposal_feedback.html:64
+#: templates/proposal_feedback.html:68
 msgid "Thank you for your comment!"
 msgstr ""
 
-#: templates/proposal_feedback.html:71
+#: templates/proposal_feedback.html:75
 msgid "Send comment"
 msgstr ""
 
-#: templates/proposal_feedback.html:79
+#: templates/proposal_feedback.html:83
 msgid "Back to previous page"
 msgstr ""
 
-#: templates/proposal_feedback.html:83
+#: templates/proposal_feedback.html:87
 msgid "Information about this draft"
 msgstr ""
 
-#: templates/proposal_feedback.html:94 templates/proposal_feedback.html:165
+#: templates/proposal_feedback.html:98 templates/proposal_feedback.html:169
 msgid "proposal image"
 msgstr ""
 
-#: templates/proposal_feedback.html:102
+#: templates/proposal_feedback.html:106
 msgid "Read more about the draft..."
 msgstr ""
 
-#: templates/proposal_feedback.html:109
+#: templates/proposal_feedback.html:113
 msgid "More information about the plan"
 msgstr ""
 
-#: templates/proposal_feedback.html:116
+#: templates/proposal_feedback.html:120
 msgid "Please, tell us more about the place"
 msgstr ""
 
-#: templates/proposal_feedback.html:119 templates/proposal_feedback.html:132
-#: templates/proposal_feedback.html:145
+#: templates/proposal_feedback.html:123 templates/proposal_feedback.html:136
+#: templates/proposal_feedback.html:149
 msgid "This feedback is public"
 msgstr ""
 
-#: templates/proposal_feedback.html:121 templates/proposal_feedback.html:134
-#: templates/proposal_feedback.html:147
+#: templates/proposal_feedback.html:125 templates/proposal_feedback.html:138
+#: templates/proposal_feedback.html:151
 msgid "save place"
 msgstr ""
 
-#: templates/proposal_feedback.html:124 templates/proposal_feedback.html:137
-#: templates/proposal_feedback.html:150
+#: templates/proposal_feedback.html:128 templates/proposal_feedback.html:141
+#: templates/proposal_feedback.html:154
 msgid "remove place"
 msgstr ""
 
-#: templates/proposal_feedback.html:129
+#: templates/proposal_feedback.html:133
 msgid "Please, tell us more about the route"
 msgstr ""
 
-#: templates/proposal_feedback.html:142
+#: templates/proposal_feedback.html:146
 msgid "Please, tell us more about the area"
 msgstr ""
 
-#: templates/proposal_feedback.html:156
+#: templates/proposal_feedback.html:160
 msgid "Anonymous"
 msgstr ""
 
-#: templates/proposal_feedback.html:157
+#: templates/proposal_feedback.html:161
 msgid "says"
 msgstr ""
