@@ -3,7 +3,7 @@ from setuptools import find_packages
 
 setup(
     name='plan_proposals',
-    version='4.2.3',
+    version='4.2.4',
     author='Kristoffer Snabb',
     url='https://github.com/geonition/plan_proposal',
     packages=find_packages(),
