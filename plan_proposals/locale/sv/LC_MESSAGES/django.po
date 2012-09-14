@@ -1,21 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
+#   <kristoffer.snabb@geonition.org>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-05 07:16-0500\n"
-"PO-Revision-Date: 2012-09-05 15:19+0200\n"
-"Last-Translator: Kristoffer Snabb <kristoffer.snabb@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2012-09-14 02:53-0500\n"
+"PO-Revision-Date: 2012-09-14 08:17+0000\n"
+"Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
+"Language-Team: Swedish (http://www.transifex.com/projects/p/geonition/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language: sv\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: templates/planning_project.html:6
 msgid "Järvenpää"
@@ -29,25 +30,21 @@ msgstr "softGIS"
 msgid "Dashboard"
 msgstr "Första sidan"
 
-#: templates/planning_project.html:29
-#: templates/planning_project.html.py:69
+#: templates/planning_project.html:29 templates/planning_project.html.py:69
 msgid "More information about the project"
 msgstr "Mera information om projektet"
 
-#: templates/planning_project.html:37
-#: templates/planning_project.html.py:48
+#: templates/planning_project.html:37 templates/planning_project.html.py:48
 #: templates/planning_project.html:58
 msgid "Pajalanpiha"
 msgstr ""
 
-#: templates/planning_project.html:37
-#: templates/planning_project.html.py:48
+#: templates/planning_project.html:37 templates/planning_project.html.py:48
 #: templates/planning_project.html:58
 msgid "proposal"
 msgstr ""
 
-#: templates/planning_project.html:44
-#: templates/planning_project.html.py:54
+#: templates/planning_project.html:44 templates/planning_project.html.py:54
 #: templates/planning_project.html:64
 msgid "Look at and evaluate the proposal"
 msgstr ""
@@ -58,19 +55,21 @@ msgstr ""
 
 #: templates/proposal_feedback.html:17
 msgid "Planning projects"
-msgstr ""
+msgstr "Palnerings project"
 
 #: templates/proposal_feedback.html:31
 msgid "Evaluate the draft"
 msgstr ""
 
 #: templates/proposal_feedback.html:33
-msgid "Mark places on the draft where you feel the draft is good and where it needs improvement. Use the drawing tools below."
+msgid ""
+"Mark places on the draft where you feel the draft is good and where it needs"
+" improvement. Use the drawing tools below."
 msgstr ""
 
 #: templates/proposal_feedback.html:36
 msgid "Display Others feedback"
-msgstr ""
+msgstr "Visa andras kommentarer"
 
 #: templates/proposal_feedback.html:43
 msgid "place"
@@ -86,83 +85,67 @@ msgstr "område"
 
 #: templates/proposal_feedback.html:58
 msgid "Free comment"
-msgstr "Ge fri respons"
+msgstr ""
 
 #: templates/proposal_feedback.html:68
 msgid "Thank you for your comment!"
-msgstr "Din respons har sparats!"
+msgstr ""
 
 #: templates/proposal_feedback.html:75
 msgid "Send comment"
-msgstr "Skicka"
+msgstr ""
 
 #: templates/proposal_feedback.html:83
 msgid "Back to previous page"
-msgstr "Tillbaka till föregående sida"
+msgstr ""
 
 #: templates/proposal_feedback.html:87
 msgid "Information about this draft"
-msgstr "Mera information om detaljplanen"
+msgstr ""
 
-#: templates/proposal_feedback.html:98
-#: templates/proposal_feedback.html:169
+#: templates/proposal_feedback.html:98 templates/proposal_feedback.html:169
 msgid "proposal image"
 msgstr ""
 
 #: templates/proposal_feedback.html:106
 msgid "Read more about the draft..."
-msgstr "Läs mera om planen"
+msgstr ""
 
 #: templates/proposal_feedback.html:113
 msgid "More information about the plan"
-msgstr "Mera information om detaljplanen"
+msgstr ""
 
 #: templates/proposal_feedback.html:120
 msgid "Please, tell us more about the place"
-msgstr "Var god och berätta mera om platsen"
+msgstr ""
 
-#: templates/proposal_feedback.html:123
-#: templates/proposal_feedback.html:136
+#: templates/proposal_feedback.html:123 templates/proposal_feedback.html:136
 #: templates/proposal_feedback.html:149
 msgid "This feedback is public"
-msgstr "Den här kommentaren är almän"
+msgstr ""
 
-#: templates/proposal_feedback.html:125
-#: templates/proposal_feedback.html:138
+#: templates/proposal_feedback.html:125 templates/proposal_feedback.html:138
 #: templates/proposal_feedback.html:151
 msgid "save place"
-msgstr "spara platsen"
+msgstr ""
 
-#: templates/proposal_feedback.html:128
-#: templates/proposal_feedback.html:141
+#: templates/proposal_feedback.html:128 templates/proposal_feedback.html:141
 #: templates/proposal_feedback.html:154
 msgid "remove place"
-msgstr "ta bort platsen"
+msgstr ""
 
 #: templates/proposal_feedback.html:133
 msgid "Please, tell us more about the route"
-msgstr "Var god och berätta mera om rutten"
+msgstr ""
 
 #: templates/proposal_feedback.html:146
 msgid "Please, tell us more about the area"
-msgstr "Var god och berätta mera om området"
+msgstr ""
 
 #: templates/proposal_feedback.html:160
 msgid "Anonymous"
-msgstr "anonym"
+msgstr ""
 
 #: templates/proposal_feedback.html:161
 msgid "says"
-msgstr "säger"
-
-#~ msgid "save route"
-#~ msgstr "spara rutten"
-
-#~ msgid "remove route"
-#~ msgstr "ta bort rutten"
-
-#~ msgid "save area"
-#~ msgstr "spara området"
-
-#~ msgid "remove area"
-#~ msgstr "ta bort området"
+msgstr ""

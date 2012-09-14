@@ -1,21 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-05 07:16-0500\n"
-"PO-Revision-Date: 2012-09-05 15:18+0200\n"
-"Last-Translator: Kristoffer Snabb <kristoffer.snabb@gmail.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2012-09-14 02:22-0500\n"
+"PO-Revision-Date: 2012-09-14 07:46+0000\n"
+"Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
+"Language-Team: Finnish (http://www.transifex.com/projects/p/geonition/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: templates/planning_project.html:6
 msgid "Järvenpää"
@@ -29,25 +29,21 @@ msgstr "pehmoGIS"
 msgid "Dashboard"
 msgstr "Hankesivusto"
 
-#: templates/planning_project.html:29
-#: templates/planning_project.html.py:69
+#: templates/planning_project.html:29 templates/planning_project.html.py:69
 msgid "More information about the project"
 msgstr "Lisätietoa suunnitelmasta"
 
-#: templates/planning_project.html:37
-#: templates/planning_project.html.py:48
+#: templates/planning_project.html:37 templates/planning_project.html.py:48
 #: templates/planning_project.html:58
 msgid "Pajalanpiha"
 msgstr "Pajalanpiha"
 
-#: templates/planning_project.html:37
-#: templates/planning_project.html.py:48
+#: templates/planning_project.html:37 templates/planning_project.html.py:48
 #: templates/planning_project.html:58
 msgid "proposal"
 msgstr "ehdotus"
 
-#: templates/planning_project.html:44
-#: templates/planning_project.html.py:54
+#: templates/planning_project.html:44 templates/planning_project.html.py:54
 #: templates/planning_project.html:64
 msgid "Look at and evaluate the proposal"
 msgstr "Katso ja arvioi ehdotusta"
@@ -65,7 +61,9 @@ msgid "Evaluate the draft"
 msgstr "Arvioi ehdotusta"
 
 #: templates/proposal_feedback.html:33
-msgid "Mark places on the draft where you feel the draft is good and where it needs improvement. Use the drawing tools below."
+msgid ""
+"Mark places on the draft where you feel the draft is good and where it needs"
+" improvement. Use the drawing tools below."
 msgstr "Merkitse suunnitelmaan, missä kohdissa kaava on onnistunut ja mitä kohtia pitäisi kehittää. Käytä alla olevia piirtotyökaluja."
 
 #: templates/proposal_feedback.html:36
@@ -104,8 +102,7 @@ msgstr "Takaisin edelliselle sivulle"
 msgid "Information about this draft"
 msgstr "Lisätietoa tästä suunnitelmasta"
 
-#: templates/proposal_feedback.html:98
-#: templates/proposal_feedback.html:169
+#: templates/proposal_feedback.html:98 templates/proposal_feedback.html:169
 msgid "proposal image"
 msgstr "Kuva ehdotuksesta"
 
@@ -121,20 +118,17 @@ msgstr "Lisätietoa suunnitelmasta"
 msgid "Please, tell us more about the place"
 msgstr "Kerro meille lisää paikasta"
 
-#: templates/proposal_feedback.html:123
-#: templates/proposal_feedback.html:136
+#: templates/proposal_feedback.html:123 templates/proposal_feedback.html:136
 #: templates/proposal_feedback.html:149
 msgid "This feedback is public"
 msgstr "Tämä on julkinen palaute"
 
-#: templates/proposal_feedback.html:125
-#: templates/proposal_feedback.html:138
+#: templates/proposal_feedback.html:125 templates/proposal_feedback.html:138
 #: templates/proposal_feedback.html:151
 msgid "save place"
 msgstr "tallenna paikka"
 
-#: templates/proposal_feedback.html:128
-#: templates/proposal_feedback.html:141
+#: templates/proposal_feedback.html:128 templates/proposal_feedback.html:141
 #: templates/proposal_feedback.html:154
 msgid "remove place"
 msgstr "poista paikka"
@@ -154,52 +148,3 @@ msgstr "Nimetön"
 #: templates/proposal_feedback.html:161
 msgid "says"
 msgstr "Sanoo"
-
-#~ msgid "save route"
-#~ msgstr "tallenna reitti"
-
-#~ msgid "remove route"
-#~ msgstr "poista reitti"
-
-#~ msgid "save area"
-#~ msgstr "tallenna alue"
-
-#~ msgid "remove area"
-#~ msgstr "poista alue"
-
-#~ msgid "ilmakuva"
-#~ msgstr "ilmakuva"
-
-#~ msgid "show image from north of this draft"
-#~ msgstr "Näytä pohjoissuunnasta otettu viistokuva"
-
-#~ msgid "show image from south of this draft"
-#~ msgstr "Näytä eteläsuunnasta otettu viistokuva"
-
-#~ msgid "show image of the whole draft"
-#~ msgstr "Näytä viistokuva koko alueesta"
-
-#~ msgid "show streetview picture"
-#~ msgstr "Näytä katunäkymäkuva"
-
-#~ msgid ""
-#~ "Comment on the plan draft by selecting any of the drawing tools below."
-#~ msgstr "Kommentoi ehdotusta valitsemalla alla olevista piirtotyökaluista"
-
-#~ msgid "katukuva"
-#~ msgstr "katukuva"
-
-#~ msgid "Give a general rating"
-#~ msgstr "Anna yleisarvosana"
-
-#~ msgid "Model image"
-#~ msgstr "Mallinnuskuva"
-
-#~ msgid "Streetview"
-#~ msgstr "Katunäkymä"
-
-#~ msgid "of this proposal"
-#~ msgstr "ehdotuksesta"
-
-#~ msgid "Evaluate"
-#~ msgstr "Arvioi"
