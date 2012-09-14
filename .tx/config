@@ -1,0 +1,13 @@
+[main]
+host = https://www.transifex.com
+
+[geonition.planproposal]
+file_filter = plan_proposals/locale/<lang>/LC_MESSAGES/django.po
+source_file = plan_proposals/locale/en/LC_MESSAGES/django.po
+source_lang = en
+trans.fi = plan_proposals/locale/fi/LC_MESSAGES/django.po
+trans.ja = plan_proposals/locale/ja/LC_MESSAGES/django.po
+trans.pt = plan_proposals/locale/pt/LC_MESSAGES/django.po
+trans.sv = plan_proposals/locale/sv/LC_MESSAGES/django.po
+type = PO
+
