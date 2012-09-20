@@ -1,7 +1,7 @@
-from base_page.models import CitySetting
-from models import PlanningProject
-from models import Image
-from models import Proposal
+from base_page.models import OrganizationSetting
+from plan_proposals.models import PlanningProject
+from plan_proposals.models import Image
+from plan_proposals.models import Proposal
 from django.contrib.sites.models import Site
 from django.http import Http404
 from django.http import HttpResponseNotFound
@@ -18,7 +18,7 @@ def planning_project(request, project_name):
     """
     return render_to_response('planning_project.html',
                               {'project_name' : project_name},
-                              context_instance=RequestContext(request))
+                              context_instance = RequestContext(request))
 
 @ensure_csrf_cookie
 def plan_proposal(request, project_name, proposal_name):
@@ -28,9 +28,9 @@ def plan_proposal(request, project_name, proposal_name):
     by the user.
     """
     try:
-        city_settings = CitySetting.on_site.all()[0]
+        org_settings = OrganizationSetting.on_site.all()[0]
     except IndexError:
-        city_settings = {}
+        org_settings = {}
 
     try:
         proposal = Proposal.objects.select_related().get(
@@ -46,5 +46,5 @@ def plan_proposal(request, project_name, proposal_name):
                                'proposal_image': proposal_image,
                                'project_name' : project_name,
                                'proposal_name' : proposal_name,
-                               'city_settings': city_settings},
-                              context_instance=RequestContext(request))
+                               'org_settings': org_settings},
+                              context_instance = RequestContext(request))
