@@ -10,7 +10,6 @@ var INITIAL_CENTER = {
 };
 
 jQuery(document).ready(function () {
-    "use strict";
     $("#more_info").dialog({
         autoOpen: false,
         show: "blind",

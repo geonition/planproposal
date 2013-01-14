@@ -4,6 +4,7 @@ from django.contrib.gis.db import models as geomodel
 from django.contrib.sites.managers import CurrentSiteManager
 from django.core.files.storage import FileSystemStorage
 from django.contrib.sites.models import Site
+from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 
 
@@ -33,6 +34,15 @@ class Proposal(models.Model):
     slug = models.SlugField(editable=False)
     short_description = models.TextField()
     detailed_description = models.TextField()
+    
+    def get_absolute_url(self):
+        """
+        Returns the absolute url for this plan_proposal for
+        preview purposes.
+        """
+        return reverse('plan_proposal',
+                       kwargs = {'project_name': self.project.slug,
+                                 'proposal_name': self.slug})
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
