@@ -1,22 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 #   <fred.lopes3@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-13 09:02-0600\n"
+"POT-Creation-Date: 2013-01-14 07:01-0600\n"
 "PO-Revision-Date: 2012-09-14 12:17+0000\n"
 "Last-Translator: FredGIS <fred.lopes3@gmail.com>\n"
-"Language-Team: Portuguese (http://www.transifex.com/projects/p/geonition/"
-"language/pt/)\n"
-"Language: pt\n"
+"Language-Team: Portuguese (http://www.transifex.com/projects/p/geonition/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: templates/planning_project.html:6
@@ -64,11 +63,9 @@ msgstr "Avalia o rascunho"
 
 #: templates/proposal_feedback.html:33
 msgid ""
-"Mark places on the draft where you feel the draft is good and where it needs "
-"improvement. Use the drawing tools below."
-msgstr ""
-"Marca os lugares no rascunho onde te parece que o rascunho esteja bom e onde "
-"precisa de ser melhorado. Usa as ferramentas de desenho abaixo."
+"Mark places on the draft where you feel the draft is good and where it needs"
+" improvement. Use the drawing tools below."
+msgstr "Marca os lugares no rascunho onde te parece que o rascunho esteja bom e onde precisa de ser melhorado. Usa as ferramentas de desenho abaixo."
 
 #: templates/proposal_feedback.html:36
 msgid "Display Others feedback"
