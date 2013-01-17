@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/planning_feedback.css" />
     <!--<link href="{{ STATIC_URL }}css/jquery-ui-1.8.19.custom.css" rel="stylesheet" type="text/css" />-->
     <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/openlayers.css" type="text/css" />
+    <!--<link rel="stylesheet" href="{{ STATIC_URL }}css/openlayers.css" type="text/css" />-->
 {% endblock %}
 
 {% block content %}
@@ -184,6 +184,7 @@
 <script src="{{ STATIC_URL }}js/libs/jquery-1.7.2.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
 <script src="{{ STATIC_URL }}js/libs/i18n/jquery.ui.datepicker-{{ LANGUAGE_CODE }}.js"></script>
+<script src="{{ STATIC_URL }}js/libs/proj4js-gnt.js"></script>
 <script src="{{ STATIC_URL }}js/libs/OpenLayers-gnt.js"></script>
 <!--<script src="http://openlayers.org/dev/OpenLayers.js"></script>-->
 <script type="text/javascript" src="{% url api_javascript %}"></script>
@@ -191,6 +192,10 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/planning_feedback.js"></script>
 <script type="text/javascript">
 var proposal_area = {{ proposal_details.project.area.json|safe }};
+// add crs to area
+proposal_area['crs'] = {"type": "name", 
+                             "properties": {
+                                 "code": "EPSG:{{ proposal_details.project.area.srid|safe }}"}};
 var data_group = 'PP-{{ proposal_details.project.slug }}-{{ proposal_details.slug }}';
 
 var questionnaire = {
@@ -199,6 +204,11 @@ var questionnaire = {
     'show_area': false,
     'scale_visible_area': 1
 }
+
+// add crs to area
+questionnaire.questionnaire_area['crs'] = {"type": "name", 
+                                           "properties": {
+                                                "code": "EPSG:{{ proposal_details.project.area.srid|safe }}"}};
 
 </script>
 {% endblock javascript %}

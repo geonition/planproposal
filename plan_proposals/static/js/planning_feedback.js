@@ -119,11 +119,16 @@ jQuery(document).ready(function () {
                                             i,
                                             feature,
                                             anonymous_regexp,
-                                            popupcontent;
+                                            popupcontent,
+                                            // Projection objects for transformations
+                                            source_proj = new OpenLayers.Projection(data.crs.properties.code),
+                                            target_proj = new OpenLayers.Projection(map.getProjection());
                                         for (i = 0; i < data.features.length; i += 1) {
                                             feature = gf.parseFeature(data.features[i]);
                                             //add values losed in parsing should be added again
                                             feature['private'] = data.features[i]['private'];
+                                            // Transform geometry to map projection
+                                            feature.geometry.transform(source_proj, target_proj);
                                             feature.lonlat = gnt.questionnaire.get_popup_lonlat(feature.geometry);
                                             other.addFeatures(feature);
                                             comment = feature.attributes.form_values[0].value;
