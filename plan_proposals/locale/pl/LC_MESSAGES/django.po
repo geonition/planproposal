@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-14 09:02-0600\n"
-"PO-Revision-Date: 2013-01-14 12:13+0000\n"
+"POT-Creation-Date: 2013-01-18 08:02-0600\n"
+"PO-Revision-Date: 2013-01-14 15:33+0000\n"
 "Last-Translator: 2michal3 <mczepkiewicz@yahoo.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/geonition/"
 "language/pl/)\n"
@@ -68,7 +68,7 @@ msgid ""
 "Mark places on the draft where you feel the draft is good and where it needs "
 "improvement. Use the drawing tools below."
 msgstr ""
-"Oznacz miejsca na projekcie, które uważasz za dobre i te które powinny "
+"Oznacz fragmenty projektu planu, które uważasz za dobre i te które powinny "
 "zostać poprawione. Skorzystaj z narzędzi rysowania"
 
 #: templates/proposal_feedback.html:36
@@ -113,11 +113,11 @@ msgstr "Rysunek planu"
 
 #: templates/proposal_feedback.html:106
 msgid "Read more about the draft..."
-msgstr "Przeczytaj więcej o projekcie"
+msgstr "Przeczytaj więcej o projekcie planu"
 
 #: templates/proposal_feedback.html:113
 msgid "More information about the plan"
-msgstr "Więcej informacji o projekcie"
+msgstr "Więcej informacji o projekcie planu"
 
 #: templates/proposal_feedback.html:120
 msgid "Please, tell us more about the place"
