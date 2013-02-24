@@ -1,21 +1,20 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-23 02:01-0600\n"
+"POT-Creation-Date: 2013-02-23 17:01-0600\n"
 "PO-Revision-Date: 2012-09-14 07:46+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
-"Language-Team: Finnish (http://www.transifex.com/projects/p/geonition/"
-"language/fi/)\n"
-"Language: fi\n"
+"Language-Team: Finnish (http://www.transifex.com/projects/p/geonition/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: templates/planning_project.html:6
@@ -63,11 +62,9 @@ msgstr "Arvioi ehdotusta"
 
 #: templates/proposal_feedback.html:33
 msgid ""
-"Mark places on the draft where you feel the draft is good and where it needs "
-"improvement. Use the drawing tools below."
-msgstr ""
-"Merkitse suunnitelmaan, missä kohdissa kaava on onnistunut ja mitä kohtia "
-"pitäisi kehittää. Käytä alla olevia piirtotyökaluja."
+"Mark places on the draft where you feel the draft is good and where it needs"
+" improvement. Use the drawing tools below."
+msgstr "Merkitse suunnitelmaan, missä kohdissa kaava on onnistunut ja mitä kohtia pitäisi kehittää. Käytä alla olevia piirtotyökaluja."
 
 #: templates/proposal_feedback.html:36
 msgid "Display Others feedback"
