@@ -4,8 +4,9 @@ from plan_proposals.models import PlanningProject
 from plan_proposals.models import Image
 from plan_proposals.models import Proposal
 from django.conf import settings
+from modeltranslation.admin import TranslationAdmin
 
-class ProjectAdmin(admin.OSMGeoAdmin):
+class ProjectAdmin(admin.OSMGeoAdmin, TranslationAdmin):
     default_lon = getattr(settings,
                           'ORGANIZATION_ADMIN_DEFAULT_MAP_SETTINGS',
                           {'default_lon': 0})['default_lon']
