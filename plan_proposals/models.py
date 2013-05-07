@@ -6,6 +6,7 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
+from django.utils.translation import ugettext_lazy as _
 
 
 class PlanningProject(models.Model):
@@ -16,7 +17,21 @@ class PlanningProject(models.Model):
                             editable=False)
     area = geomodel.PolygonField(srid = getattr(settings, 'SPATIAL_REFERENCE_SYSTEM_ID', 4326))
     site = models.ForeignKey(Site)
+    description = models.TextField(blank = True,
+                                   verbose_name= _('description'))
+    start_date = models.DateField(null = True,
+                                  blank = True,
+                                  verbose_name = _('questionnaire start date'))
+    end_date = models.DateField(null = True,
+                                blank = True,
+                                verbose_name = _('questionnaire end date'))
+    map = models.CharField(max_length = 50,
+                            null = True,
+                            blank = True,
+                            verbose_name = _('map'))
+
     on_site = CurrentSiteManager()
+    objects = geomodel.GeoManager() 
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
