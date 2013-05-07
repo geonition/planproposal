@@ -31,6 +31,7 @@ class PlanningProject(models.Model):
                             verbose_name = _('map'))
 
     on_site = CurrentSiteManager()
+    objects = geomodel.GeoManager() 
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
