@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geonition\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-05 19:01-0500\n"
-"PO-Revision-Date: 2012-09-14 07:46+0000\n"
+"POT-Creation-Date: 2013-05-12 19:01-0500\n"
+"PO-Revision-Date: 2013-05-22 08:30+0000\n"
 "Last-Translator: ksnabb <kristoffer.snabb@geonition.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/geonition/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: models.py:21
+msgid "description"
+msgstr "kuvaus"
+
+#: models.py:24
+msgid "questionnaire start date"
+msgstr "kyselyn alkamispäivä"
+
+#: models.py:27
+msgid "questionnaire end date"
+msgstr "kyselyn loppumispäivä"
+
+#: models.py:31
+msgid "map"
+msgstr "kartta"
 
 #: templates/planning_project.html:6
 msgid "Järvenpää"
