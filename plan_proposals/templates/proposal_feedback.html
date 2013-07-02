@@ -1,4 +1,5 @@
 {% extends "base_map.html"%}
+{% load url from future %}
 {% load i18n %}
 
 {% block stylesheet %}
@@ -11,8 +12,8 @@
 {% block content %}
 
 <ul class="breadcrumb">
-    <li class="disk hover base_bgcolor" onclick="window.location = '{% url dashboard %}'">
-        <a href="{% url dashboard %}">
+    <li class="disk hover base_bgcolor" onclick="window.location = '{% url 'dashboard' %}'">
+        <a href="{% url 'dashboard' %}">
             <h3>
             {% trans "Planning projects" %}
             </h3>
@@ -79,7 +80,7 @@
     </form>
     <!--
     <br /><br />
-    <a class="reset" href="{% url planning_project project_name %}">
+    <a class="reset" href="{% url 'planning_project' project_name %}">
     {% trans "Back to previous page" %}
     </a>
     -->
@@ -187,8 +188,8 @@
 <script src="{{ STATIC_URL }}js/libs/proj4js-gnt.js"></script>
 <script src="{{ STATIC_URL }}js/libs/OpenLayers-gnt.js"></script>
 <!--<script src="http://openlayers.org/dev/OpenLayers.js"></script>-->
-<script type="text/javascript" src="{% url api_javascript %}"></script>
-<script type="text/javascript" src="{% url map_js map_slug_name='plans' %}"></script>
+<script type="text/javascript" src="{% url 'api_javascript' %}"></script>
+<script type="text/javascript" src="{% url 'map_js' map_slug_name='plans' %}"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/planning_feedback.js"></script>
 <script type="text/javascript">
 var proposal_area = {{ proposal_details.project.area.json|safe }};

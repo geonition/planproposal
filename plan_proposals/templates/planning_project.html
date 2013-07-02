@@ -1,4 +1,5 @@
 {% extends "base_map.html"%}
+{% load url from future %}
 {% load i18n %}
 
 
@@ -15,7 +16,7 @@
 
 {% block content %}
 <div class="breadcrumbs">
-    <a class="reset" href="{% url dashboard %}">{% trans 'Dashboard' %}</a>
+    <a class="reset" href="{% url 'dashboard' %}">{% trans 'Dashboard' %}</a>
     &gt;&gt;
     <span>{{ project_name }}</span>
 </div>
@@ -40,7 +41,7 @@
             {% lorem 25 w %}
         <br />
         {{ proposal_url }}
-        <a class="reset" href="{% url plan_proposal project_name 'ehdotus-1' %}">
+        <a class="reset" href="{% url 'plan_proposal' project_name 'ehdotus-1' %}">
         {% trans "Look at and evaluate the proposal" %}
         </a>
         </div>
@@ -50,7 +51,7 @@
         <div>
             {% lorem 25 w %}
         <br />
-        <a class="reset" href="{% url plan_proposal project_name 'ehdotus-2' %}">
+        <a class="reset" href="{% url 'plan_proposal' project_name 'ehdotus-2' %}">
         {% trans "Look at and evaluate the proposal" %}
         </a>
         </div>
@@ -60,7 +61,7 @@
         <div>
             {% lorem 25 w %}
         <br />
-        <a class="reset" href="{% url plan_proposal project_name 'ehdotus-3' %}">
+        <a class="reset" href="{% url 'plan_proposal' project_name 'ehdotus-3' %}">
         {% trans "Look at and evaluate the proposal" %}
         </a>
         </div>
